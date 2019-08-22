@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="八月份開始JS">
+<meta name="description" content="開始JS學習">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自我轉換的第一步">
 <meta property="og:url" content="https://easyfun0.github.io/2019/08/20/第一次寫文章/index.html">
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
-<meta property="og:description" content="八月份開始JS">
+<meta property="og:description" content="開始JS學習">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://easyfun0.github.io/images/js.png">
-<meta property="og:updated_time" content="2019-08-21T07:33:26.489Z">
+<meta property="og:updated_time" content="2019-08-22T06:28:49.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自我轉換的第一步">
-<meta name="twitter:description" content="八月份開始JS">
+<meta name="twitter:description" content="開始JS學習">
 <meta name="twitter:image" content="https://easyfun0.github.io/images/js.png">
 
 
@@ -301,12 +301,36 @@
       
 
       
-        <h2 id="八月份開始JS"><a href="#八月份開始JS" class="headerlink" title="八月份開始JS"></a>八月份開始JS</h2><a id="more"></a>
+        <h2 id="開始JS學習"><a href="#開始JS學習" class="headerlink" title="開始JS學習"></a>開始JS學習</h2><a id="more"></a>
 <img src="/images/js.png" alt="Raspberry pi" class="image">
 
-<p>八月報名了深入JavaScript核心 的課程，雖然基礎懂一些但一直不知道有些語法的使用，或者看到別人寫的JS，也都不太懂怎麼解析<br>開始持續一個月的深入探討JS的世界囉。</p>
+<p>八月報名了深入JavaScript核心 的課程，雖然基礎懂一些但一直不知道有些語法的使用，或者看到別人寫的JS，也都不太懂怎麼解析，接下來開始持續一個月的深入探討JS的世界囉。</p>
 <h2 id="JS語法介紹"><a href="#JS語法介紹" class="headerlink" title="JS語法介紹"></a>JS語法介紹</h2><p>JavaScript型別系統分為「原始型別」和「物件型別」兩大類，原始型別沒有屬性與方法<br>原始型別(Primitive types)</p>
+<p>＊ number<br>＊ string<br>＊ boolean<br>＊ null<br>＊ undefined<br>＊ symbol(ES6)</p>
+<p>物件型別(Object types)<br>原生物件(Native)</p>
+<pre><code>▵原始型別包裹物件(Primitive Wrapper)
+    ＊ Number
+    ＊ String
+    ＊ Boolean
 
+▵ Array,Object
+▵ Date,Math,RegExp</code></pre><p>宿主物件(Host)</p>
+<pre><code>◎ window(瀏覽器),global(Node.js)
+◎ DOM</code></pre><p>但JavaScript為了節省系統資源，原始型別在使用時會自動裝箱(boxing)形成原始型別包裹物件，使用完畢後會自動拆箱(unboxing)還原回原始型別。</p>
+<h2 id="範例1-1"><a href="#範例1-1" class="headerlink" title="範例1.1"></a>範例1.1</h2><pre><code>var str=&quot;string&quot;;
+console.log(typeof str); //&quot;string&quot;
+str.val=100;
+console.log(str.val); //undefined</code></pre><p>使用物件型別的時候最容易搞錯的就是Number,String,Boolean 就差在第一個字母大寫</p>
+<pre><code>var obj = new String(&quot;string&quot;);
+console.log(typeof obj); //&quot;object&quot;
+obj.val=100;
+console.log(obj.val); //100
+console.log(typeof obj.valueOf()); //&quot;string&quot;</code></pre><p>裝箱boxing與拆箱unboxing</p>
+<pre><code>var str = &quot;word&quot;;
+var txt = str.substring(3);</code></pre><p>裝箱內部原理</p>
+<pre><code>var str = new String(&quot;word&quot;);
+var txt = str.substring(3); //幫你裝箱
+str = str.valueOf();        //還原str</code></pre>
       
     </div>
     
@@ -339,6 +363,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/22/undefined/" rel="prev" title="javascript語法介紹">
+                javascript語法介紹 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -415,7 +443,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -452,7 +480,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#八月份開始JS"><span class="nav-number">1.</span> <span class="nav-text">八月份開始JS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS語法介紹"><span class="nav-number">2.</span> <span class="nav-text">JS語法介紹</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開始JS學習"><span class="nav-number">1.</span> <span class="nav-text">開始JS學習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS語法介紹"><span class="nav-number">2.</span> <span class="nav-text">JS語法介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例1-1"><span class="nav-number">3.</span> <span class="nav-text">範例1.1</span></a></li></ol></div>
             
 
           </div>

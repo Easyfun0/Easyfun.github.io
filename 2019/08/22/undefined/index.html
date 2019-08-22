@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-20190821010810262.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-20190821010502767.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="undefined &amp;amp; null＊undefined 是指已經宣告卻沒有賦予任何的值＊null 是「沒有值」的值＊JavaScript 變數的預設值為undefined＊JavaScript 不會將預設值設定為null，這是讓開發者用來定義「沒有值」的值＊undefined 不能使用在JSON資料格式中＊undefined 的類型(typeof)是undefined＊null 的類型(ty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript語法介紹">
+<meta property="og:url" content="https://easyfun0.github.io/2019/08/22/undefined/index.html">
+<meta property="og:site_name" content="Welcome to  Easyfun. World">
+<meta property="og:description" content="undefined &amp;amp; null＊undefined 是指已經宣告卻沒有賦予任何的值＊null 是「沒有值」的值＊JavaScript 變數的預設值為undefined＊JavaScript 不會將預設值設定為null，這是讓開發者用來定義「沒有值」的值＊undefined 不能使用在JSON資料格式中＊undefined 的類型(typeof)是undefined＊null 的類型(ty">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-08-22T08:52:32.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript語法介紹">
+<meta name="twitter:description" content="undefined &amp;amp; null＊undefined 是指已經宣告卻沒有賦予任何的值＊null 是「沒有值」的值＊JavaScript 變數的預設值為undefined＊JavaScript 不會將預設值設定為null，這是讓開發者用來定義「沒有值」的值＊undefined 不能使用在JSON資料格式中＊undefined 的類型(typeof)是undefined＊null 的類型(ty">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://easyfun0.github.io/2019/08/22/undefined/">
+
+
+
+
+
+  <title>javascript語法介紹 | Welcome to  Easyfun. World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to  Easyfun. World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">歡迎來到Easyfun的網路世界</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/home" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/08/22/undefined/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to  Easyfun. World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javascript語法介紹</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-22T14:06:31+08:00">
+                2019-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="undefined-amp-null"><a href="#undefined-amp-null" class="headerlink" title="undefined &amp; null"></a>undefined &amp; null</h2><p>＊undefined 是指已經宣告卻沒有賦予任何的值<br>＊null 是「沒有值」的值<br>＊JavaScript 變數的預設值為undefined<br>＊JavaScript 不會將預設值設定為null，這是讓開發者用來定義「沒有值」的值<br>＊undefined 不能使用在JSON資料格式中<br>＊undefined 的類型(typeof)是undefined<br>＊null 的類型(typeof)是object<br>＊undefined 和null都屬於falsy(等價於false)<br>＊使用為定義的變數會引發例外錯誤，使用undefined的變數則不會</p>
+<h3 id="範例1-2"><a href="#範例1-2" class="headerlink" title="範例1-2"></a>範例1-2</h3><pre><code>var empty;
+console.log(empty); //undefined
+console.log(typeof empty); //&quot;undefined&quot;;
+empty = null;
+console.log(empty); //null
+console.log(typeof empty); //&quot;object&quot;;</code></pre><h3 id="比較undefined和null"><a href="#比較undefined和null" class="headerlink" title="比較undefined和null"></a>比較undefined和null</h3><p>依據ECMAScript標準:<br>當==左右兩邊分別為undefined與null即回傳true<br>當===左右兩邊分別為undefined與null即回傳false</p>
+<h3 id="範例1-3"><a href="#範例1-3" class="headerlink" title="範例1-3"></a>範例1-3</h3><pre><code>console.log(undefined == null); //true
+console.log(undefined === null); //false</code></pre><h2 id="truthy-amp-falsy"><a href="#truthy-amp-falsy" class="headerlink" title="truthy &amp; falsy"></a>truthy &amp; falsy</h2><p>JavaScript的任意值，如果邏輯判斷中結果等價於true，但值實際上並不是true，可稱此為truthy，false也是相同並等價於false</p>
+<h3 id="邏輯判斷"><a href="#邏輯判斷" class="headerlink" title="邏輯判斷"></a>邏輯判斷</h3><pre><code>if(任意值) {
+    //此為truthy
+} else {
+    //此為falsy
+};</code></pre><h3 id="範例1-4"><a href="#範例1-4" class="headerlink" title="範例1-4"></a>範例1-4</h3><pre><code>可透過Boolean方法將值轉換
+consloe.log(Boolean(&quot;&quot;));</code></pre><h3 id="範例1-5"><a href="#範例1-5" class="headerlink" title="範例1-5"></a>範例1-5</h3><pre><code>可用!! 簡化Boolean寫法，兩個!!等同於Boolean將任何值轉為布林值
+console.log(!!&quot;&quot;); // false
+console.log(!!0); // false
+console.log(!!null); // false
+console.log(!!undefined); // false
+console.log(!!NaN); // false
+console.log(!!&quot;hello&quot;); // true
+console.log(!!1); // true
+console.log(!!{}); // true
+console.log(!![]); // true
+console.log(!!Infinity); //true</code></pre><h2 id="function-arguments"><a href="#function-arguments" class="headerlink" title="function arguments"></a>function arguments</h2><p>First-class function(一級涵式)是指對其他(string,number,boolean等等)做的事情也可對function做。包括將functiuon指定成一個變數,傳入另一個function中當作參數,和物件一樣可設定屬性與方法等等。<br>每個涵式都有this和arguments這兩個特別的值，arguments可存取所有傳送到涵式的參數。<br>arguments是類似陣列的物件(Array-Like Object)，如同陣列索引數的方式來存取值，並且具有length屬性，但不具備陣列原型方法，例如:filter,map,foreach…</p>
+<h3 id="範例1-6"><a href="#範例1-6" class="headerlink" title="範例1-6"></a>範例1-6</h3><pre><code>沒有定義參數
+function bulid(width, height) {
+    console.log(width);
+    console.log(height);
+}
+build(10,20,30);</code></pre><h3 id="範例1-7"><a href="#範例1-7" class="headerlink" title="範例1-7"></a>範例1-7</h3><pre><code>透過arguments取得傳入參數
+function build() {
+    var width = arguments[0];
+    var height = arguments[1];
+    var depth = arguments[2];
+    var length = arguments.length;
+    console.log(width, height, depth, length);
+}
+build(10,20,30);</code></pre><h3 id="範例1-8"><a href="#範例1-8" class="headerlink" title="範例1-8"></a>範例1-8</h3><pre><code>將arguments轉換為標準陣列
+function build() {
+    var args = new Array();
+    for (var i = 0; i &lt; arguments; i++) {
+        args.push(arguments[i]);
+    }
+    args.forEach(function(item){
+        console.log(item);
+    });
+}
+build(10,20,30);</code></pre><h2 id="立即涵式-IIFE"><a href="#立即涵式-IIFE" class="headerlink" title="立即涵式(IIFE)"></a>立即涵式(IIFE)</h2><p>立即涵式(Immediately Invoked Function Expression)就是一個可立刻執行的涵式，常被用在只會執行一次的程式碼，例如初始化的動作，並可將程式碼包起來，形成一個區域，避免與全域變數污染，有兩種優點:</p>
+<p>1.全域變數減少:若重複宣告相同到全域變數則會被覆蓋，變數暴露在全域中有可能被其他地方的程式修改，因此將變數放在立即涵式裡避免被修改。<br>2.全域變數區域化:把全域變數當作參數傳給立即涵式，JavaScript在尋找變數時會優先尋找區域變數，若找不到再去尋找上層或全域變數，在效率上可獲得提升。JavaScript進行壓縮時，並不會對全域變數進行重新命名，區域變數會重新命名，達到減少檔案大小。</p>
+<h3 id="範例1-9"><a href="#範例1-9" class="headerlink" title="範例1-9"></a>範例1-9</h3><pre><code>在function內宣告區域變數
+var a = 100;
+(function(){
+    var b = true;
+    console.log(a); //100;
+})();
+console.log(b); //b is not defined</code></pre><h3 id="範例1-10"><a href="#範例1-10" class="headerlink" title="範例1-10"></a>範例1-10</h3><pre><code>傳入全域變數到立即涵式內
+(function(window, document) {
+    console.log(window, document);
+})(window, document);  //全域</code></pre><h2 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h2><p>當無法預期程式是否會發生錯誤時，可用try…catch語句攔截發生的例外錯誤狀況。<br>finally也可使用在try或是try…catch上，但無法單獨使用。<br>在finally的區域都一定會執行，當try內有return時，會先執行完畢finally區塊內的程式才會回傳，finally內也有return，則會覆蓋掉try內的return。</p>
+<h3 id="範例1-11"><a href="#範例1-11" class="headerlink" title="範例1-11"></a>範例1-11</h3><pre><code>一般try...catch語句
+function run() {
+    try {
+        console.log(a);
+    } catch(e) {
+        console.log(e.message);
+    }
+}
+console.log(run());</code></pre><h3 id="範例1-12"><a href="#範例1-12" class="headerlink" title="範例1-12"></a>範例1-12</h3><pre><code>會先執行finally才回傳
+function run() {
+    try {
+        return &quot;abc&quot;;
+    } finally{
+        console.log(&quot;xyz&quot;);
+    }
+}
+console.log(run());</code></pre><h3 id="範例1-13"><a href="#範例1-13" class="headerlink" title="範例1-13"></a>範例1-13</h3><pre><code>覆蓋回傳值
+function run() {
+    try {
+        return &quot;abc&quot;;
+    } finally{
+        return &quot;xyz&quot;;
+    }
+}    
+console.log(run()); //&quot;xyz&quot;;</code></pre><h2 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h2><p>除了if…else判斷也可以使用switch…case，使用switch必須先設定好各種條件case，也可以加入預設值default，當所有條件均不符合時，就會執行預設值的程式碼。</p>
+<h3 id="範例1-14"><a href="#範例1-14" class="headerlink" title="範例1-14"></a>範例1-14</h3><pre><code>一般寫法
+switch (&quot;Mark&quot;) {
+    case &quot;Mark&quot;:
+        console.log(&quot;Mark&quot;);
+        break;
+    case &quot;John&quot;:
+        console.log(&quot;John&quot;);
+        break;
+    case &quot;Tom&quot;:
+        console.log(&quot;Tom&quot;);
+        break;
+    default:
+        console.log(&quot;Other&quot;);
+}</code></pre><h3 id="範例1-15"><a href="#範例1-15" class="headerlink" title="範例1-15"></a>範例1-15</h3><pre><code>在case中不使用break，可將複雜if...else,if..else改寫
+var a = 5;
+switch (true) {
+    case a &lt; 5:
+        console.log(&quot;a&lt;5&quot;);
+        break;
+    case a &lt; 10:
+        console.log(&quot;a&lt;10&quot;);
+        break;
+    default:
+        console.log(&quot;other&quot;);
+}</code></pre><h2 id="範圍鏈-Scope-chain"><a href="#範圍鏈-Scope-chain" class="headerlink" title="範圍鏈(Scope chain)"></a>範圍鏈(Scope chain)</h2><p>每個變數都有自己的作用區域範圍，若使用前未經宣告(var)，就會自動變成全域變數，若是function區域內宣告的變數，這個變數只能在這個區域內使用，涵數參數也相同。</p>
+<h3 id="範例1-16"><a href="#範例1-16" class="headerlink" title="範例1-16"></a>範例1-16</h3><pre><code>var a = 1;
+(function(){
+    console.log(a);
+})();</code></pre><h3 id="範例1-17"><a href="#範例1-17" class="headerlink" title="範例1-17"></a>範例1-17</h3><pre><code>var a = 1;
+(function(){
+    var a = 100;
+    console.log(a);
+})();
+console.log(a);</code></pre><h3 id="範例1-18"><a href="#範例1-18" class="headerlink" title="範例1-18"></a>範例1-18</h3><pre><code>var a = 1;
+(function(){
+    a = 100;
+    console.log(a);
+})();
+console.log(a);</code></pre><h3 id="範例1-19"><a href="#範例1-19" class="headerlink" title="範例1-19"></a>範例1-19</h3><pre><code>var a = 1;
+(function(a){      //a-&gt;var
+    a = 100;
+    console.log(a); //網外層找
+})();
+console.log(a);</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/20/第一次寫文章/" rel="next" title="自我轉換的第一步">
+                <i class="fa fa-chevron-left"></i> 自我轉換的第一步
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">Welcome to  Easyfun. World</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined-amp-null"><span class="nav-number">1.</span> <span class="nav-text">undefined &amp; null</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-2"><span class="nav-number">1.1.</span> <span class="nav-text">範例1-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比較undefined和null"><span class="nav-number">1.2.</span> <span class="nav-text">比較undefined和null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-3"><span class="nav-number">1.3.</span> <span class="nav-text">範例1-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#truthy-amp-falsy"><span class="nav-number">2.</span> <span class="nav-text">truthy &amp; falsy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#邏輯判斷"><span class="nav-number">2.1.</span> <span class="nav-text">邏輯判斷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-4"><span class="nav-number">2.2.</span> <span class="nav-text">範例1-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-5"><span class="nav-number">2.3.</span> <span class="nav-text">範例1-5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#function-arguments"><span class="nav-number">3.</span> <span class="nav-text">function arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-6"><span class="nav-number">3.1.</span> <span class="nav-text">範例1-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-7"><span class="nav-number">3.2.</span> <span class="nav-text">範例1-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-8"><span class="nav-number">3.3.</span> <span class="nav-text">範例1-8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立即涵式-IIFE"><span class="nav-number">4.</span> <span class="nav-text">立即涵式(IIFE)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-9"><span class="nav-number">4.1.</span> <span class="nav-text">範例1-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-10"><span class="nav-number">4.2.</span> <span class="nav-text">範例1-10</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#finally"><span class="nav-number">5.</span> <span class="nav-text">finally</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-11"><span class="nav-number">5.1.</span> <span class="nav-text">範例1-11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-12"><span class="nav-number">5.2.</span> <span class="nav-text">範例1-12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-13"><span class="nav-number">5.3.</span> <span class="nav-text">範例1-13</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch"><span class="nav-number">6.</span> <span class="nav-text">switch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-14"><span class="nav-number">6.1.</span> <span class="nav-text">範例1-14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-15"><span class="nav-number">6.2.</span> <span class="nav-text">範例1-15</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範圍鏈-Scope-chain"><span class="nav-number">7.</span> <span class="nav-text">範圍鏈(Scope chain)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-16"><span class="nav-number">7.1.</span> <span class="nav-text">範例1-16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-17"><span class="nav-number">7.2.</span> <span class="nav-text">範例1-17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-18"><span class="nav-number">7.3.</span> <span class="nav-text">範例1-18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例1-19"><span class="nav-number">7.4.</span> <span class="nav-text">範例1-19</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
