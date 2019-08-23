@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="開始JS學習">
+<meta name="description" content="JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。 閉包(Closure)閉包的概念為一個函式操作到另一個函式作用範圍內的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自我轉換的第一步">
-<meta property="og:url" content="https://easyfun0.github.io/2019/08/20/第一次寫文章/index.html">
+<meta property="og:title" content="JavaScript語言特性">
+<meta property="og:url" content="https://easyfun0.github.io/2019/08/23/JavaScript語言特性/index.html">
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
-<meta property="og:description" content="開始JS學習">
+<meta property="og:description" content="JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。 閉包(Closure)閉包的概念為一個函式操作到另一個函式作用範圍內的">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="https://easyfun0.github.io/images/js.png">
-<meta property="og:updated_time" content="2019-08-22T09:18:24.191Z">
+<meta property="og:updated_time" content="2019-08-23T12:46:24.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自我轉換的第一步">
-<meta name="twitter:description" content="開始JS學習">
-<meta name="twitter:image" content="https://easyfun0.github.io/images/js.png">
+<meta name="twitter:title" content="JavaScript語言特性">
+<meta name="twitter:description" content="JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。 閉包(Closure)閉包的概念為一個函式操作到另一個函式作用範圍內的">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+  <link rel="canonical" href="https://easyfun0.github.io/2019/08/23/JavaScript語言特性/">
 
 
 
 
 
-  <title>自我轉換的第一步 | Welcome to  Easyfun. World</title>
+  <title>JavaScript語言特性 | Welcome to  Easyfun. World</title>
   
 
 
@@ -234,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/08/23/JavaScript語言特性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -251,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自我轉換的第一步</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript語言特性</h1>
         
 
         <div class="post-meta">
@@ -263,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-20T15:53:59+08:00">
-                2019-08-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-23T12:41:18+08:00">
+                2019-08-23
               </time>
             
 
@@ -301,36 +299,124 @@
       
 
       
-        <h2 id="開始JS學習"><a href="#開始JS學習" class="headerlink" title="開始JS學習"></a>開始JS學習</h2><a id="more"></a>
-<img src="/images/js.png" alt="Raspberry pi" class="image">
+        <p>JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。</p>
+<h2 id="閉包-Closure"><a href="#閉包-Closure" class="headerlink" title="閉包(Closure)"></a>閉包(Closure)</h2><p>閉包的概念為一個函式操作到另一個函式作用範圍內的變數。但只有巢狀結構的函式才會形成閉包，如果內層函式引用到外層函式的區域變數，外層函式中的變數狀態就會被內層函式保留下來(形成封閉狀態，只有內層函式可存取，達到保護變數內容目的)。</p>
+<h3 id="範例2-1"><a href="#範例2-1" class="headerlink" title="範例2-1"></a>範例2-1</h3><pre><code>var g;
+function outer() {
+    var a = 100;
+    function inner() {
+        console.log(a);
+    }
+    g = inner;
+}
+outer();
+g();
 
-<p>八月報名了深入JavaScript核心 的課程，雖然基礎懂一些但一直不知道有些語法的使用，或者看到別人寫的JS，也都不太懂怎麼解析，接下來開始持續一個月的深入探討JS的世界囉。</p>
-<h2 id="JS語法介紹"><a href="#JS語法介紹" class="headerlink" title="JS語法介紹"></a>JS語法介紹</h2><p>JavaScript型別系統分為「原始型別」和「物件型別」兩大類，原始型別沒有屬性與方法<br>原始型別(Primitive types)</p>
-<p>＊ number<br>＊ string<br>＊ boolean<br>＊ null<br>＊ undefined<br>＊ symbol(ES6)</p>
-<p>物件型別(Object types)<br>原生物件(Native)</p>
-<pre><code>▵原始型別包裹物件(Primitive Wrapper)
-    ＊ Number
-    ＊ String
-    ＊ Boolean
+outer是100
+g是undefined</code></pre><h3 id="範例2-2"><a href="#範例2-2" class="headerlink" title="範例2-2"></a>範例2-2</h3><p>使用閉包方法</p>
+<pre><code>印出a
+var name = &quot;a&quot;;
+var obj = {
+    name: &quot;b&quot;,
+    getName: function () {
+        return function () {
+            return this.name;
+        };
+    }
+};
+var result = obj.getName();
+console.log(result());
 
-▵ Array,Object
-▵ Date,Math,RegExp</code></pre><p>宿主物件(Host)</p>
-<pre><code>◎ window(瀏覽器),global(Node.js)
-◎ DOM</code></pre><p>但JavaScript為了節省系統資源，原始型別在使用時會自動裝箱(boxing)形成原始型別包裹物件，使用完畢後會自動拆箱(unboxing)還原回原始型別。</p>
-<h2 id="範例1-1"><a href="#範例1-1" class="headerlink" title="範例1.1"></a>範例1.1</h2><pre><code>var str=&quot;string&quot;;
-console.log(typeof str); //&quot;string&quot;
-str.val=100;
-console.log(str.val); //undefined</code></pre><p>使用物件型別的時候最容易搞錯的就是Number,String,Boolean 就差在第一個字母大寫</p>
-<pre><code>var obj = new String(&quot;string&quot;);
-console.log(typeof obj); //&quot;object&quot;
-obj.val=100;
-console.log(obj.val); //100
-console.log(typeof obj.valueOf()); //&quot;string&quot;</code></pre><p>裝箱boxing與拆箱unboxing</p>
-<pre><code>var str = &quot;word&quot;;
-var txt = str.substring(3);</code></pre><p>裝箱內部原理</p>
-<pre><code>var str = new String(&quot;word&quot;);
-var txt = str.substring(3); //幫你裝箱
-str = str.valueOf();        //還原str</code></pre>
+印出b的方法
+var name = &quot;a&quot;;
+var obj = {
+    name: &quot;b&quot;,
+    getName: function () {
+        var that = this;
+        return function () {
+            return that.name;
+        };
+    }
+};
+var result = obj.getName();
+console.log(result());</code></pre><p>印出b的方法就是在宣告一個that在外面，裡面的that在使用外面宣告的</p>
+<h3 id="範例2-3"><a href="#範例2-3" class="headerlink" title="範例2-3"></a>範例2-3</h3><p>利用閉包記憶變數</p>
+<pre><code>function add() {
+    var count = 0;
+    return function () {
+        return count += 1;  //keep住變數
+    }
+}
+var user = add();
+var custom = add();</code></pre><p>當我們要顯示每一秒顯示0~10的數字，先用for迴圈然後使用setTimeout</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, i*1000);
+}</code></pre><p>咦！ 他印10個10耶 那就錯了</p>
+<h3 id="範例2-4"><a href="#範例2-4" class="headerlink" title="範例2-4"></a>範例2-4</h3><p>我們可以使用閉包解決印出重複地問題</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(i) {
+        setTimeout(function() {
+            console.log(i);
+        }, i*1000);
+    })(i)
+}</code></pre><h2 id="Currying"><a href="#Currying" class="headerlink" title="Currying"></a>Currying</h2><p>Curring是利用閉包將傳入的變數保存下來，將多個參數的function，轉變接受一個參數的function，簡化傳入參數的一種方式。<br>好處是提高程式的彈性和可讀性,易於重複利用。</p>
+<h3 id="範例2-5"><a href="#範例2-5" class="headerlink" title="範例2-5"></a>範例2-5</h3><p>參數重複傳入</p>
+<pre><code>function cube(height, width, depth) {
+    return height * width * depth;
+}
+console.log(cube(3, 2, 1));
+console.log(cube(3, 2, 2));
+console.log(cube(3, 2, 3));
+console.log(cube(3, 2, 4));
+console.log(cube(3, 2, 5));</code></pre><h3 id="範例2-6"><a href="#範例2-6" class="headerlink" title="範例2-6"></a>範例2-6</h3><p>將參數利用閉包保存</p>
+<pre><code>function cube(height) {
+    return function (width) {
+        return function (depth) {
+            return height * width * depth;
+        };
+    };
+}
+console.log(cube(3)(2)(1));</code></pre><h2 id="Hoisting"><a href="#Hoisting" class="headerlink" title="Hoisting"></a>Hoisting</h2><p>hoisting是指「一種把宣告提升到其所區域內最頂端」的內部行為，但是提升行為僅只針對宣告的部分，對於變數的設定，並沒有跟著提升</p>
+<h3 id="範例2-7"><a href="#範例2-7" class="headerlink" title="範例2-7"></a>範例2-7</h3><p>將變數宣告提升</p>
+<pre><code>var x = 5;
+(function () {
+    console.log(x);
+    var x = 10;
+})();
+console.log(x);
+
+程式實際執行過程
+
+var x = 5;
+(function () {
+    var x;
+    console.log(x);
+    x = 10;
+})();
+console.log(x);
+x為undefined跟外面的5</code></pre><h3 id="範例2-8"><a href="#範例2-8" class="headerlink" title="範例2-8"></a>範例2-8</h3><p>將變數宣告提升</p>
+<pre><code>var a = 1;
+function hoisting() {
+    if (!a) {
+        var a = 2;
+    }
+    console.log(a);
+}
+hoisting();
+
+程式實際執行過程
+
+var a = 1;
+function hoisting() {
+    var a;
+    if (!a) {
+        a = 2;
+    }
+    console.log(a);
+}
+hoisting();</code></pre>
       
     </div>
     
@@ -354,8 +440,8 @@ str = str.valueOf();        //還原str</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/20/hello-world/" rel="next" title="Easyfun的網路文章區塊">
-                <i class="fa fa-chevron-left"></i> Easyfun的網路文章區塊
+              <a href="/2019/08/22/undefined/" rel="next" title="javascript語法介紹">
+                <i class="fa fa-chevron-left"></i> javascript語法介紹
               </a>
             
           </div>
@@ -363,10 +449,6 @@ str = str.valueOf();        //還原str</code></pre>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/22/undefined/" rel="prev" title="javascript語法介紹">
-                javascript語法介紹 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,7 +562,7 @@ str = str.valueOf();        //還原str</code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開始JS學習"><span class="nav-number">1.</span> <span class="nav-text">開始JS學習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS語法介紹"><span class="nav-number">2.</span> <span class="nav-text">JS語法介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例1-1"><span class="nav-number">3.</span> <span class="nav-text">範例1.1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#閉包-Closure"><span class="nav-number">1.</span> <span class="nav-text">閉包(Closure)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例2-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-2"><span class="nav-number">1.2.</span> <span class="nav-text">範例2-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-3"><span class="nav-number">1.3.</span> <span class="nav-text">範例2-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-4"><span class="nav-number">1.4.</span> <span class="nav-text">範例2-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Currying"><span class="nav-number">2.</span> <span class="nav-text">Currying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-5"><span class="nav-number">2.1.</span> <span class="nav-text">範例2-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-6"><span class="nav-number">2.2.</span> <span class="nav-text">範例2-6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hoisting"><span class="nav-number">3.</span> <span class="nav-text">Hoisting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-7"><span class="nav-number">3.1.</span> <span class="nav-text">範例2-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-8"><span class="nav-number">3.2.</span> <span class="nav-text">範例2-8</span></a></li></ol></li></ol></div>
             
 
           </div>
