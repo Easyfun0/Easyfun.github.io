@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
 <meta property="og:description" content="JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。 閉包(Closure)閉包的概念為一個函式操作到另一個函式作用範圍內的">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-08-23T12:46:24.346Z">
+<meta property="og:updated_time" content="2019-08-25T05:16:29.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript語言特性">
 <meta name="twitter:description" content="JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。 閉包(Closure)閉包的概念為一個函式操作到另一個函式作用範圍內的">
@@ -416,7 +416,62 @@ function hoisting() {
     }
     console.log(a);
 }
-hoisting();</code></pre>
+hoisting();</code></pre><h2 id="嚴格模式"><a href="#嚴格模式" class="headerlink" title="嚴格模式"></a>嚴格模式</h2><p>嚴格模式主要是讓語法變得更嚴僅，相對於原本的語法執行時比較不易出錯，只要加上”use strict”的字串就是嚴格模式，可寫在每個js檔案的最前面，這樣整個js都會套用嚴謹模式，也可針對function設定嚴格模式。</p>
+<h3 id="範例2-9"><a href="#範例2-9" class="headerlink" title="範例2-9"></a>範例2-9</h3><p>針對個別function設定嚴格模式</p>
+<pre><code>function f(x) {
+    &quot;use strict&quot;;
+    var a = 12;
+    b = a + x;
+}
+f(5);</code></pre><p>在嚴格模式下會發生錯誤的情況:<br>● 未宣告使用變數<br>● 嘗試寫入唯獨屬性<br>● 對無法擴充的物件新增屬性<br>● 定義重複屬性<br>● 使用未來保留字(implements,interface,let,package,private,protected,public,static,yield)<br>● 八進位<br>● 使用eval 或arguments 名稱當做變數或函示名稱<br>● 區塊內宣告function(if,for)<br>● 使用with,使用在eval語句宣告的變數<br>● 修改arguments內的值<br>● 使用arguments.callee (匿名函式)</p>
+<h3 id="範例2-10"><a href="#範例2-10" class="headerlink" title="範例2-10"></a>範例2-10</h3><p>在嚴格模式下無法使用arguments.callee</p>
+<pre><code>(function () {
+    &quot;use strict&quot;;
+    console.log(Date.now());
+    setTimeout(arguments.callee, 1000);
+})();</code></pre><p>可修改成</p>
+<pre><code>(function run() {
+    &quot;use strict&quot;;
+    console.log(Date.now());
+    setTimeout(run, 1000);
+})();</code></pre><h3 id="範例2-11"><a href="#範例2-11" class="headerlink" title="範例2-11"></a>範例2-11</h3><p>在嚴格模式下區塊內不能定義function</p>
+<pre><code>(function () {
+    &quot;use strict&quot;;
+    if (true) {
+        function run() {
+            console.log(&quot;run&quot;);
+        }
+    }
+    run();
+})();</code></pre><h2 id="浮點運算"><a href="#浮點運算" class="headerlink" title="浮點運算"></a>浮點運算</h2><p>電腦數字都是由二進位數進行運算，在轉換成十進位顯示。JavaScript的數值採用IEEE 754在標準64位元浮點數，因此對於數字處理有些小數轉換成二進位小數會造成無限循環，導致轉回十進位時造成誤差。<br>資料來源: <a href="http://www.binaryconvert.com/" target="_blank" rel="noopener">Online Binary-Decimal Converter</a></p>
+<h3 id="範例2-12"><a href="#範例2-12" class="headerlink" title="範例2-12"></a>範例2-12</h3><p>浮點數運算誤差</p>
+<pre><code>console.log(0.1 +0.2 === 0.3);  //false</code></pre><p>解決浮點數運算誤差</p>
+<pre><code>console.log(parseFloat((0.1 +0.2).toFixed(15)) === 0.3); //true</code></pre><h2 id="大括號排版"><a href="#大括號排版" class="headerlink" title="大括號排版"></a>大括號排版</h2><p>大括號不要另起新的一行，因為JavaScript會在return後自動加上分號</p>
+<h3 id="範例2-13"><a href="#範例2-13" class="headerlink" title="範例2-13"></a>範例2-13</h3><p>大括號在同一行(Good)</p>
+<pre><code>if (true) {
+    console.log(&quot;good&quot;);
+}</code></pre><p>大括號在另一行(Bad)</p>
+<pre><code>if (true)
+{
+    console.log(&quot;bad&quot;);
+}</code></pre><h2 id="等號"><a href="#等號" class="headerlink" title="等號="></a>等號=</h2><p>在使用等號的時候，盡可能不要使用兩等號的判斷==(!=)，進行比較時會自動轉換型別，應使用三等號的判斷===(!==)，避免因為自動轉型造成判斷上的不明確</p>
+<h3 id="範例2-14"><a href="#範例2-14" class="headerlink" title="範例2-14"></a>範例2-14</h3><p>自動轉型(Bad)</p>
+<pre><code>使用==或!= 判斷時，等號兩邊的值會先自動轉型，再進行比較
+console.log(0 == &quot;&quot;); // true
+console.log(1 == true); // true
+console.log(2 == true); // false
+console.log(0 == &quot;0&quot;); // true
+console.log(false == &quot;false&quot;); // false
+console.log(false == &quot;0&quot;); // true
+console.log(&quot; \t\r\n &quot; == 0); // true</code></pre><p>不自動轉型(Good)</p>
+<pre><code>使用===或!== 判斷時，等號兩邊的值不會自動轉型，直接進行比較
+console.log(0 === &quot;&quot;); // false
+console.log(1 === true); // false
+console.log(2 === true); // false
+console.log(0 === &quot;0&quot;); // false
+console.log(false === &quot;false&quot;); // false
+console.log(false === &quot;0&quot;); // false
+console.log(&quot; \t\r\n &quot; === 0); // false</code></pre>
       
     </div>
     
@@ -562,7 +617,7 @@ hoisting();</code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#閉包-Closure"><span class="nav-number">1.</span> <span class="nav-text">閉包(Closure)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例2-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-2"><span class="nav-number">1.2.</span> <span class="nav-text">範例2-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-3"><span class="nav-number">1.3.</span> <span class="nav-text">範例2-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-4"><span class="nav-number">1.4.</span> <span class="nav-text">範例2-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Currying"><span class="nav-number">2.</span> <span class="nav-text">Currying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-5"><span class="nav-number">2.1.</span> <span class="nav-text">範例2-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-6"><span class="nav-number">2.2.</span> <span class="nav-text">範例2-6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hoisting"><span class="nav-number">3.</span> <span class="nav-text">Hoisting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-7"><span class="nav-number">3.1.</span> <span class="nav-text">範例2-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-8"><span class="nav-number">3.2.</span> <span class="nav-text">範例2-8</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#閉包-Closure"><span class="nav-number">1.</span> <span class="nav-text">閉包(Closure)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例2-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-2"><span class="nav-number">1.2.</span> <span class="nav-text">範例2-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-3"><span class="nav-number">1.3.</span> <span class="nav-text">範例2-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-4"><span class="nav-number">1.4.</span> <span class="nav-text">範例2-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Currying"><span class="nav-number">2.</span> <span class="nav-text">Currying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-5"><span class="nav-number">2.1.</span> <span class="nav-text">範例2-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-6"><span class="nav-number">2.2.</span> <span class="nav-text">範例2-6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hoisting"><span class="nav-number">3.</span> <span class="nav-text">Hoisting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-7"><span class="nav-number">3.1.</span> <span class="nav-text">範例2-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-8"><span class="nav-number">3.2.</span> <span class="nav-text">範例2-8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嚴格模式"><span class="nav-number">4.</span> <span class="nav-text">嚴格模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-9"><span class="nav-number">4.1.</span> <span class="nav-text">範例2-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-10"><span class="nav-number">4.2.</span> <span class="nav-text">範例2-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-11"><span class="nav-number">4.3.</span> <span class="nav-text">範例2-11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮點運算"><span class="nav-number">5.</span> <span class="nav-text">浮點運算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-12"><span class="nav-number">5.1.</span> <span class="nav-text">範例2-12</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大括號排版"><span class="nav-number">6.</span> <span class="nav-text">大括號排版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-13"><span class="nav-number">6.1.</span> <span class="nav-text">範例2-13</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#等號"><span class="nav-number">7.</span> <span class="nav-text">等號=</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-14"><span class="nav-number">7.1.</span> <span class="nav-text">範例2-14</span></a></li></ol></li></ol></div>
             
 
           </div>
