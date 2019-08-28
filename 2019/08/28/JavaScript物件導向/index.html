@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-20190821010810262.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-20190821010502767.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="物件導向就是將程式設計的過程擬物化，也是將軟體想像成由一群物件交互合作所組成。每個物件都可視為獨一無二的個體，他們扮演不同的角色並有不同的能力及責任。 類別與物件類別(Class):可比喻成藍圖或是範本，用來產生物件的基礎物件(Object):透過類別產生物件，每個物件都是各自獨立 物件導向特性🌼 封裝:隱藏細節，不需要知道內部原理，只需要知道如和操作即可。同時確保使用者無法任意更改物件內部重要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript物件導向">
+<meta property="og:url" content="https://easyfun0.github.io/2019/08/28/JavaScript物件導向/index.html">
+<meta property="og:site_name" content="Welcome to  Easyfun. World">
+<meta property="og:description" content="物件導向就是將程式設計的過程擬物化，也是將軟體想像成由一群物件交互合作所組成。每個物件都可視為獨一無二的個體，他們扮演不同的角色並有不同的能力及責任。 類別與物件類別(Class):可比喻成藍圖或是範本，用來產生物件的基礎物件(Object):透過類別產生物件，每個物件都是各自獨立 物件導向特性🌼 封裝:隱藏細節，不需要知道內部原理，只需要知道如和操作即可。同時確保使用者無法任意更改物件內部重要">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-08-28T09:16:12.621Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript物件導向">
+<meta name="twitter:description" content="物件導向就是將程式設計的過程擬物化，也是將軟體想像成由一群物件交互合作所組成。每個物件都可視為獨一無二的個體，他們扮演不同的角色並有不同的能力及責任。 類別與物件類別(Class):可比喻成藍圖或是範本，用來產生物件的基礎物件(Object):透過類別產生物件，每個物件都是各自獨立 物件導向特性🌼 封裝:隱藏細節，不需要知道內部原理，只需要知道如和操作即可。同時確保使用者無法任意更改物件內部重要">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://easyfun0.github.io/2019/08/28/JavaScript物件導向/">
+
+
+
+
+
+  <title>JavaScript物件導向 | Welcome to  Easyfun. World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to  Easyfun. World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">歡迎來到Easyfun的網路世界</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/08/28/JavaScript物件導向/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to  Easyfun. World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript物件導向</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-28T13:13:37+08:00">
+                2019-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>物件導向就是將程式設計的過程擬物化，也是將軟體想像成由一群物件交互合作所組成。每個物件都可視為獨一無二的個體，他們扮演不同的角色並有不同的能力及責任。</p>
+<h2 id="類別與物件"><a href="#類別與物件" class="headerlink" title="類別與物件"></a>類別與物件</h2><p>類別(Class):可比喻成藍圖或是範本，用來產生物件的基礎<br>物件(Object):透過類別產生物件，每個物件都是各自獨立</p>
+<h2 id="物件導向特性"><a href="#物件導向特性" class="headerlink" title="物件導向特性"></a>物件導向特性</h2><p>🌼 封裝:隱藏細節，不需要知道內部原理，只需要知道如和操作即可。同時確保使用者無法任意更改物件內部重要的資料。<br>🌼 繼承:可從父類別繼承出方法和屬性，子類別漚可擴充出一些自己的特性。透過繼承減少重複功能的程式碼，只需擴充出不同功能的部分即可。<br>🌼 多行:可依照不同情形變換資料型態，指一個物件可扮演不同角色特性，</p>
+<h3 id="物件的組成"><a href="#物件的組成" class="headerlink" title="物件的組成"></a>物件的組成</h3><p>「方法」與「屬性」的不同</p>
+<p>🍓 方法(屬於一個物件)等同於函式(自由的,不屬於任何)<br>🍓 屬性(屬於一個物件)等同於變數(自由的,不屬於任何)</p>
+<h2 id="物件導向-this"><a href="#物件導向-this" class="headerlink" title="物件導向-this"></a>物件導向-this</h2><p>this為當前function執行所在位置的參考</p>
+<h3 id="範例3-1"><a href="#範例3-1" class="headerlink" title="範例3-1"></a>範例3-1</h3><p>this會指向當前function(方法)屬於ary的物件</p>
+<pre><code>var ary =[1,2,3];
+ary.a = 12;  //屬性
+ary.show = function() {
+    console.log(this.a); //函式執行的位置
+};
+ary.show();</code></pre><p>this會指向當前function(方法)屬於document的物件</p>
+<pre><code>doucment.onlcick = function() {   //看在哪個物件上執行
+    console.log(this);
+};</code></pre><p>this會指向window</p>
+<pre><code>function show() {
+    console.log(this);  //function函式不屬於任何
+};
+show();</code></pre><p>等同下面寫法</p>
+<pre><code>window.show = function() {
+    console.log(this);
+};
+window.show();</code></pre><p>✪ 不建議在內建物件上隨意加入屬性或方法，否則可能會覆蓋內建的屬性與方法<br>常用JavaScript內建物件</p>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>說明</th>
+<th>名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>object</td>
+<td>物件</td>
+<td>Number</td>
+<td>數字(含浮點數)</td>
+</tr>
+<tr>
+<td>Function</td>
+<td>函式</td>
+<td>Date</td>
+<td>日期物件</td>
+</tr>
+<tr>
+<td>Array</td>
+<td>陣列</td>
+<td>RegExp</td>
+<td>正規表示式物件</td>
+</tr>
+<tr>
+<td>String</td>
+<td>字串</td>
+<td>Error</td>
+<td>錯誤物件</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>布林值</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="建立物件1"><a href="#建立物件1" class="headerlink" title="建立物件1"></a>建立物件1</h2><p>建立一個物件並且增加屬性與方法</p>
+<h3 id="範例3-2"><a href="#範例3-2" class="headerlink" title="範例3-2"></a>範例3-2</h3><pre><code>var obj = new Object();
+obj.name = &quot;john&quot;;
+obj.gender = &quot;male&quot;;
+obj.showName = function () {
+    console.log(&quot;my name:&quot; + this.name);
+};
+obj.showGender = function () {
+    console.log(&quot;my gender:&quot; + this.gender);
+};
+obj.showName();
+obj.showGender();</code></pre><h3 id="範例3-3"><a href="#範例3-3" class="headerlink" title="範例3-3"></a>範例3-3</h3><p>大量產生物件(工廠方式)</p>
+<pre><code>function createPerson(name, gender) {
+    //原料
+    var obj = new Object();
+    //加工
+    obj.name = name;
+    obj.gender = gender;
+    obj.showName = function () {
+        console.log(&quot;my name:&quot; + this.name);
+    };
+    obj.showGender = function () {
+        console.log(&quot;my gender:&quot; + this.gender);
+    };
+    //出廠
+    return obj;
+}
+var p1 = createPerson(&quot;Mike&quot;, &quot;male&quot;);
+p1.showName();
+p1.showGender();
+var p2 = createPerson(&quot;Phil&quot;, &quot;female&quot;);
+p2.showName();
+p2.showGender();</code></pre><h2 id="建立物件2"><a href="#建立物件2" class="headerlink" title="建立物件2"></a>建立物件2</h2><p>工廠方式雖然可以解決重複複製貼上程式碼問題，但卻衍生出另外的問題</p>
+<p>🐷問題1: 沒有使用new<br>系統內建物件習慣上燈有使用new產生物件</p>
+<pre><code>var date = new Date();
+var ary = new Array();</code></pre><p>🐷問題2: 方法重複構造<br>兩個物件的方法不ㄧ樣，表示每次建立一個新物件就會產生一個新的方法，容易造成記憶體資源的浪費</p>
+<pre><code>var date1 = new Date();
+var date2 = new Date();
+console.log(date1.forEach === date2.forEach); //true</code></pre><h2 id="物件導向-new"><a href="#物件導向-new" class="headerlink" title="物件導向-new"></a>物件導向-new</h2><p>new工作管理就是從類別產生的物件。由於JavaScript沒有class，不過可以使用function當作class</p>
+<h3 id="範例3-4"><a href="#範例3-4" class="headerlink" title="範例3-4"></a>範例3-4</h3><p>使用new與不使用new的差異</p>
+<pre><code>function show() {
+    console.log(this);
+}
+show();
+new show();</code></pre><h3 id="範例3-5"><a href="#範例3-5" class="headerlink" title="範例3-5"></a>範例3-5</h3><p>new產生物件 比較範例3-3工廠方式</p>
+<pre><code>function createPerson(name, gender) {
+    //系統內部執行
+    //var this = new Object();
+
+    //加工
+    this.name = name;
+    this.gender = gender;
+    this.showName = function () {
+        console.log(&quot;my name:&quot; + this.name);
+    };
+    this.showGender = function () {
+        console.log(&quot;my gender:&quot; + this.gender);
+    };
+    //系統內部執行
+    //return this;  不用return
+}
+var p1 = new createPerson(&quot;Mike&quot;, &quot;male&quot;);
+var p2 = new createPerson(&quot;Phil&quot;, &quot;female&quot;);</code></pre><h2 id="物件導向-prototype"><a href="#物件導向-prototype" class="headerlink" title="物件導向-prototype"></a>物件導向-prototype</h2><p>原型(prototype)可解決建立物件時，重複產生方法的問題。只有在類別上面才可建立原型方法，在物件上無法建立原型方法</p>
+<h3 id="範例3-6"><a href="#範例3-6" class="headerlink" title="範例3-6"></a>範例3-6</h3><p>替物件加上方法，只有自己的物件有這個方法</p>
+<pre><code>var ary1 = new Array(12, 23, 56, 75, 33);
+ary1.sum = function () {
+        var output = 0;
+        for (var i = 0; i &lt; this.length; i++) {
+            output += this[i];
+        }
+        return output;
+};
+console.log(ary1.sum());   //沒有sum的function
+var ary2 = new Array(12, 33, 55);
+ary2.sum();</code></pre><h3 id="範例3-7"><a href="#範例3-7" class="headerlink" title="範例3-7"></a>範例3-7</h3><p>透過原型加上方法，所有物件都可操作</p>
+<pre><code>var ary1 = new Array(12, 55, 43, 32, 44);
+var ary2 = new Array(12, 33, 1);
+Array.prototype.sum = function () {
+    var output = 0;
+    for (var i = 0; i &lt; this.length; i++) {
+        output += this[i];
+    }
+    return output;
+};
+console.log(ary1.sum());
+console.log(ary2.sum());</code></pre><h2 id="物件導向-共用方法"><a href="#物件導向-共用方法" class="headerlink" title="物件導向-共用方法"></a>物件導向-共用方法</h2><p>原型是針對類別加上共用的方法，已達到節省系統資源目的，避免重複產生方法</p>
+<h3 id="範例3-8"><a href="#範例3-8" class="headerlink" title="範例3-8"></a>範例3-8</h3><p>使用原型來添加共用的方法，解決範例3-3工廠方式產生的不同物件問題</p>
+<pre><code>function CreatePerson(name, gender) {
+    this.name = name;
+    this.gender = gender;
+}
+    CreatePerson.prototype.showName = function () {
+        console.log(&quot;my name:&quot; + this.name);
+    };
+    CreatePerson.prototype.showGender = function () {
+        console.log(&quot;my gender:&quot; + this.gender);
+    };
+var p1 = new CreatePerson(&quot;Mike&quot;, &quot;male&quot;);
+var p2 = new CreatePerson(&quot;Phil&quot;, &quot;female&quot;);
+console.log(p1.showName === p2.showName);  //true</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/23/JavaScript語言特性/" rel="next" title="JavaScript語言特性">
+                <i class="fa fa-chevron-left"></i> JavaScript語言特性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">Welcome to  Easyfun. World</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#類別與物件"><span class="nav-number">1.</span> <span class="nav-text">類別與物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向特性"><span class="nav-number">2.</span> <span class="nav-text">物件導向特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物件的組成"><span class="nav-number">2.1.</span> <span class="nav-text">物件的組成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-this"><span class="nav-number">3.</span> <span class="nav-text">物件導向-this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-1"><span class="nav-number">3.1.</span> <span class="nav-text">範例3-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立物件1"><span class="nav-number">4.</span> <span class="nav-text">建立物件1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-2"><span class="nav-number">4.1.</span> <span class="nav-text">範例3-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-3"><span class="nav-number">4.2.</span> <span class="nav-text">範例3-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立物件2"><span class="nav-number">5.</span> <span class="nav-text">建立物件2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-new"><span class="nav-number">6.</span> <span class="nav-text">物件導向-new</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-4"><span class="nav-number">6.1.</span> <span class="nav-text">範例3-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-5"><span class="nav-number">6.2.</span> <span class="nav-text">範例3-5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-prototype"><span class="nav-number">7.</span> <span class="nav-text">物件導向-prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-6"><span class="nav-number">7.1.</span> <span class="nav-text">範例3-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-7"><span class="nav-number">7.2.</span> <span class="nav-text">範例3-7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-共用方法"><span class="nav-number">8.</span> <span class="nav-text">物件導向-共用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-8"><span class="nav-number">8.1.</span> <span class="nav-text">範例3-8</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

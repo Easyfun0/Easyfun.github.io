@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
 <meta property="og:description" content="JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。 閉包(Closure)閉包的概念為一個函式操作到另一個函式作用範圍內的">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-08-25T05:16:29.250Z">
+<meta property="og:updated_time" content="2019-08-28T05:12:44.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript語言特性">
 <meta name="twitter:description" content="JavaScript雖然和Java很類似，但卻沒有 Java 的靜態定型（static typing）及強型態確認（strong type checking）特性，JavaScript變數資料型態沒有宣告就可使用（動態定型，dynamic typing)，我們先前了解了變數範圍後，接下來深入的去理解JavaScript的特性。 閉包(Closure)閉包的概念為一個函式操作到另一個函式作用範圍內的">
@@ -471,7 +471,47 @@ console.log(2 === true); // false
 console.log(0 === &quot;0&quot;); // false
 console.log(false === &quot;false&quot;); // false
 console.log(false === &quot;0&quot;); // false
-console.log(&quot; \t\r\n &quot; === 0); // false</code></pre>
+console.log(&quot; \t\r\n &quot; === 0); // false</code></pre><h2 id="語句合併"><a href="#語句合併" class="headerlink" title="語句合併"></a>語句合併</h2><p>要將不同的語句合併成一行，又或者是在if內誤寫一個等號</p>
+<h3 id="範例2-15"><a href="#範例2-15" class="headerlink" title="範例2-15"></a>範例2-15</h3><pre><code>var a,b;
+a = b;
+if(a) {
+    console.log(&quot;a&quot;);
+}
+//會合併成這樣(Bad)
+if(a = b) {         //b會傳值到a
+    console.log(&quot;a=b&quot;);
+}
+//但會看成這樣
+if(a == b) {
+    console.log(&quot;a==b&quot;);
+}</code></pre><h2 id="變數宣告"><a href="#變數宣告" class="headerlink" title="變數宣告"></a>變數宣告</h2><p>變數宣告一律都放在函式內最前面，可避免Hoisting問題</p>
+<h3 id="範例2-16"><a href="#範例2-16" class="headerlink" title="範例2-16"></a>範例2-16</h3><p>Hoisting問題</p>
+<pre><code>if(!o) {
+    var o = {}; //(Bad)
+}
+宣告一律寫在上面
+var o;
+if(!o) {
+    o = {};
+}</code></pre><h2 id="全域變數"><a href="#全域變數" class="headerlink" title="全域變數"></a>全域變數</h2><p>竟量避免全域變數使用，改使用立即函式，若無法避免，在變數名稱前加上底線作區隔</p>
+<h3 id="範例2-17"><a href="#範例2-17" class="headerlink" title="範例2-17"></a>範例2-17</h3><p>var upperCase;<br>//放在立即函式裡面<br>(function() {<br>    var _upperCase;<br>})();</p>
+<h2 id="命名方式"><a href="#命名方式" class="headerlink" title="命名方式"></a>命名方式</h2><p>避免忘記new，建構函式命名字首應為大寫</p>
+<h3 id="範例2-17-1"><a href="#範例2-17-1" class="headerlink" title="範例2-17"></a>範例2-17</h3><p>function myObject() {  //(Bad)<br>    this.x = 100;<br>}<br>var p = myObject(); //建構函式大寫(Good)<br>function MyObject() {<br>    this.x = 100;<br>}<br>var q = new MyObject();</p>
+<p>✪變數命名規則:<br>底線(_)和($)是變數中唯二可用的符號，其餘必須是字母或數字，無法數字開頭命名，保留字的部分也無法使用(例:switch,case,if,else等)</p>
+<p>◉ 變數使用駝峰式命名(Camel Case):<br>    第一個單字首小寫，第二個單字首大寫，例:name,firstName<br>◉ 類別使用巴斯卡命名(Pascal Case):<br>    每個單字首都為大寫，例:Server,CreatPerson<br>◉ 常數(固定的值)使用全大寫命名:<br>    每個單字使用底線連接，例:varPI =3.14,var MAX_WIDTH = 800<br>◉ 私有變數使用底線開頭命名<br>    不公開使用的變數通常前面加上底線，例:_width,_userSetting<br>◉ 系統內部使用前後雙底線命名<br>    例: ＿proto＿ , ＿defineGetter＿</p>
+<h2 id="自增與自減"><a href="#自增與自減" class="headerlink" title="自增與自減"></a>自增與自減</h2><p>i++是顯示變數後在進行累加，++i則是先累加後再顯示變數的值</p>
+<h3 id="範例2-18"><a href="#範例2-18" class="headerlink" title="範例2-18"></a>範例2-18</h3><pre><code>var i = 5;
+console.log(i++); //先印再加
+console.log(i);  //顯示改變的結果
+
+var i =5;
+console.log(++i); //先加在印
+console.log(i);</code></pre><h2 id="區塊"><a href="#區塊" class="headerlink" title="區塊"></a>區塊</h2><p>總是使用大括號，避免因分號導致語意不同</p>
+<h3 id="範例2-19"><a href="#範例2-19" class="headerlink" title="範例2-19"></a>範例2-19</h3><pre><code>if(true) console.log(&quot;a&quot;); console.log(&quot;b&quot;);
+//原意可能是
+if(true) {console.log(&quot;a&quot;); console.log(&quot;b&quot;);}
+//實際執行是
+if(true) {console.log(&quot;a&quot;);} console.log(&quot;b&quot;);</code></pre>
       
     </div>
     
@@ -504,6 +544,10 @@ console.log(&quot; \t\r\n &quot; === 0); // false</code></pre>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/28/JavaScript物件導向/" rel="prev" title="JavaScript物件導向">
+                JavaScript物件導向 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -580,7 +624,7 @@ console.log(&quot; \t\r\n &quot; === 0); // false</code></pre>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -617,7 +661,7 @@ console.log(&quot; \t\r\n &quot; === 0); // false</code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#閉包-Closure"><span class="nav-number">1.</span> <span class="nav-text">閉包(Closure)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例2-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-2"><span class="nav-number">1.2.</span> <span class="nav-text">範例2-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-3"><span class="nav-number">1.3.</span> <span class="nav-text">範例2-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-4"><span class="nav-number">1.4.</span> <span class="nav-text">範例2-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Currying"><span class="nav-number">2.</span> <span class="nav-text">Currying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-5"><span class="nav-number">2.1.</span> <span class="nav-text">範例2-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-6"><span class="nav-number">2.2.</span> <span class="nav-text">範例2-6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hoisting"><span class="nav-number">3.</span> <span class="nav-text">Hoisting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-7"><span class="nav-number">3.1.</span> <span class="nav-text">範例2-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-8"><span class="nav-number">3.2.</span> <span class="nav-text">範例2-8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嚴格模式"><span class="nav-number">4.</span> <span class="nav-text">嚴格模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-9"><span class="nav-number">4.1.</span> <span class="nav-text">範例2-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-10"><span class="nav-number">4.2.</span> <span class="nav-text">範例2-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-11"><span class="nav-number">4.3.</span> <span class="nav-text">範例2-11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮點運算"><span class="nav-number">5.</span> <span class="nav-text">浮點運算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-12"><span class="nav-number">5.1.</span> <span class="nav-text">範例2-12</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大括號排版"><span class="nav-number">6.</span> <span class="nav-text">大括號排版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-13"><span class="nav-number">6.1.</span> <span class="nav-text">範例2-13</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#等號"><span class="nav-number">7.</span> <span class="nav-text">等號=</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-14"><span class="nav-number">7.1.</span> <span class="nav-text">範例2-14</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#閉包-Closure"><span class="nav-number">1.</span> <span class="nav-text">閉包(Closure)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例2-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-2"><span class="nav-number">1.2.</span> <span class="nav-text">範例2-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-3"><span class="nav-number">1.3.</span> <span class="nav-text">範例2-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-4"><span class="nav-number">1.4.</span> <span class="nav-text">範例2-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Currying"><span class="nav-number">2.</span> <span class="nav-text">Currying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-5"><span class="nav-number">2.1.</span> <span class="nav-text">範例2-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-6"><span class="nav-number">2.2.</span> <span class="nav-text">範例2-6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hoisting"><span class="nav-number">3.</span> <span class="nav-text">Hoisting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-7"><span class="nav-number">3.1.</span> <span class="nav-text">範例2-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-8"><span class="nav-number">3.2.</span> <span class="nav-text">範例2-8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嚴格模式"><span class="nav-number">4.</span> <span class="nav-text">嚴格模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-9"><span class="nav-number">4.1.</span> <span class="nav-text">範例2-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-10"><span class="nav-number">4.2.</span> <span class="nav-text">範例2-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-11"><span class="nav-number">4.3.</span> <span class="nav-text">範例2-11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮點運算"><span class="nav-number">5.</span> <span class="nav-text">浮點運算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-12"><span class="nav-number">5.1.</span> <span class="nav-text">範例2-12</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大括號排版"><span class="nav-number">6.</span> <span class="nav-text">大括號排版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-13"><span class="nav-number">6.1.</span> <span class="nav-text">範例2-13</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#等號"><span class="nav-number">7.</span> <span class="nav-text">等號=</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-14"><span class="nav-number">7.1.</span> <span class="nav-text">範例2-14</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#語句合併"><span class="nav-number">8.</span> <span class="nav-text">語句合併</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-15"><span class="nav-number">8.1.</span> <span class="nav-text">範例2-15</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#變數宣告"><span class="nav-number">9.</span> <span class="nav-text">變數宣告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-16"><span class="nav-number">9.1.</span> <span class="nav-text">範例2-16</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全域變數"><span class="nav-number">10.</span> <span class="nav-text">全域變數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-17"><span class="nav-number">10.1.</span> <span class="nav-text">範例2-17</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名方式"><span class="nav-number">11.</span> <span class="nav-text">命名方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-17-1"><span class="nav-number">11.1.</span> <span class="nav-text">範例2-17</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自增與自減"><span class="nav-number">12.</span> <span class="nav-text">自增與自減</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-18"><span class="nav-number">12.1.</span> <span class="nav-text">範例2-18</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#區塊"><span class="nav-number">13.</span> <span class="nav-text">區塊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例2-19"><span class="nav-number">13.1.</span> <span class="nav-text">範例2-19</span></a></li></ol></li></ol></div>
             
 
           </div>
