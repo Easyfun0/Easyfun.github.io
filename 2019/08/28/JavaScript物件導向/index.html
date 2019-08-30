@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
 <meta property="og:description" content="物件導向就是將程式設計的過程擬物化，也是將軟體想像成由一群物件交互合作所組成。每個物件都可視為獨一無二的個體，他們扮演不同的角色並有不同的能力及責任。 類別與物件類別(Class):可比喻成藍圖或是範本，用來產生物件的基礎物件(Object):透過類別產生物件，每個物件都是各自獨立 物件導向特性🌼 封裝:隱藏細節，不需要知道內部原理，只需要知道如和操作即可。同時確保使用者無法任意更改物件內部重要">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-08-28T09:16:12.621Z">
+<meta property="og:updated_time" content="2019-08-30T08:09:24.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript物件導向">
 <meta name="twitter:description" content="物件導向就是將程式設計的過程擬物化，也是將軟體想像成由一群物件交互合作所組成。每個物件都可視為獨一無二的個體，他們扮演不同的角色並有不同的能力及責任。 類別與物件類別(Class):可比喻成藍圖或是範本，用來產生物件的基礎物件(Object):透過類別產生物件，每個物件都是各自獨立 物件導向特性🌼 封裝:隱藏細節，不需要知道內部原理，只需要知道如和操作即可。同時確保使用者無法任意更改物件內部重要">
@@ -448,8 +448,29 @@ Array.prototype.sum = function () {
     return output;
 };
 console.log(ary1.sum());
-console.log(ary2.sum());</code></pre><h2 id="物件導向-共用方法"><a href="#物件導向-共用方法" class="headerlink" title="物件導向-共用方法"></a>物件導向-共用方法</h2><p>原型是針對類別加上共用的方法，已達到節省系統資源目的，避免重複產生方法</p>
-<h3 id="範例3-8"><a href="#範例3-8" class="headerlink" title="範例3-8"></a>範例3-8</h3><p>使用原型來添加共用的方法，解決範例3-3工廠方式產生的不同物件問題</p>
+console.log(ary2.sum());</code></pre><h3 id="範例3-8"><a href="#範例3-8" class="headerlink" title="範例3-8"></a>範例3-8</h3><p>如果透過原型家方法，但物件上也有自己的方法，會以物件自己的方法為優先</p>
+<pre><code>var ary1 = new Array(12, 55, 43, 32, 44);
+var ary2 = new Array(12, 33, 1);
+Array.prototype.sum = function() {
+    var output = 0;
+    for (var i = 0; i &lt; this.length; i++) {
+        output += this[i];
+    }
+    return output;
+};
+ary1.sum = function () {
+    return &quot;nothing&quot;;
+};
+console.log(ary1.sum());
+console.log(ary2.sum());</code></pre><p>🍭尋找方法或屬性時會優先尋找本身物件，若找不到才尋找原型(__proto＿)上的</p>
+<h2 id="物件導向-物件"><a href="#物件導向-物件" class="headerlink" title="物件導向-物件"></a>物件導向-物件</h2><p>類別(class),物件(object)，在ES5沒有類別而是透過function提供類似建構函式的用法定義類別。<br>透過new可由類別建立一個新的物件，可把它想成:<br>☘ 類別(class) =&gt; 模子, 物件(Object) =&gt; 成品<br>透過模子可生產成品，但不會直接拿模子來使用，因為誠品是拿來用的，也不會拿成品去產生新的成品</p>
+<p>原型才會有prototype<br>function Foo();<br>console.log(typeof Foo.prototype);<br>物件才會有 ＿proto＿ (物件的原型鏈)<br>var a new Foo();<br>console.log(a.prototype);<br>console.log(a.__proto＿ === Foo.prototype);</p>
+<h3 id="範例3-9"><a href="#範例3-9" class="headerlink" title="範例3-9"></a>範例3-9</h3><p>類別和物件的用法</p>
+<pre><code>Array.push(); //找無
+var ary = new Array();
+ary.push();
+var ary2= new ary();</code></pre><h2 id="物件導向-共用方法"><a href="#物件導向-共用方法" class="headerlink" title="物件導向-共用方法"></a>物件導向-共用方法</h2><p>原型是針對類別加上共用的方法，已達到節省系統資源目的，避免重複產生方法</p>
+<h3 id="範例3-10"><a href="#範例3-10" class="headerlink" title="範例3-10"></a>範例3-10</h3><p>使用原型來添加共用的方法，解決範例3-3工廠方式產生的不同物件問題</p>
 <pre><code>function CreatePerson(name, gender) {
     this.name = name;
     this.gender = gender;
@@ -462,7 +483,128 @@ console.log(ary2.sum());</code></pre><h2 id="物件導向-共用方法"><a href=
     };
 var p1 = new CreatePerson(&quot;Mike&quot;, &quot;male&quot;);
 var p2 = new CreatePerson(&quot;Phil&quot;, &quot;female&quot;);
-console.log(p1.showName === p2.showName);  //true</code></pre>
+console.log(p1.showName === p2.showName);  //true</code></pre><h3 id="範例3-11"><a href="#範例3-11" class="headerlink" title="範例3-11"></a>範例3-11</h3><p>建立物件後增加屬性</p>
+<pre><code>function Obj() {
+    this.name = &quot;Mark&quot;;
+    this.run = function() {
+        // code
+    };
+}
+var a = new Obj();
+var b = new Obj();
+var c = new Obj();
+//為每個物件增加屬性
+a.height = 15;
+b.height = 15;
+c.height = 15;
+//可以改成這樣
+Obj.prototype.height = 15;</code></pre><p>🍄因為Obj.prototype === a.<strong>proto＿，當新增Obj.prototype.height屬性等同於a.</strong>proto＿.height<br>🍄當a物件找不到height會去<strong>proto＿底下尋找height，若找不到在往上層的</strong>proto＿一直找到null為止</p>
+<h2 id="物件導向-內建物件原型方法"><a href="#物件導向-內建物件原型方法" class="headerlink" title="物件導向-內建物件原型方法"></a>物件導向-內建物件原型方法</h2><p>也可替系統內建用原型加方法，達到擴充功能目的</p>
+<h3 id="範例3-12"><a href="#範例3-12" class="headerlink" title="範例3-12"></a>範例3-12</h3><p>內建物件用原型加方法</p>
+<pre><code>String.prototype.toNumber = function () {
+    return parseInt(this);
+};
+var ten = &quot;10&quot;;
+var fifty = &quot;50&quot;;
+console.log(ten.toNumber());
+console.log(fifty.toNumber());</code></pre><h2 id="物件導向-私有函式與變數"><a href="#物件導向-私有函式與變數" class="headerlink" title="物件導向-私有函式與變數"></a>物件導向-私有函式與變數</h2><p>透過this才能存取方法和屬性，否則就是私有的函式和變數，只有內部才可存取操作</p>
+<h3 id="範例3-13"><a href="#範例3-13" class="headerlink" title="範例3-13"></a>範例3-13</h3><pre><code>function CreatePerson(name, gender, year) {
+    this.name = name;
+    this.gender = gender;
+    function caclAge(y) {
+        var today = new Date();
+        return today.getFullYear() - y;
+    }
+    var age = caclAge(year);
+    this.showAge = function () {
+        console.log(&quot;my age:&quot; + age);
+    };
+}
+CreatePerson.prototype.showName = function() {
+    console.log(&quot;my name:&quot; + this.name);
+};
+CreatePerson.prototype.showGender = function() {
+    console.log(&quot;my gender:&quot; + this.gender);
+};
+var p1 = new CreatePerson(&quot;Mark&quot;, &quot;male&quot;, 1985);
+var p2 = new CreatePerson(&quot;Jack&quot;, &quot;male&quot;, 1978);
+console.log(p1.age);</code></pre><h2 id="物件導向-唯讀方法和屬性"><a href="#物件導向-唯讀方法和屬性" class="headerlink" title="物件導向-唯讀方法和屬性"></a>物件導向-唯讀方法和屬性</h2><p>設定一個唯獨不可修改的屬性，可透過Object.defineProperty建立屬性</p>
+<h3 id="範例3-14"><a href="#範例3-14" class="headerlink" title="範例3-14"></a>範例3-14</h3><p>設定唯獨</p>
+<pre><code>function CreatePerson() {
+    Object.defineProperty(this, &quot;name&quot;, {
+        value: &quot;Mark&quot;,     //值也可以是function
+        enumerable: true,  //是否可以被列舉for in
+        writable: false,   //是否可以被修改值
+        configurable: true  //是否可刪除屬性或修改特的enumerable,writable,configurable屬性
+    });
+}
+CreatePerson.prototype.getName = function() {
+    console.log(this.name);
+};
+var p1 = new CreatePerson();
+p1.getName();
+p1.name = &quot;John&quot;;
+p1.getName();</code></pre><p>如果定義get,set表示要自行控制屬性存取，就不能再去定義value和writable屬性</p>
+<pre><code>var obj = {};
+(function () {
+    var _name;
+    Object.defineProperty(obj, &quot;name&quot;, {
+        get: function () {
+            console.log(&quot;讀取_name&quot;);
+            return _name;
+        },
+        set: function (value) {
+            console.log(&quot;寫入_name&quot;);
+            _name = value;
+        }
+    });
+})();</code></pre><h2 id="物件導向-實字模式"><a href="#物件導向-實字模式" class="headerlink" title="物件導向-實字模式"></a>物件導向-實字模式</h2><p>使用{…}或[…]種寫法，是透過實字模式(literal notation patterns)產生一個物件或陣列，編譯時JavaScript內部會自動把符號轉換成物件。Json是JavaScript子集合，也是用符號來表示物件或陣列</p>
+<h3 id="範例3-15"><a href="#範例3-15" class="headerlink" title="範例3-15"></a>範例3-15</h3><p>實字模式</p>
+<pre><code>var cat = {};
+cat.name = &quot;Mike&quot;;
+cat.getName = function() {
+    return this.name;
+};
+//也可以這樣寫
+var cat = {
+    name: &quot;Mike&quot;,
+    getName: function () {
+        return this.name;
+    }
+};</code></pre><p>🐤簡單建立一個物件可以用此方式，但此方式不適合於需建立多個相同物件的方法或屬性<br>🐤雖然在JavaScript實字模式中的物件屬性名稱可不需引號或使用單引號，但純Json資料格式物件屬性名稱必須一律使用雙引號</p>
+<p>constructor:<br>一般物件導向語言，consrructor是一個方法存在於class中。但在JavaScript的function取代了constructor這個設計，並不需要刻意寫出constructor的method，因為JavaScript在new時就會執行這個function，因此constructor可用來設定物件的屬性(property)或者呼叫方法(method)，初始化這個物件讓之後物件能正確運作<br>🍬prototype原型本身是個物件，同時具備constructor和＿proto＿，constructor指向建構函式，而＿proto＿則指向」Object.prototype</p>
+<h2 id="物件導向-實字方式操作"><a href="#物件導向-實字方式操作" class="headerlink" title="物件導向-實字方式操作"></a>物件導向-實字方式操作</h2><p>將實字方式建立的物件轉換成JSON字串</p>
+<h3 id="範例3-16"><a href="#範例3-16" class="headerlink" title="範例3-16"></a>範例3-16</h3><pre><code>var json = {
+    name: &quot;Mike&quot;,
+    show: function () {
+        console.log(this.name);
+    },
+    empty: undefined,
+    nothing: null
+};
+var jsonString = JSON.stringify(json);
+console.log(jsonString);
+var jsonString = JSON.parse(jsonString);
+//{&quot;name&quot;:&quot;Mike&quot;,&quot;nothing&quot;:null}</code></pre><h2 id="物件導向-命名空間"><a href="#物件導向-命名空間" class="headerlink" title="物件導向-命名空間"></a>物件導向-命名空間</h2><p>若有相同的函式名稱會被覆蓋，但透過命名空間可區分相同的方法名稱</p>
+<h3 id="範例3-17"><a href="#範例3-17" class="headerlink" title="範例3-17"></a>範例3-17</h3><p>相同名稱的函式會被覆蓋</p>
+<pre><code>function getUser() {
+    console.log(&quot;a&quot;);
+}
+function getUser() {
+    console.log(&quot;b&quot;);
+}
+getUser(); //b</code></pre><p>透過命名空間區分相同的方法名稱</p>
+<pre><code>var ns = {};
+ns.common = {};
+ns.custom = {};
+ns.common.getUser = function () {
+    console.log(&quot;a&quot;);
+};
+ns.custom.getUser = function () {
+    console.log(&quot;b&quot;);
+};
+ns.common.getUser();  //a
+ns.custom.getUser();  //b</code></pre>
       
     </div>
     
@@ -608,7 +750,7 @@ console.log(p1.showName === p2.showName);  //true</code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#類別與物件"><span class="nav-number">1.</span> <span class="nav-text">類別與物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向特性"><span class="nav-number">2.</span> <span class="nav-text">物件導向特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物件的組成"><span class="nav-number">2.1.</span> <span class="nav-text">物件的組成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-this"><span class="nav-number">3.</span> <span class="nav-text">物件導向-this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-1"><span class="nav-number">3.1.</span> <span class="nav-text">範例3-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立物件1"><span class="nav-number">4.</span> <span class="nav-text">建立物件1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-2"><span class="nav-number">4.1.</span> <span class="nav-text">範例3-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-3"><span class="nav-number">4.2.</span> <span class="nav-text">範例3-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立物件2"><span class="nav-number">5.</span> <span class="nav-text">建立物件2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-new"><span class="nav-number">6.</span> <span class="nav-text">物件導向-new</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-4"><span class="nav-number">6.1.</span> <span class="nav-text">範例3-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-5"><span class="nav-number">6.2.</span> <span class="nav-text">範例3-5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-prototype"><span class="nav-number">7.</span> <span class="nav-text">物件導向-prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-6"><span class="nav-number">7.1.</span> <span class="nav-text">範例3-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-7"><span class="nav-number">7.2.</span> <span class="nav-text">範例3-7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-共用方法"><span class="nav-number">8.</span> <span class="nav-text">物件導向-共用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-8"><span class="nav-number">8.1.</span> <span class="nav-text">範例3-8</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#類別與物件"><span class="nav-number">1.</span> <span class="nav-text">類別與物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向特性"><span class="nav-number">2.</span> <span class="nav-text">物件導向特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物件的組成"><span class="nav-number">2.1.</span> <span class="nav-text">物件的組成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-this"><span class="nav-number">3.</span> <span class="nav-text">物件導向-this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-1"><span class="nav-number">3.1.</span> <span class="nav-text">範例3-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立物件1"><span class="nav-number">4.</span> <span class="nav-text">建立物件1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-2"><span class="nav-number">4.1.</span> <span class="nav-text">範例3-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-3"><span class="nav-number">4.2.</span> <span class="nav-text">範例3-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立物件2"><span class="nav-number">5.</span> <span class="nav-text">建立物件2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-new"><span class="nav-number">6.</span> <span class="nav-text">物件導向-new</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-4"><span class="nav-number">6.1.</span> <span class="nav-text">範例3-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-5"><span class="nav-number">6.2.</span> <span class="nav-text">範例3-5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-prototype"><span class="nav-number">7.</span> <span class="nav-text">物件導向-prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-6"><span class="nav-number">7.1.</span> <span class="nav-text">範例3-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-7"><span class="nav-number">7.2.</span> <span class="nav-text">範例3-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-8"><span class="nav-number">7.3.</span> <span class="nav-text">範例3-8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-物件"><span class="nav-number">8.</span> <span class="nav-text">物件導向-物件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-9"><span class="nav-number">8.1.</span> <span class="nav-text">範例3-9</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-共用方法"><span class="nav-number">9.</span> <span class="nav-text">物件導向-共用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-10"><span class="nav-number">9.1.</span> <span class="nav-text">範例3-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-11"><span class="nav-number">9.2.</span> <span class="nav-text">範例3-11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-內建物件原型方法"><span class="nav-number">10.</span> <span class="nav-text">物件導向-內建物件原型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-12"><span class="nav-number">10.1.</span> <span class="nav-text">範例3-12</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-私有函式與變數"><span class="nav-number">11.</span> <span class="nav-text">物件導向-私有函式與變數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-13"><span class="nav-number">11.1.</span> <span class="nav-text">範例3-13</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-唯讀方法和屬性"><span class="nav-number">12.</span> <span class="nav-text">物件導向-唯讀方法和屬性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-14"><span class="nav-number">12.1.</span> <span class="nav-text">範例3-14</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-實字模式"><span class="nav-number">13.</span> <span class="nav-text">物件導向-實字模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-15"><span class="nav-number">13.1.</span> <span class="nav-text">範例3-15</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-實字方式操作"><span class="nav-number">14.</span> <span class="nav-text">物件導向-實字方式操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-16"><span class="nav-number">14.1.</span> <span class="nav-text">範例3-16</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向-命名空間"><span class="nav-number">15.</span> <span class="nav-text">物件導向-命名空間</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例3-17"><span class="nav-number">15.1.</span> <span class="nav-text">範例3-17</span></a></li></ol></li></ol></div>
             
 
           </div>
