@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-20190821010810262.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-20190821010502767.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="子層類別會擁有父層類別的所有屬性,方法，再加上自己定義的屬性,方法，所以可說子層類別是父層類別的延伸。由於JavaScript屬於prototype-based的物件導向語言，藉由將現有object做為prototype的方式來達成繼承功能 物件繼承-call,apply,bind比較call就是呼叫函式，不過可透過call傳入第一個參數去改變this，後續的參數當作一般參數傳入apply差別在後">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavsScript物件繼承">
+<meta property="og:url" content="https://easyfun0.github.io/2019/09/04/JavsScript物件繼承/index.html">
+<meta property="og:site_name" content="Welcome to  Easyfun. World">
+<meta property="og:description" content="子層類別會擁有父層類別的所有屬性,方法，再加上自己定義的屬性,方法，所以可說子層類別是父層類別的延伸。由於JavaScript屬於prototype-based的物件導向語言，藉由將現有object做為prototype的方式來達成繼承功能 物件繼承-call,apply,bind比較call就是呼叫函式，不過可透過call傳入第一個參數去改變this，後續的參數當作一般參數傳入apply差別在後">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-09-04T09:19:47.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavsScript物件繼承">
+<meta name="twitter:description" content="子層類別會擁有父層類別的所有屬性,方法，再加上自己定義的屬性,方法，所以可說子層類別是父層類別的延伸。由於JavaScript屬於prototype-based的物件導向語言，藉由將現有object做為prototype的方式來達成繼承功能 物件繼承-call,apply,bind比較call就是呼叫函式，不過可透過call傳入第一個參數去改變this，後續的參數當作一般參數傳入apply差別在後">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://easyfun0.github.io/2019/09/04/JavsScript物件繼承/">
+
+
+
+
+
+  <title>JavsScript物件繼承 | Welcome to  Easyfun. World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to  Easyfun. World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">歡迎來到Easyfun的網路世界</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/09/04/JavsScript物件繼承/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to  Easyfun. World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavsScript物件繼承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-04T13:15:29+08:00">
+                2019-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>子層類別會擁有父層類別的所有屬性,方法，再加上自己定義的屬性,方法，所以可說子層類別是父層類別的延伸。由於JavaScript屬於prototype-based的物件導向語言，藉由將現有object做為prototype的方式來達成繼承功能</p>
+<h2 id="物件繼承-call-apply-bind比較"><a href="#物件繼承-call-apply-bind比較" class="headerlink" title="物件繼承-call,apply,bind比較"></a>物件繼承-call,apply,bind比較</h2><p>call就是呼叫函式，不過可透過call傳入第一個參數去改變this，後續的參數當作一般參數傳入<br>apply差別在後續參數是一個陣列，bind大致和call相同但會產生新的函式<br>call,apply,bind都是屬於函式的原型方式(Function.prototype)</p>
+<h3 id="範例4-1"><a href="#範例4-1" class="headerlink" title="範例4-1"></a>範例4-1</h3><p>使用call呼叫函式可傳入參數並且修改this</p>
+<pre><code>function show(a, b) {
+    console.log(this, a, b);
+}
+//show(5,10);
+show.call({}, 5, 10);</code></pre><h3 id="範例4-2"><a href="#範例4-2" class="headerlink" title="範例4-2"></a>範例4-2</h3><p>call,apply,bind比較</p>
+<pre><code>function base() {
+    console.log(this, arguments);
+}
+base.call({ name: &quot;Mike&quot; }, 2, 3);
+base.apply({ name: &quot;Phil&quot; }, [2, 3]);
+base.bind({ name: &quot;Mary&quot; })( 2, 3);</code></pre><p>函式名稱.call(改變this 物件, 參數1, 參數2,…) =&gt; 執行函式<br>函式名稱.apply(改變this 物件, 陣列) =&gt; 執行函式<br>函式名稱.bind(改變this 物件, 參數1, 參數2,…) =&gt; 新函式</p>
+<p>🍋 使用new建立物件，其實也就是等同於:</p>
+<pre><code>var a = {};
+MyObject,call(a, &quot;Mike&quot;, 30);</code></pre><h2 id="物件繼承-繼承屬性與方法"><a href="#物件繼承-繼承屬性與方法" class="headerlink" title="物件繼承-繼承屬性與方法"></a>物件繼承-繼承屬性與方法</h2><p>繼承物件時父層類別所擁有的屬性與方法，子層類別也必定同時擁有相同屬性與方法</p>
+<h3 id="範例4-3"><a href="#範例4-3" class="headerlink" title="範例4-3"></a>範例4-3</h3><p>透過call繼承屬性與方法</p>
+<pre><code>function A() {
+    this.abc = 12;
+    this.run = function() {
+        console.log(&quot;go&quot;);
+    };
+}
+A.prototype.show = function() {
+    console.log(this.abc);
+};
+function B() {
+    A.call(this);
+}
+var obj = new B();
+console.log(obj.abc);
+obj.run();</code></pre><h2 id="物件繼承-為什麼call能夠繼承屬性與方法"><a href="#物件繼承-為什麼call能夠繼承屬性與方法" class="headerlink" title="物件繼承-為什麼call能夠繼承屬性與方法"></a>物件繼承-為什麼call能夠繼承屬性與方法</h2><p>參數傳遞過程是將變數記憶體位置參考複製到function的參數上，當修改這個參數的內容，實際上是去修改參考上的內容，若重新賦予新值則會建立新的記憶體參考，此稱為共享參考(call by sharing)<br>但由於共享參考在運作上看起來很像傳值參考(call by value)與傳址參考(call by reference)，差別在於原始型別的值是不可變動(immutable)</p>
+<h3 id="範例4-4"><a href="#範例4-4" class="headerlink" title="範例4-4"></a>範例4-4</h3><p>共享參考</p>
+<pre><code>var arr1 = [1, 2, 3];
+var arr2 = arr1;
+arr2.push(4);
+console.log(arr1);
+console.log(arr2);</code></pre><p>避免共享參考</p>
+<pre><code>var arr1 = [1, 2, 3];
+var arr2 = arr1.slice();
+arr2.push(4);
+console.log(arr1);
+console.log(arr2);</code></pre><p>🍞因此透過call繼承時是透過共享參考把this傳入父層類別</p>
+<h2 id="物件繼承-繼承原型方法"><a href="#物件繼承-繼承原型方法" class="headerlink" title="物件繼承-繼承原型方法"></a>物件繼承-繼承原型方法</h2><p>call可繼承屬性與方法，但是無法繼承原型方法，因為原型方法是從prototype設定的，子層物件並非父層類別的原型，所以無法透過call繼承原型方法</p>
+<h3 id="範例4-5"><a href="#範例4-5" class="headerlink" title="範例4-5"></a>範例4-5</h3><p>透過prototype設定可繼承原型方法</p>
+<pre><code>function A() {
+    this.abc = 12;
+}
+A.prototype.show = function() {
+    console.log(this.abc);
+};
+function B() {
+    A.call(this);
+}
+B.prototype = A.prototype;
+var obj = new B();
+console.log(obj.abc);
+obj.show();</code></pre><p>🔥 雖然可透過prototype設定原型方法，但別忘記共享參考這件事情</p>
+<h3 id="範例4-6"><a href="#範例4-6" class="headerlink" title="範例4-6"></a>範例4-6</h3><p>透過prototype設定可繼承方法，但是會影響原有的父層類別的prototype</p>
+<pre><code>function A() {
+    this.abc = 12;
+}
+A.prototype.show = function() {
+    console.log(this.abc);
+};
+function B() {
+    A.call(this);
+}
+B.prototype = A.prototype;
+var objA = new A();
+var objB = new B();
+B.prototype.square = function () {
+    console.log(this.abc * this.abc);
+};
+objA.square();
+objB.square();</code></pre><h2 id="物件繼承-繼承原型方法避免共享傳遞"><a href="#物件繼承-繼承原型方法避免共享傳遞" class="headerlink" title="物件繼承-繼承原型方法避免共享傳遞"></a>物件繼承-繼承原型方法避免共享傳遞</h2><p>透過prototype設定一個物件，當找不到方法或屬性時才會去原型裡面去找，所以擴充子層類別的原型方法，就不會影響父層類別</p>
+<h3 id="範例4-7"><a href="#範例4-7" class="headerlink" title="範例4-7"></a>範例4-7</h3><p>prototpye設定一個物件</p>
+<pre><code>function A() {
+    this.abc = 12;
+}
+A.prototype.show = function() {
+    console.log(this.abc);
+};
+function B() {
+    A.call(this);
+}
+B.prototype = new A();
+var objA = new A();
+var objB = new B();
+B.prototype.square = function () {
+    console.log(this.abc * this.abc);
+};
+objA.square();
+objB.square();</code></pre><p>💥參數傳遞方式:<br>傳值參考:複製內容到新的記憶體上<br>傳址參考:複製參考到新的記憶體位置上，但修改或賦予新值都會改變原有參考<br>共享參考:複製參考到新的記憶體位置上，修改會改變原有參考，但賦予新值則會指向新參考的記憶體位置</p>
+<p>JavaScript實做的是共享參考，但執行起來卻很像傳值參考與傳址參考。由於原始型別直視不可變動(immutable)的，所以無法修改，永遠都只會賦予新值，所以看起來很像傳值參考。<br>物件型別雖然是可變動(mutable)的，但常常忽略掉傳址參考(call by reference)賦予新值會影響改變原有參照的這個原則，所以很容易會被誤解是傳址參考<br>🥕new這個動作其實就是跟記憶體要求一個空間存放新建立物件，也等同於Object.creat([prototype])和[Class].call(obj)這樣的操作<br>🥕若要修改物件的prototype則可使用Object.setPrototypeOf這個方法</p>
+<h2 id="物件繼承-傳遞參數到父層類別"><a href="#物件繼承-傳遞參數到父層類別" class="headerlink" title="物件繼承-傳遞參數到父層類別"></a>物件繼承-傳遞參數到父層類別</h2><p>前一個方式沒有辦法傳遞參數到父層類別，因為使用call沒有帶入傳入參數，可改用apply將arguments傳入父層類別中</p>
+<h3 id="範例4-8"><a href="#範例4-8" class="headerlink" title="範例4-8"></a>範例4-8</h3><p>傳遞參數到父層類別</p>
+<pre><code>function A(abc) {
+    this.abc = abc || 12;
+    console.log(&quot;A class&quot;);  //繼承時會執行兩次
+}
+A.prototype.show = function() {
+    console.log(this.abc);
+};
+function B() {
+    A.apply(this, arguments);
+}
+B.prototype = new A();
+var objB = new B(11);
+B.prototype.square = function () {
+    console.log(this.abc * this.abc);
+};
+objB.square();</code></pre><h2 id="物件繼承-暫時類別繼承方法"><a href="#物件繼承-暫時類別繼承方法" class="headerlink" title="物件繼承-暫時類別繼承方法"></a>物件繼承-暫時類別繼承方法</h2><p>使用暫時類別繼承方法，不會讓父類別的建構函式重複執行兩次，利用暫時類別的prototype設定父類別的prototype，子類別prototype再設定暫時類別產生出來的物件。子類別super方法設定父類別的prototype，最後重新設定子類別prototpye.constructor到子類別，否則子類別的constructor會是父類別的constructor</p>
+<h3 id="範例4-9"><a href="#範例4-9" class="headerlink" title="範例4-9"></a>範例4-9</h3><p>使用暫時類別的繼承方法</p>
+<pre><code>Function.prototype.inherits = function (superCtor) {
+    function F() {
+    };
+    F.prototype = superCtor.prototype;
+    this.prototype = new F();
+    this.super = superCtor.prototype;
+    this.prototype.constructor = this;
+};
+function A(abc) {
+    this.abc = abc || 12;
+    console.log(&quot;A class&quot;);
+}
+A.prototype.show = function() {
+    console.log(this.abc);
+};
+function B() {
+    A.apply(this, arguments);
+}
+B.inherits(A);
+var objB = new B();
+B.prototype.square = function () {
+    console.log(this.abc * this.abc);
+};
+objB.square();</code></pre><h2 id="物件繼承-Object-create繼承方式"><a href="#物件繼承-Object-create繼承方式" class="headerlink" title="物件繼承-Object.create繼承方式"></a>物件繼承-Object.create繼承方式</h2><p>Object.create就是建立一個物件，並且同時指定物件的＿proto＿原型鏈，因此可取代使用臨時類別的方式</p>
+<h3 id="範例4-10"><a href="#範例4-10" class="headerlink" title="範例4-10"></a>範例4-10</h3><p>Object原型繼承方式</p>
+<pre><code>Function.prototype.inherits = function (superCtor) {
+    this.prototype = Object.create(superCtor.prototype);
+    this.super = superCtor.prototype;
+    this.prototype.constructor = this;
+};
+function A(abc) {
+    this.abc = abc || 12;
+    console.log(&quot;A class&quot;);
+}
+A.prototype.show = function() {
+    console.log(this.abc);
+};
+function B() {
+    A.apply(this, arguments);
+}
+B.inherits(A);
+var objB = new B();
+B.prototype.square = function () {
+    console.log(this.abc * this.abc);
+};
+objB.square();</code></pre><h2 id="物件繼承-繼承的實際案例"><a href="#物件繼承-繼承的實際案例" class="headerlink" title="物件繼承-繼承的實際案例"></a>物件繼承-繼承的實際案例</h2><p>1.建立Point類別，透過write方法設定x和y座標，透過read方法取得座標物件<br>2.建立RangePoint類別，繼承Point類別並限制範圍，複寫write方法<br>3.建立IntegerRangePoint類別，繼承RangePoint類別，複寫write方法並四捨五入</p>
+<h3 id="範例4-11"><a href="#範例4-11" class="headerlink" title="範例4-11"></a>範例4-11</h3><p>Object原型繼承方法</p>
+<pre><code>Function.prototype.inherits = function (superCtor) {
+    Object.setPrototypeOf(this.prototype, superCtor.prototype);
+    this.super = superCtor.prototype;
+};</code></pre><p>🌽使用Object.setPrototypeOf可不需要重新設定子類別的prototype.constructor，因為是將目前子類別的prototype中的＿proto＿原型鏈設定為父類別的prototype，因此子類別的constructor仍然還是指向子類別</p>
+<p>建立Point類別</p>
+<pre><code>function Point() {
+    this.x = 0;
+    this.y = 0;
+}
+Point.prototype.write = function (x, y) {
+    this.x = x;
+    this.y = y;
+};
+Point.prototype.read = function () {
+    return { x: this.x, y: this.y };
+};
+var p = new Point();
+p.write(5, 7);
+console.log(p.read());</code></pre><p>建立RangePoint類別</p>
+<pre><code>function RangePoint(min, max) {
+    Point.apply(this, arguments);
+    this.min = min;
+    this.max = max;
+}
+RangePoint.inherits(Point);
+RangePoint.prototype.write = function (x, y) {
+    x = x &lt; this.min ? this.min : x;
+    x = x &gt; this.max ? this.max : x;
+    y = y &lt; this.min ? this.min : y;
+    y = y &gt; this.max ? this.max : y;
+    RangePoint.super.write.apply(this, arguments);
+};
+var rp = new RangePoint(-50, 50);
+rp.write(-100, 100);
+console.log(re.read());</code></pre><p>建立IntegerRangePoint</p>
+<pre><code>function IntegerRangePoint() {
+    RangePoint.apply(this, arguments);
+}
+IntegerRangePoint.inherits(RangePoint);
+IntegerRangePoint.prototype.write = function (x, y) {
+    x = Math.round(x);
+    y = Math.round(y);
+    IntegerRangePoint.super.write.apply(this, arguments);
+};
+var irp = new IntegerRangePoint(0, 10);
+irp.write(9.1, 7.8);
+console.log(irp.read());</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/28/JavaScript物件導向/" rel="next" title="JavaScript物件導向">
+                <i class="fa fa-chevron-left"></i> JavaScript物件導向
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">Welcome to  Easyfun. World</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-call-apply-bind比較"><span class="nav-number">1.</span> <span class="nav-text">物件繼承-call,apply,bind比較</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例4-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-2"><span class="nav-number">1.2.</span> <span class="nav-text">範例4-2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-繼承屬性與方法"><span class="nav-number">2.</span> <span class="nav-text">物件繼承-繼承屬性與方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-3"><span class="nav-number">2.1.</span> <span class="nav-text">範例4-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-為什麼call能夠繼承屬性與方法"><span class="nav-number">3.</span> <span class="nav-text">物件繼承-為什麼call能夠繼承屬性與方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-4"><span class="nav-number">3.1.</span> <span class="nav-text">範例4-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-繼承原型方法"><span class="nav-number">4.</span> <span class="nav-text">物件繼承-繼承原型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-5"><span class="nav-number">4.1.</span> <span class="nav-text">範例4-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-6"><span class="nav-number">4.2.</span> <span class="nav-text">範例4-6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-繼承原型方法避免共享傳遞"><span class="nav-number">5.</span> <span class="nav-text">物件繼承-繼承原型方法避免共享傳遞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-7"><span class="nav-number">5.1.</span> <span class="nav-text">範例4-7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-傳遞參數到父層類別"><span class="nav-number">6.</span> <span class="nav-text">物件繼承-傳遞參數到父層類別</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-8"><span class="nav-number">6.1.</span> <span class="nav-text">範例4-8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-暫時類別繼承方法"><span class="nav-number">7.</span> <span class="nav-text">物件繼承-暫時類別繼承方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-9"><span class="nav-number">7.1.</span> <span class="nav-text">範例4-9</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-Object-create繼承方式"><span class="nav-number">8.</span> <span class="nav-text">物件繼承-Object.create繼承方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-10"><span class="nav-number">8.1.</span> <span class="nav-text">範例4-10</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件繼承-繼承的實際案例"><span class="nav-number">9.</span> <span class="nav-text">物件繼承-繼承的實際案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例4-11"><span class="nav-number">9.1.</span> <span class="nav-text">範例4-11</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
