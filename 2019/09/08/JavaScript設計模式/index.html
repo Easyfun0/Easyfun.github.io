@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-20190821010810262.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-20190821010502767.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="設計模式是個也覺問題的方法，任何的程式語言都可應用設計模式的概念，去解決所遇到的問題，主要是降低城市之間的耦合度,提高彈性,擴展性。設計模式種類很多，介紹其中較常見的為主 🐈 單體模式(Singleton)🐈 簡單工廠模式(Factory)🐈 迭代器模式(Iterator)🐈 裝飾者模式(Decorator)🐈 策略模式(Strategy)🐈 外觀模式(Facade)🐈 代理模式(P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript設計模式">
+<meta property="og:url" content="https://easyfun0.github.io/2019/09/08/JavaScript設計模式/index.html">
+<meta property="og:site_name" content="Welcome to  Easyfun. World">
+<meta property="og:description" content="設計模式是個也覺問題的方法，任何的程式語言都可應用設計模式的概念，去解決所遇到的問題，主要是降低城市之間的耦合度,提高彈性,擴展性。設計模式種類很多，介紹其中較常見的為主 🐈 單體模式(Singleton)🐈 簡單工廠模式(Factory)🐈 迭代器模式(Iterator)🐈 裝飾者模式(Decorator)🐈 策略模式(Strategy)🐈 外觀模式(Facade)🐈 代理模式(P">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-09-11T05:07:36.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript設計模式">
+<meta name="twitter:description" content="設計模式是個也覺問題的方法，任何的程式語言都可應用設計模式的概念，去解決所遇到的問題，主要是降低城市之間的耦合度,提高彈性,擴展性。設計模式種類很多，介紹其中較常見的為主 🐈 單體模式(Singleton)🐈 簡單工廠模式(Factory)🐈 迭代器模式(Iterator)🐈 裝飾者模式(Decorator)🐈 策略模式(Strategy)🐈 外觀模式(Facade)🐈 代理模式(P">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://easyfun0.github.io/2019/09/08/JavaScript設計模式/">
+
+
+
+
+
+  <title>JavaScript設計模式 | Welcome to  Easyfun. World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to  Easyfun. World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">歡迎來到Easyfun的網路世界</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/09/08/JavaScript設計模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to  Easyfun. World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript設計模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-08T12:55:45+08:00">
+                2019-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>設計模式是個也覺問題的方法，任何的程式語言都可應用設計模式的概念，去解決所遇到的問題，主要是降低城市之間的耦合度,提高彈性,擴展性。<br>設計模式種類很多，介紹其中較常見的為主</p>
+<p>🐈 單體模式(Singleton)<br>🐈 簡單工廠模式(Factory)<br>🐈 迭代器模式(Iterator)<br>🐈 裝飾者模式(Decorator)<br>🐈 策略模式(Strategy)<br>🐈 外觀模式(Facade)<br>🐈 代理模式(Proxy)<br>🐈 中介者模式(Mediator)<br>🐈 觀察者模式(Observer)</p>
+<h2 id="設計模式-小技巧「防止忘記new」"><a href="#設計模式-小技巧「防止忘記new」" class="headerlink" title="設計模式-小技巧「防止忘記new」"></a>設計模式-小技巧「防止忘記new」</h2><p>如果忘記new則會針對window產生全域變數，能避免忘記new</p>
+<h3 id="範例5-1"><a href="#範例5-1" class="headerlink" title="範例5-1"></a>範例5-1</h3><p>忘記new</p>
+<pre><code>function CreateNumber(n) {
+    this.number = n;
+}
+var obj = CreateNumber(55);</code></pre><p>防止忘記new</p>
+<pre><code>function CreateNumber(n) {
+    if (this instanceof CreateNumber) {
+        this.number = n;
+    } else {
+        return new CreateNumber(n);
+    }
+}
+var obj = CreateNumber(55);</code></pre><p>🐈 JavaScript內建的Array和Object也可不需要new一樣能產生物件</p>
+<h2 id="設計模式-單體模式-Singleton"><a href="#設計模式-單體模式-Singleton" class="headerlink" title="設計模式-單體模式(Singleton)"></a>設計模式-單體模式(Singleton)</h2><p>確保一個類別只有一個物件，並提供對該物件的全域操作</p>
+<h3 id="範例5-2"><a href="#範例5-2" class="headerlink" title="範例5-2"></a>範例5-2</h3><pre><code>function Cat() {
+    if (typeof Cat.instance === &quot;object&quot;) {
+        return Cat.instance;
+    }
+    this.name = &quot;Mike&quot;;
+    Cat.instance = this;
+}
+Cat.prototype.move = function () {
+    return this.name + &quot; move&quot;;
+};
+var cat1 = new Cat();
+var cat2 = new Cat();
+console.log(cat1 === cat2);
+cat1.name = &quot;Phil&quot;;
+console.log(cat2.move());</code></pre><h2 id="設計模式-簡單工廠設計-Factory"><a href="#設計模式-簡單工廠設計-Factory" class="headerlink" title="設計模式-簡單工廠設計(Factory)"></a>設計模式-簡單工廠設計(Factory)</h2><p>簡單工廠模式是使用一個類別來生成各種不同的物件，由一個方法來決定到底要創建哪個類別的物件，這些物件基本上都擁有相同的介面，可取得需要的物件</p>
+<h3 id="範例5-3"><a href="#範例5-3" class="headerlink" title="範例5-3"></a>範例5-3</h3><pre><code>Function.prototype.inherits = function (superCtor) {
+    Object.setPrototypeOf(this.prototype, superCtor.prototype);
+    this.super = superCtor.prototype;
+};
+function Drink() {
+
+}
+Drink.prototype.showColor = function () {
+    console.log(&quot;Drink color:&quot; + this.color);
+}
+
+
+function Coffee() {
+    Drink.apply(this, arguments);
+    this.color = &quot;brown&quot;;
+}
+Coffee.inherits(Drink);
+
+function Milk() {
+    Drink.apply(this, arguments);
+    this.color = &quot;white&quot;;
+}
+Milk.inherits(Drink);
+
+function OrangeJuice() {
+    Drink.apply(this, arguments);
+        this.color = &quot;orange&quot;;
+}
+OrangeJuice.inherits(Drink);
+
+var factory = {
+    build: function (type) {
+        return new type();
+    }
+};
+var milk = factory.build(Milk);
+milk.showColor();
+var coffee = factory.build(Coffee);</code></pre><h2 id="設計模式-迭代器模式-Iterator"><a href="#設計模式-迭代器模式-Iterator" class="headerlink" title="設計模式-迭代器模式(Iterator)"></a>設計模式-迭代器模式(Iterator)</h2><p>迭代器模式是一種提供簡單操作介面而不用暴露來源的方法或更動它。<br>提供一個操作頁面，讓其他人利用這個界面對資料元素做操作。</p>
+<h3 id="範例5-4"><a href="#範例5-4" class="headerlink" title="範例5-4"></a>範例5-4</h3><pre><code>var iterator = (function () {
+    var index = 0,
+        data = [1, 2, 3, 4, 5],
+        length = data.length;
+    return {
+        next: function () {
+            index = index + 1;
+        },
+        hasNext: function () {
+            return index &lt; length;
+        },
+        first: function () {
+            index = 0;
+        },
+        current: function () {
+            return data[index];
+        }
+    }
+})();
+iterator.first();  //歸零
+while (iterator.hasNext()) {
+    console.log(iterator.current());
+    iterator.next();
+}</code></pre><h2 id="設計模式-裝飾者模式-Decorator"><a href="#設計模式-裝飾者模式-Decorator" class="headerlink" title="設計模式-裝飾者模式(Decorator)"></a>設計模式-裝飾者模式(Decorator)</h2><p>裝飾者模式概念是在物件上動態加上功能以強化目標的新增功能，而原本的物件也要被設計成容易強化。原有的方法名稱都沒有改變，但透過複寫方法強化功能，因此功能被稱為裝飾。</p>
+<h3 id="範例5-5"><a href="#範例5-5" class="headerlink" title="範例5-5"></a>範例5-5</h3><pre><code>function Computer() {
+    this.price = function () {
+        return 41900;
+    }
+}
+function addMemory(pc) {        //增加
+    var price = pc.price();    //覆蓋掉方法     
+    pc.price = function () {   
+        return price + 10000;
+    };
+}
+
+function addEngraving(pc) {     //增加
+    var price = pc.price();    //取得原本售價
+    pc.price = function () {
+        return price + 1000;
+    };
+}
+function addInsurance(pc) {     //增加
+    var price = pc.price();
+    pc.price = function () {
+        return price + 8777;
+    };
+}
+
+var mb = new Computer();
+
+addMemory(mb);
+addEngraving(mb);
+addInsurance(mb);
+console.log(mb.price());</code></pre><h2 id="設計模式-策略模式-Strategy"><a href="#設計模式-策略模式-Strategy" class="headerlink" title="設計模式-策略模式(Strategy)"></a>設計模式-策略模式(Strategy)</h2><p>策略模式可在執行期，依照不同情況選擇不同的策略方式，基本上使用相同的操作介面，但可依照不同的程式來運作</p>
+<h3 id="範例5-6"><a href="#範例5-6" class="headerlink" title="範例5-6"></a>範例5-6</h3><pre><code>var data = {
+    name: &quot;Mike&quot;,
+    message: &quot;hi hi&quot;
+};  //資料封包
+function Sender(strategy) {
+    this.strategy = strategy;
+};  //核心物件，利用建構式置入策略
+Sender.prototype.send = function (data) {
+    return this.strategy.send(data);
+}   //核心方法
+
+var xmlStrategy = {
+    send: function (data) {
+        var str = &quot;&lt;xml&gt;&lt;name&gt;&quot; + data.name + &quot;&lt;/name&gt;&lt;message&gt;&quot; + data.message + &quot;&lt;/message&gt;&lt;/xml&gt;&quot;
+        return str;
+    }
+}   //訂定策略xmlStrategy
+var jsonStrategy = {
+    send: function (data) {
+        var str = JSON.stringify(data);
+        return str;
+    }
+}
+var textStrategy = {
+    send: function (data) {
+        var str = data.name + &apos;,&apos; + data.message;
+        return str;
+    }
+};  //訂定策略jsonStrategy
+
+var sender = new Sender(textStrategy)
+var result = sender.send(data);
+console.log(result);</code></pre><h2 id="設計模式-外觀模式-Facade"><a href="#設計模式-外觀模式-Facade" class="headerlink" title="設計模式-外觀模式(Facade)"></a>設計模式-外觀模式(Facade)</h2><p>子系統中的一組介面提供一個統一的高層介面，使得子系統更容易使用，簡化複雜的操作過程</p>
+<h3 id="範例5-7"><a href="#範例5-7" class="headerlink" title="範例5-7"></a>範例5-7</h3><pre><code>var cpu = {
+    excute: function () {
+        console.log(&quot;excute&quot;);
+    }
+}
+var memory = {
+    load: function () {
+        console.log(&quot;load&quot;);
+    }
+}
+var hdd = {
+    write: function () {
+        console.log(&quot;write&quot;);
+    }
+}
+var computer = {
+    work: function () {
+        memory.load();
+        cpu.excute();
+        hdd.write();
+    }
+}
+var user = {
+    mainTask: function () {
+        computer.work(1);
+        computer.work(2);
+    }
+}
+user.mainTask();</code></pre><h2 id="設計模式-代理模式-Proxy"><a href="#設計模式-代理模式-Proxy" class="headerlink" title="設計模式-代理模式(Proxy)"></a>設計模式-代理模式(Proxy)</h2><p>代理模式是用一個物件做為另一個物件的介面，主要目的為保護物件的存取，避免不正確的操作行為</p>
+<h3 id="範例5-8"><a href="#範例5-8" class="headerlink" title="範例5-8"></a>範例5-8</h3><pre><code>var car = {
+    start: function () { console.log(&quot;發動&quot;); },
+    stop: function () { console.log(&quot;關閉&quot;); },
+    run: function () { console.log(&quot;加速&quot;); }
+};
+function ProxyCar(car) {
+    var isStart = false;
+    this.start = function () {
+        if (isStart) {
+            console.log(&quot;已經發動&quot;);
+        } else {
+            car.start();
+            isStart = true;    //確保車子已啟動
+        }
+    };
+    this.stop = function () {
+        if (!isStart) {
+            console.log(&quot;已經關閉&quot;);
+        } else {
+            car.stop();
+            isStart = false;
+        }
+    };
+    this.run = function () {
+        if (!isStart) {
+            console.log(&quot;還沒發動&quot;);
+        } else {
+            car.run();
+        }
+    };
+}
+var ProxyCar = new ProxyCar(car);</code></pre><h2 id="設計模式-中介者模式-Mediator"><a href="#設計模式-中介者模式-Mediator" class="headerlink" title="設計模式-中介者模式(Mediator)"></a>設計模式-中介者模式(Mediator)</h2><p>當物件和物件之間或有錯綜複雜的交互作用，可將這些關係交由另一物件(中介者)來處理，以減少這些物件的耦合</p>
+<h3 id="範例5-9"><a href="#範例5-9" class="headerlink" title="範例5-9"></a>範例5-9</h3><pre><code>function Player(name) {
+    this.points = 0;
+    this.name = name;
+}
+Player.prototype.Player = function () {
+    this.points += 1;    //得分+1
+    mediator.played();   
+}
+
+var scoreboard = {
+    el:document.body,
+    update: function (score) {
+        var msg = &quot;&quot;;
+        for (var i in score) {
+            if (score.hasOwnProperty(i)) {
+                mag += &quot;&lt;p&gt;&lt;b&gt;&quot; + i + &quot;&lt;/b&gt;&quot;;
+                msg += score[i];
+                msg += &quot;&lt;/p&gt;&quot;;
+            }
+        }
+        this.el.innerHTML = nsg;
+    }
+}
+
+var mediator = {
+    users: {},
+    init: function () {  //初始化要做的事
+        this.users.home = new Player(&quot;Home&quot;);
+        this.users.guest = new Player(&quot;Guest&quot;);
+    },
+    played: function () {
+        var score = {
+            home: this.users.home.points,
+            Guest: this.users.guest.points
+        };
+        scoreboard.update(score);
+    },
+    keypress: function (e) {
+        if (e.keyCode === 48) {
+            mediator.users.home.play();
+            return;
+        }
+        if (e.keyCode === 49) {
+            mediator.users.guest.play();
+            return;
+        }
+    }
+};
+mediator.init();
+window.onkeypress = mediator.keypress;</code></pre><h3 id="範例5-9-2"><a href="#範例5-9-2" class="headerlink" title="範例5-9-2"></a>範例5-9-2</h3><p>簡化新增Player時，只需要透過中介者加入新的Player即可</p>
+<pre><code>function Player(name) {
+    this.points = 0;
+    this.name = name;
+}
+Player.prototype.play = function() {
+    this.points += 1;
+    mediator.played();
+};
+var scoreboard = {
+    el: document.body,
+    update: function(score) {
+        var msg = &quot;&quot;;
+        for (var i in score) {
+            if (score.hasOwnProperty(i)) {
+                msg += &quot;&lt;p&gt;&lt;b&gt;&quot; + i + &quot;&lt;/b&gt;:&quot;;
+                msg += score[i];
+                msg += &quot;&lt;/p&gt;&quot;;
+            }
+        }
+        this.el.innerHTML = msg;
+    }
+};
+var mediator = {
+    users: {},
+    add: function(key, obj) {
+        this.users[obj.name] = {
+            key: key,
+            obj: obj
+        };
+    },
+    played: function() {
+        var score = {};
+        for (var user in this.users) {    //物件屬性迴圈
+            score[user] = this.users[user].obj.points;
+        }
+        scoreboard.update(score);
+    },
+    keypress: function(e) {
+        for (var user in mediator.users) {
+            user = mediator.users[user];
+            if (e.keyCode === user.key) {
+                user.obj.play();
+                return;
+            }
+        }
+    }
+};
+mediator.add(48, new Player(&quot;Home&quot;));
+mediator.add(49, new Player(&quot;Guest&quot;));
+mediator.add(50, new Player(&quot;Other&quot;));
+mediator.add(51, new Player(&quot;Mark&quot;));
+mediator.add(52, new Player(&quot;John&quot;));
+window.onkeypress = mediator.keypress;</code></pre><h2 id="設計模式-觀察者模式-Observer"><a href="#設計模式-觀察者模式-Observer" class="headerlink" title="設計模式-觀察者模式(Observer)"></a>設計模式-觀察者模式(Observer)</h2><p>觀察者模式又為訂閱者模式，是一對多的關係，讓多個觀察者同時監聽某一個主題物件，當這個主題物件狀態發生改變就會通知觀察者。JavaScript就是屬於觀察者模式。</p>
+<h3 id="範例5-10"><a href="#範例5-10" class="headerlink" title="範例5-10"></a>範例5-10</h3><pre><code>var messageCenter = {           //觀察者核心
+    events: {},
+    emit: function (type, message) {
+        if (this.events[type]) {
+            for (var i = 0; i &lt; this.events[type].length; i++){
+                this.events[type][i].callback(message);
+            }
+        }
+    },
+    on: function (obj, type, callback) {            //目標,事件類型,callback
+        this.events[type] = this.events[type] || [];
+        this.events[type].push({
+            obj: obj,
+            callback: callback
+        })
+    },
+    off: function (obj, type) {
+        if (this.events[type]) {
+            for (var i = 0; i &lt; this.events[type].length; i++){
+                if (this.events[type][i].obj === obj) {
+                    this.events[type].splice(i, 1);//splice插入或者移除任意索引數
+                    i--;
+                }
+            }
+        }
+    }
+}
+
+function User(messageCenter) {
+    this.messageCenter = messageCenter;
+}
+User.prototype.addEvent = function (type, callback) {
+    this.messageCenter.on(this, type, callback);
+}
+User.prototype.removeEvent = function (type) {
+    this.messageCenter.off(this, type);
+}
+
+var UserA = new User(messageCenter);     //messageCenter觸發
+UserA.addEvent(&quot;todo&quot;, function (msg) {
+    console.log(&quot;UserA todo:&quot; + msg);
+})
+
+UserA.addEvent(&quot;test&quot;, function (msg) {
+    console.log(&quot;UserA test:&quot; + msg);
+})
+
+var UserB = new User(messageCenter);
+UserB.addEvent(&quot;todo&quot;, function (msg) {
+    console.log(&quot;UserB todo:&quot; + msg);
+})
+
+var UserC = new User(messageCenter);
+UserC.addEvent(&quot;test&quot;, function (msg) {
+    console.log(&quot;UserC test:&quot; + msg);
+})
+
+messageCenter.emit(&quot;todo&quot;, &quot;Easyfun0&quot;);
+messageCenter.emit(&quot;test&quot;, &quot;Easyfun&quot;);</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/04/JavsScript物件繼承/" rel="next" title="JavsScript物件繼承">
+                <i class="fa fa-chevron-left"></i> JavsScript物件繼承
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/11/JavaScript-ES6語法介紹/" rel="prev" title="JavaScript-ES6語法介紹">
+                JavaScript-ES6語法介紹 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">Welcome to  Easyfun. World</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-小技巧「防止忘記new」"><span class="nav-number">1.</span> <span class="nav-text">設計模式-小技巧「防止忘記new」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例5-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-單體模式-Singleton"><span class="nav-number">2.</span> <span class="nav-text">設計模式-單體模式(Singleton)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-2"><span class="nav-number">2.1.</span> <span class="nav-text">範例5-2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-簡單工廠設計-Factory"><span class="nav-number">3.</span> <span class="nav-text">設計模式-簡單工廠設計(Factory)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-3"><span class="nav-number">3.1.</span> <span class="nav-text">範例5-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-迭代器模式-Iterator"><span class="nav-number">4.</span> <span class="nav-text">設計模式-迭代器模式(Iterator)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-4"><span class="nav-number">4.1.</span> <span class="nav-text">範例5-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-裝飾者模式-Decorator"><span class="nav-number">5.</span> <span class="nav-text">設計模式-裝飾者模式(Decorator)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-5"><span class="nav-number">5.1.</span> <span class="nav-text">範例5-5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-策略模式-Strategy"><span class="nav-number">6.</span> <span class="nav-text">設計模式-策略模式(Strategy)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-6"><span class="nav-number">6.1.</span> <span class="nav-text">範例5-6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-外觀模式-Facade"><span class="nav-number">7.</span> <span class="nav-text">設計模式-外觀模式(Facade)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-7"><span class="nav-number">7.1.</span> <span class="nav-text">範例5-7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-代理模式-Proxy"><span class="nav-number">8.</span> <span class="nav-text">設計模式-代理模式(Proxy)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-8"><span class="nav-number">8.1.</span> <span class="nav-text">範例5-8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-中介者模式-Mediator"><span class="nav-number">9.</span> <span class="nav-text">設計模式-中介者模式(Mediator)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-9"><span class="nav-number">9.1.</span> <span class="nav-text">範例5-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-9-2"><span class="nav-number">9.2.</span> <span class="nav-text">範例5-9-2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設計模式-觀察者模式-Observer"><span class="nav-number">10.</span> <span class="nav-text">設計模式-觀察者模式(Observer)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5-10"><span class="nav-number">10.1.</span> <span class="nav-text">範例5-10</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-20190821010810262.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-20190821010502767.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ES6語法介紹-變數範圍鍊(Variable Scoping)let和var不同在於變數有效範圍界定的差別。🦊var是以function界定變數的有效範圍。🦊let是以區塊界定有效範圍，例:if{…}(…),for(…){…}等等 範例6-1ES5 (function() {     var a = 5;     (function() {         var a = 6;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-ES6語法介紹">
+<meta property="og:url" content="https://easyfun0.github.io/2019/09/11/JavaScript-ES6語法介紹/index.html">
+<meta property="og:site_name" content="Welcome to  Easyfun. World">
+<meta property="og:description" content="ES6語法介紹-變數範圍鍊(Variable Scoping)let和var不同在於變數有效範圍界定的差別。🦊var是以function界定變數的有效範圍。🦊let是以區塊界定有效範圍，例:if{…}(…),for(…){…}等等 範例6-1ES5 (function() {     var a = 5;     (function() {         var a = 6;">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-09-11T06:00:50.315Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-ES6語法介紹">
+<meta name="twitter:description" content="ES6語法介紹-變數範圍鍊(Variable Scoping)let和var不同在於變數有效範圍界定的差別。🦊var是以function界定變數的有效範圍。🦊let是以區塊界定有效範圍，例:if{…}(…),for(…){…}等等 範例6-1ES5 (function() {     var a = 5;     (function() {         var a = 6;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://easyfun0.github.io/2019/09/11/JavaScript-ES6語法介紹/">
+
+
+
+
+
+  <title>JavaScript-ES6語法介紹 | Welcome to  Easyfun. World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to  Easyfun. World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">歡迎來到Easyfun的網路世界</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/09/11/JavaScript-ES6語法介紹/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to  Easyfun. World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript-ES6語法介紹</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-11T13:10:00+08:00">
+                2019-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="ES6語法介紹-變數範圍鍊-Variable-Scoping"><a href="#ES6語法介紹-變數範圍鍊-Variable-Scoping" class="headerlink" title="ES6語法介紹-變數範圍鍊(Variable Scoping)"></a>ES6語法介紹-變數範圍鍊(Variable Scoping)</h2><p>let和var不同在於變數有效範圍界定的差別。<br>🦊var是以function界定變數的有效範圍。<br>🦊let是以區塊界定有效範圍，例:if{…}(…),for(…){…}等等</p>
+<h3 id="範例6-1"><a href="#範例6-1" class="headerlink" title="範例6-1"></a>範例6-1</h3><p>ES5</p>
+<pre><code>(function() {
+    var a = 5;
+    (function() {
+        var a = 6;
+        console.log(a);
+    })();
+    console.log(a);
+})();</code></pre><p>ES6</p>
+<pre><code>{
+    let a = 5;
+    if(false){
+        let a = 6;
+        console.log(a);
+    }
+    console.log(a);
+}
+let在for迴圈中
+for (let i = 0; i &lt; 1000; i++){
+    setTimeout(function () {
+        console.log(i);
+    }, i * 1000);
+}</code></pre><p>let看起來好像沒有hoisting</p>
+<pre><code>{
+    console.log(a);
+    let a = 0;
+}</code></pre><p>let其實有hoisting但無法操作(又稱死區Dead Zone)<br>初始化之前不能使用變數</p>
+<pre><code>{
+    let a = 2;
+    {
+        console.log(a);
+        let a = 1;
+    }
+}</code></pre><h2 id="ES6語法介紹-常數-Constants"><a href="#ES6語法介紹-常數-Constants" class="headerlink" title="ES6語法介紹-常數(Constants)"></a>ES6語法介紹-常數(Constants)</h2><p>JavaScript並沒有常數的概念，大多數都是依照命名習慣，以全大寫表示一個常數。從ES6開始加入const定義常數。<br>🐥 不可重新指定值,不准許重複宣告,不准許宣告前使用</p>
+<h3 id="範例6-2"><a href="#範例6-2" class="headerlink" title="範例6-2"></a>範例6-2</h3><p>ES5</p>
+<pre><code>Object.defineProperty(typeof global === &quot;object&quot; ? global : window, &quot;PI1&quot;, {
+    value: 3.1415926,
+    enumerable: true,
+    writable: false,
+    configurable: false
+});
+console.log(PI1); //3.1415926
+PI1 = 100;
+console.log(PI1); //3.1415926</code></pre><p>ES6</p>
+<pre><code>const PI2 = 3.14;
+console.log(PI2); //3.1415926
+PI2 = 100; //Assignment to constant variable.
+console.log(PI2); //3.1415926</code></pre><h3 id="範例6-3"><a href="#範例6-3" class="headerlink" title="範例6-3"></a>範例6-3</h3><p>ES5</p>
+<pre><code>Object.defineProperty(typeof global === &quot;object&quot; ? global : window, &quot;DATA1&quot;, {
+    value: {
+        content: &quot;abc&quot;
+    },
+    enumerable: true,
+    writable: false,
+    configurable: false
+});
+DATA1.content = &quot;xyz&quot;;
+console.log(DATA1.content);</code></pre><p>ES6<br>🐥不可重新指定值，但物件可修改屬性內容</p>
+<pre><code>const DATA2 = {
+    content: &quot;abc&quot;
+}
+
+
+DATA2.content = &quot;xyz&quot;;
+console.log(DATA2.content);</code></pre><h2 id="ES6語法介紹-函式範圍鏈-Function-Scoping"><a href="#ES6語法介紹-函式範圍鏈-Function-Scoping" class="headerlink" title="ES6語法介紹-函式範圍鏈(Function Scoping)"></a>ES6語法介紹-函式範圍鏈(Function Scoping)</h2><p>在區塊內的function如同let一樣</p>
+<h3 id="範例6-4"><a href="#範例6-4" class="headerlink" title="範例6-4"></a>範例6-4</h3><p>ES5</p>
+<pre><code>(function() {
+    function foo() { return 1; }
+    (function() {
+        function foo() { return 2; }
+        console.log(foo());  //2
+    })();
+    console.log(foo());  //1
+})();</code></pre><p>ES6</p>
+<pre><code>{
+    function foo() { return 1;}
+    {
+        function foo() { return 2;}
+        console.log(foo());
+    }
+    console.log(foo());
+}</code></pre><p>🐣ES6採用Block Level Function Declarations 界定Function範圍，由於IE8~IE10不支援ES6，仍然採用hoisting界定function範圍</p>
+<pre><code>在IE8會印出a
+if (true) {
+    function foo() {
+        return &quot;a&quot;;
+    }
+} else {
+    function foo() {
+        return &quot;b&quot;;
+    }
+}
+console.log(foo());</code></pre><h2 id="ES6語法介紹-箭頭函式-Arrow-Functions"><a href="#ES6語法介紹-箭頭函式-Arrow-Functions" class="headerlink" title="ES6語法介紹-箭頭函式(Arrow Functions)"></a>ES6語法介紹-箭頭函式(Arrow Functions)</h2><p>為了簡化函式，箭頭函式語法更短，以及不改變this的特性，所有的箭頭函式都必須是匿名函式</p>
+<h3 id="範例6-5"><a href="#範例6-5" class="headerlink" title="範例6-5"></a>範例6-5</h3><p>ES5</p>
+<pre><code>var input = [10, 20, 30, 40, 50];
+var output = input.map(function(value) {
+    return value+1;
+});
+console.log(output);</code></pre><p>ES6</p>
+<pre><code>var input = [10, 20, 30, 40, 50];
+var output = input.map(value =&gt; {
+    return value + 1;
+});
+console.log(output);</code></pre><h3 id="範例6-6"><a href="#範例6-6" class="headerlink" title="範例6-6"></a>範例6-6</h3><p>箭頭函式允許的表示方式:</p>
+<p>1.沒有參數時要有小括號<br>2.只有一個參數時可以省略小括號<br>3.兩個以上參數要有小括號<br>4.只有一行回傳值可省略大括號</p>
+<pre><code>ES5
+function() {
+}
+ES6
+() =&gt; {
+}</code></pre><hr>
+<pre><code>ES5
+function(value) {
+}
+ES6
+value =&gt; {
+}</code></pre><hr>
+<pre><code>ES5
+function(value, index) {
+}
+ES6
+(value, index) =&gt; {
+}</code></pre><hr>
+<pre><code>ES5
+function(a) {
+    return a*a;
+}
+ES6
+a =&gt; a*a</code></pre><h3 id="範例6-7"><a href="#範例6-7" class="headerlink" title="範例6-7"></a>範例6-7</h3><p>箭頭函式中的this(arguments)不會改變指向的參考</p>
+<p>ES5</p>
+<pre><code>document.show1 = function() {
+    var that = this;
+    [&quot;how&quot;, &quot;are&quot;, &quot;you&quot;].forEach(function (value) {
+        console.log(this);
+        var h2 = document.createElement(&quot;h2&quot;);
+        h2.innerText = value;
+        that.body.appendChild(h2);
+    });
+};
+document.show1();</code></pre><p>ES6</p>
+<pre><code>document.show2 = function() {     //this在document而不是window
+    [&quot;how&quot;, &quot;are&quot;, &quot;you&quot;].forEach(value =&gt; {
+        var h2 = document.createElement(&quot;h2&quot;);
+        h2.innerText = value;
+        this.body.appendChild(h2);
+    });
+
+};
+document.show2();</code></pre><h2 id="ES6語法介紹-函式參數擴展-Extented-Parameter-Handling"><a href="#ES6語法介紹-函式參數擴展-Extented-Parameter-Handling" class="headerlink" title="ES6語法介紹-函式參數擴展(Extented Parameter Handling)"></a>ES6語法介紹-函式參數擴展(Extented Parameter Handling)</h2><p>以往不能直接為函式參數指定預設值，只能採用其他變通方法。<br>ES6支援函式參數具備預設值的功能，讓程式碼更簡潔</p>
+<h3 id="範例6-8"><a href="#範例6-8" class="headerlink" title="範例6-8"></a>範例6-8</h3><p>ES5</p>
+<pre><code>function link1(height, color, url) {
+    var height = height !== undefined ? height : 50;
+    var color = color !== undefined ? color : &quot;red&quot;;
+    var url = url !== undefined ? url : &quot;http://www.abc.com&quot;;
+    console.log(height, color, url);
+}
+link1(null, &quot;Blue&quot;);
+link1(undefined, &quot;&quot;, &quot;http://www.xyz.com&quot;);</code></pre><p>ES6</p>
+<pre><code>function link2(height = 50, color = &quot;red&quot;, url = &quot;www.google.com&quot;) {
+    console.log(height, color, url);
+}
+link2(undefined, &quot;Blue&quot;);
+link2(undefined, &quot;&quot;, &quot;http://www.xyz.com&quot;);</code></pre><h3 id="範例6-9"><a href="#範例6-9" class="headerlink" title="範例6-9"></a>範例6-9</h3><p>arguments取得所有傳入參數。<br>…則是取得剩餘的參數。<br>ES5</p>
+<pre><code>function run1(a, b) {
+    console.log(arguments);
+}
+run1(10, 20, 30);</code></pre><p>ES6</p>
+<pre><code>function run2(a, ...params) {
+    console.log(a, params);
+}
+run2(10, 20, 30);</code></pre><h3 id="範例6-10"><a href="#範例6-10" class="headerlink" title="範例6-10"></a>範例6-10</h3><p>也可透過…合併陣列</p>
+<p>ES5</p>
+<pre><code>var xyz = [&quot;x&quot;, &quot;y&quot;, &quot;z&quot;];
+var abc = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+var out = abc.concat(xyz);
+console.log(out);</code></pre><p>ES6</p>
+<pre><code>var xyz = [&quot;x&quot;, &quot;y&quot;, &quot;z&quot;];
+var abc = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+var out = [...abc, ...xyz];
+console.log(out);</code></pre><p>也可用在類別的參數上</p>
+<pre><code>function Run(...params) {
+    console.log(params);
+}
+var args = [10, 20, 30];</code></pre><p>ES5</p>
+<pre><code>var run = new (Function.prototype.bind.apply(Run, [null].concat(args)));
+//bind產生新函式</code></pre><p>ES6</p>
+<pre><code>var run = new Run(...args);</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/08/JavaScript設計模式/" rel="next" title="JavaScript設計模式">
+                <i class="fa fa-chevron-left"></i> JavaScript設計模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">Welcome to  Easyfun. World</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-變數範圍鍊-Variable-Scoping"><span class="nav-number">1.</span> <span class="nav-text">ES6語法介紹-變數範圍鍊(Variable Scoping)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例6-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-常數-Constants"><span class="nav-number">2.</span> <span class="nav-text">ES6語法介紹-常數(Constants)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-2"><span class="nav-number">2.1.</span> <span class="nav-text">範例6-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-3"><span class="nav-number">2.2.</span> <span class="nav-text">範例6-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-函式範圍鏈-Function-Scoping"><span class="nav-number">3.</span> <span class="nav-text">ES6語法介紹-函式範圍鏈(Function Scoping)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-4"><span class="nav-number">3.1.</span> <span class="nav-text">範例6-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-箭頭函式-Arrow-Functions"><span class="nav-number">4.</span> <span class="nav-text">ES6語法介紹-箭頭函式(Arrow Functions)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-5"><span class="nav-number">4.1.</span> <span class="nav-text">範例6-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-6"><span class="nav-number">4.2.</span> <span class="nav-text">範例6-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-7"><span class="nav-number">4.3.</span> <span class="nav-text">範例6-7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-函式參數擴展-Extented-Parameter-Handling"><span class="nav-number">5.</span> <span class="nav-text">ES6語法介紹-函式參數擴展(Extented Parameter Handling)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-8"><span class="nav-number">5.1.</span> <span class="nav-text">範例6-8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-9"><span class="nav-number">5.2.</span> <span class="nav-text">範例6-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-10"><span class="nav-number">5.3.</span> <span class="nav-text">範例6-10</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
