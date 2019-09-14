@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
 <meta property="og:description" content="ES6語法介紹-變數範圍鍊(Variable Scoping)let和var不同在於變數有效範圍界定的差別。🦊var是以function界定變數的有效範圍。🦊let是以區塊界定有效範圍，例:if{…}(…),for(…){…}等等 範例6-1ES5 (function() {     var a = 5;     (function() {         var a = 6;">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-09-11T06:00:50.315Z">
+<meta property="og:updated_time" content="2019-09-14T08:35:01.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-ES6語法介紹">
 <meta name="twitter:description" content="ES6語法介紹-變數範圍鍊(Variable Scoping)let和var不同在於變數有效範圍界定的差別。🦊var是以function界定變數的有效範圍。🦊let是以區塊界定有效範圍，例:if{…}(…),for(…){…}等等 範例6-1ES5 (function() {     var a = 5;     (function() {         var a = 6;">
@@ -486,7 +486,482 @@ console.log(out);</code></pre><p>也可用在類別的參數上</p>
 var args = [10, 20, 30];</code></pre><p>ES5</p>
 <pre><code>var run = new (Function.prototype.bind.apply(Run, [null].concat(args)));
 //bind產生新函式</code></pre><p>ES6</p>
-<pre><code>var run = new Run(...args);</code></pre>
+<pre><code>var run = new Run(...args);</code></pre><h2 id="ES6語法介紹-字串樣板-Template-Strings"><a href="#ES6語法介紹-字串樣板-Template-Strings" class="headerlink" title="ES6語法介紹-字串樣板(Template Strings)"></a>ES6語法介紹-字串樣板(Template Strings)</h2><p>可在樣板插入任何有效的表達示，不僅只是變數，可不用透過\n完成多行文字的串接</p>
+<h3 id="範例6-11"><a href="#範例6-11" class="headerlink" title="範例6-11"></a>範例6-11</h3><p>ES5</p>
+<pre><code>var url=&quot;http://www.abc.com&quot;;
+var name=&quot;www.abc.com&quot;;
+var link = &quot;&lt;a href=\&quot;&quot; + url + &quot;\&quot;&gt;&quot; + name + &quot;&lt;/a&gt;&quot;;
+console.log(link);</code></pre><p>ES6</p>
+<pre><code>var url=&quot;http://www.abc.com&quot;;
+var name = &quot;www.abc.com&quot;;
+var link = `&lt;a href=&quot;${url}&quot;&gt;${name}&lt;/a&gt;`;
+
+console.log(link);</code></pre><h3 id="範例6-12"><a href="#範例6-12" class="headerlink" title="範例6-12"></a>範例6-12</h3><p>ES5(1)</p>
+<pre><code>var text = &quot;AAAAA\n&quot;;
+text += &quot;BBBBB\n&quot;;
+text += &quot;CCCCC\n&quot;;
+text += &quot;DDDDD&quot;;
+console.log(text);</code></pre><hr>
+<p>ES5(2)</p>
+<pre><code>var text = &quot;AAAAA\n&quot;
+    + &quot;BBBBB\n&quot;
+    + &quot;CCCCC\n&quot;
+    + &quot;DDDDD&quot;;
+console.log(text);</code></pre><hr>
+<p>ES5(3)</p>
+<pre><code>var text = &quot;AAAAA\n\
+BBBBB\n\
+CCCCC\n\
+DDDDD&quot;;
+console.log(text);    // /前面不要有空格</code></pre><p>ES6</p>
+<pre><code>var text = `AAAAA
+BBBBB
+CCCCC`;
+console.log(text);</code></pre><h2 id="ES6語法介紹-二進位與八進位"><a href="#ES6語法介紹-二進位與八進位" class="headerlink" title="ES6語法介紹-二進位與八進位"></a>ES6語法介紹-二進位與八進位</h2><p>以往只能用字串表達二進位的數字，嚴格模式下不能使用八進位的數字，在ES6改善這個問題</p>
+<h3 id="範例6-13"><a href="#範例6-13" class="headerlink" title="範例6-13"></a>範例6-13</h3><p>ES5</p>
+<pre><code>console.log(parseInt(&quot;11111111&quot;, 2));
+console.log(parseInt(&quot;0377&quot;, 8));
+console.log(0377 === 255); //嚴格模式下無法使用</code></pre><p>ES6</p>
+<pre><code>console.log(0b11111111 + 0b11111111);
+console.log(0o377);</code></pre><h2 id="ES6語法介紹-增強物件屬性-Enhanced-Object-Properties"><a href="#ES6語法介紹-增強物件屬性-Enhanced-Object-Properties" class="headerlink" title="ES6語法介紹-增強物件屬性(Enhanced Object Properties)"></a>ES6語法介紹-增強物件屬性(Enhanced Object Properties)</h2><p>物件屬性在賦予值時可用簡化刑式,定義方法，甚至可使用表達式計算屬性的名稱，這樣使用實字模式建立更加便利</p>
+<h3 id="範例6-14"><a href="#範例6-14" class="headerlink" title="範例6-14"></a>範例6-14</h3><p>ES5</p>
+<pre><code>var x = 100;
+var y = 200;
+var obj = {
+    x: x,
+    y: y
+};
+console.log(obj);</code></pre><p>ES6<br>//IE11無法使用  沒完全支援ES6</p>
+<pre><code>var x = 100;
+var y = 200;
+var obj = {
+    x,
+    y
+};
+console.log(obj);</code></pre><h3 id="範例6-15"><a href="#範例6-15" class="headerlink" title="範例6-15"></a>範例6-15</h3><p>ES5</p>
+<pre><code>var x = 100;
+var y = 200;
+var obj = {
+    x: x,
+    y: y
+};
+obj[&quot;x&quot;+x]=x;
+obj[&quot;y&quot;+y]=y;
+console.log(obj);</code></pre><hr>
+<p>ES5(錯誤的範例)</p>
+<pre><code>var x = 100;
+var y = 200;
+var obj = {
+    x: x,
+    y: y,
+    &quot;x&quot;+x:x,
+    &quot;y&quot;+y:y
+};
+console.log(obj);</code></pre><p>ES6</p>
+<pre><code>var x = 100;
+var y = 200;
+var obj = {
+    x,
+    y,
+    [&quot;x&quot;+x]:x,
+    [&quot;y&quot;+y]:y
+};
+console.log(obj);</code></pre><h3 id="範例6-16"><a href="#範例6-16" class="headerlink" title="範例6-16"></a>範例6-16</h3><p>ES5</p>
+<pre><code>var obj = {
+    foo: function(a, b) {
+        console.log(a, b);
+    },
+    bar: function(x, y) {
+        console.log(x, y);
+    }
+};
+obj.foo(10,30);
+obj.bar(20,40);</code></pre><p>ES6</p>
+<pre><code>var obj = {
+    foo(a, b) {
+        console.log(a,b)
+    },
+    bar(x, y) {
+        console.log(x,y)
+    }
+};
+obj.foo(10,30);
+obj.bar(20,40);</code></pre><h2 id="ES6語法介紹-解構分配-Destructuring-Assignment"><a href="#ES6語法介紹-解構分配-Destructuring-Assignment" class="headerlink" title="ES6語法介紹-解構分配(Destructuring Assignment)"></a>ES6語法介紹-解構分配(Destructuring Assignment)</h2><p>可從一個物件或陣列中賦予新的變數，比起傳統語法更簡潔，也更值觀清晰，除了變數可以使用解構分配，函式參數也可以使用解構分配</p>
+<h3 id="範例6-17"><a href="#範例6-17" class="headerlink" title="範例6-17"></a>範例6-17</h3><p>ES5</p>
+<pre><code>var item = [&quot;a&quot;, &quot;z&quot;];
+var a = item[0];
+var z = item[1];
+item = [z, a];
+console.log(item);</code></pre><p>ES6</p>
+<pre><code>var item = [&quot;a&quot;, &quot;z&quot;];
+var [a, z] = item;   //宣告變數值從後面取出來
+item = [z, a];
+console.log(item);</code></pre><h3 id="範例6-18"><a href="#範例6-18" class="headerlink" title="範例6-18"></a>範例6-18</h3><p>ES5</p>
+<pre><code>var obj = {
+    name: &quot;John&quot;,
+    age: 30,
+    gender: &quot;male&quot;
+};
+var name = obj.name;
+var age = obj.age;
+var gender = obj.gender;
+console.log(name, age, gender);</code></pre><p>ES6</p>
+<pre><code>var obj = {
+    name: &quot;Mike&quot;,
+    age: 20,
+    gender: &quot;male&quot;
+};
+var { name, age, gender } = obj;
+console.log(name, age, gender);</code></pre><h3 id="範例6-19"><a href="#範例6-19" class="headerlink" title="範例6-19"></a>範例6-19</h3><p>ES5</p>
+<pre><code>var obj = {
+    name: {
+        firstName: &quot;John&quot;,
+        lastName: &quot;Lin&quot;
+    },
+    age: 30,
+    gender: &quot;male&quot;
+};
+var firstName = obj.name.firstName;  //找到obj的name的屬性
+var lastName = obj.name.lastName;
+var age = obj.age;
+var gender = obj.gender;
+console.log(firstName, lastName, age, gender);</code></pre><p>ES6</p>
+<pre><code>var obj = {
+    name: {
+        firstName: &quot;John&quot;,
+        lastName: &quot;Lin&quot;
+    },
+    age: 30,
+    gender: &quot;male&quot;
+};
+var { name:{ firstName, lastName }, age, gender: sex } = obj;
+console.log(firstName, lastName, age, gender);</code></pre><h3 id="範例6-20"><a href="#範例6-20" class="headerlink" title="範例6-20"></a>範例6-20</h3><p>ES5</p>
+<pre><code>function f1(ary) {
+    var name = ary[0];
+    var age = ary[1];
+    console.log(name, age);
+}
+f1([&quot;John&quot;, 30]);</code></pre><p>ES6</p>
+<pre><code>function f2([name, age]) {
+    console.log(name, age);
+}
+f2([&quot;John&quot;, 30]);</code></pre><h3 id="範例6-21"><a href="#範例6-21" class="headerlink" title="範例6-21"></a>範例6-21</h3><p>ES5</p>
+<pre><code>function f1(obj) {
+    var name = obj.name;
+    var age = obj.age;
+    console.log(name, age);
+}
+f1({name: &quot;John&quot;, age: 30});</code></pre><p>ES6  物件</p>
+<pre><code>function f2({ name, age }) {
+    console.log(name, age);
+}
+f2({name: &quot;John&quot;, age: 30});</code></pre><h3 id="範例6-22"><a href="#範例6-22" class="headerlink" title="範例6-22"></a>範例6-22</h3><p>ES5  判斷有沒有falsy值</p>
+<pre><code>var list = [0, 42];
+var a = list[0] !== undefined ? list[0] : 1;  //undefined更精確
+var b = list[1] ? list[1] : 2;
+var c = list[2] ? list[2] : 3;
+var d = list[3] ? list[3] : undefined;
+console.log(a, b, c, d);</code></pre><p>ES6</p>
+<pre><code>var list = [7, 42];
+var [a = 1, b = 2, c = 3, d] = list;
+console.log(a, b, c, d);</code></pre><h2 id="ES6語法介紹-類別-Class"><a href="#ES6語法介紹-類別-Class" class="headerlink" title="ES6語法介紹-類別(Class)"></a>ES6語法介紹-類別(Class)</h2><p>ES6類別語法沒有改變JavaScript基於prototype-based本質，只是在提供一種語法糖，主要目的是可更貼近傳統物件導向語言寫法</p>
+<h3 id="範例6-23"><a href="#範例6-23" class="headerlink" title="範例6-23"></a>範例6-23</h3><p>ES5</p>
+<pre><code>function Shape1(id, x, y) {
+    this.id = id;
+    this.move(x, y);
+};
+Shape1.prototype.move = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+var a = new Shape1(&quot;a&quot;, 0, 0);
+console.log(a);</code></pre><p>ES6</p>
+<pre><code>class Shape2{
+    constructor(id, x, y) {  //定義建構式
+        this.id = id;
+        this.move(x,y)
+    }
+    move(x, y) {        //不是constructor都是
+        this.x = x;
+        this.y = y;
+    }
+}
+
+var a = new Shape2(&quot;a&quot;, 0, 0);
+console.log(a);</code></pre><h3 id="範例6-24"><a href="#範例6-24" class="headerlink" title="範例6-24"></a>範例6-24</h3><p>ES6繼承更簡潔<br>ES5</p>
+<pre><code>Function.prototype.inherits = function(superCtor) {
+    Object.setPrototypeOf(this.prototype, superCtor.prototype);
+    this.super = superCtor.prototype;
+};
+function Shape1(id, x, y) {
+    this.id = id;
+    this.move(x, y);
+};
+Shape1.prototype.move = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+function Rectangle1(id, x, y, width, height) {
+    Shape1.call(this, id, x, y);
+    this.width = width;
+    this.height = height;
+};
+Rectangle1.inherits(Shape1);
+function Circle1(id, x, y, radius) {
+    Shape1.call(this, id, x, y);
+    this.radius = radius;
+};
+Circle1.inherits(Shape1);
+var a = new Rectangle1(&quot;a&quot;, 0, 0, 100, 100);
+console.log(a);
+var b = new Circle1(&quot;b&quot;, 0, 0, 100);
+console.log(b);</code></pre><p>ES6<br>原型方法則是透過super.move(x,y)就能呼叫父類別的原型方法</p>
+<pre><code>class Shape2 {
+    constructor(id, x, y) {
+        this.id = id
+        this.move(x, y)
+    }
+    move(x, y) {
+        this.x = x
+        this.y = y
+    }
+}
+class Rectangle2 extends Shape2{
+    constructor(id, x, y, width, height) {
+        super(id, x, y);
+        this.width = width;
+        this.height = height;
+    }
+    move(x,y) {   //super當作父類別
+        super.move(x,y);
+        console.log(&quot;Rectangle2 go&quot;);
+    }
+}</code></pre><h3 id="範例6-25"><a href="#範例6-25" class="headerlink" title="範例6-25"></a>範例6-25</h3><p>靜態方法</p>
+<p>ES5</p>
+<pre><code>function Rectangle1(id, x, y, width, height) {
+    //...
+};
+Rectangle1.defaultRectangle = function() {
+    return new Rectangle1(&quot;default&quot;, 0, 0, 100, 100);
+};
+function Circle1(id, x, y, width, height) {
+    //...
+};
+Circle1.defaultCircle = function() {
+    return new Circle1(&quot;default&quot;, 0, 0, 100);
+};
+var defRectangle = Rectangle1.defaultRectangle();
+console.log(defRectangle);
+var defCircle = Circle1.defaultCircle();
+console.log(defCircle);</code></pre><p>ES6</p>
+<pre><code>class Rectangle2{
+    static defaultRectangle() {
+        return new Rectangle2(&quot;default&quot;, 0, 0, 100, 100);
+    }
+}
+class Circle2{
+    static defaultCircle() {
+        return new Circle2(&quot;default&quot;, 0, 0, 100);
+    }
+}
+var defRectangle = Rectangle2.defaultRectangle();
+console.log(defRectangle);
+var defCircle = Circle2.defaultCircle();
+console.log(defCircle);</code></pre><h3 id="範例6-26"><a href="#範例6-26" class="headerlink" title="範例6-26"></a>範例6-26</h3><p>Getter與Setter</p>
+<p>ES5</p>
+<pre><code>function Rectangle1(width) {
+    this._width = width;
+};
+Rectangle1.prototype = {
+    set width(width) {
+        this._width = width;
+    },
+    get width() {
+        return this._width;
+    }
+};
+var r = new Rectangle1(50);
+r.width = 1000;
+console.log(r.width);</code></pre><p>ES6</p>
+<pre><code>class Rectangle2 {
+    constructor(width, height) {
+        // this._width = width;
+    }
+    set width(width) {
+        console.log(&quot;write&quot;);
+        this._width = width;
+    }
+    get width() {
+        console.log(&quot;read&quot;);
+        return this._width;
+    }
+}
+var r = new Rectangle2();
+r.width = 1000;
+console.log(r.width);</code></pre><h2 id="ES6語法介紹-生成器-Generator"><a href="#ES6語法介紹-生成器-Generator" class="headerlink" title="ES6語法介紹-生成器(Generator)"></a>ES6語法介紹-生成器(Generator)</h2><p>生成器為可暫時跳離的函式，因為一般函式遇到return就會直接跳離，但Generator函式執行到yield時會暫停且跳離，並且將值回傳，直到再次呼叫Generator物件的next方法，才會繼續回到函式中，這個過程可透過for…of迴圈自動實作</p>
+<h3 id="範例6-27"><a href="#範例6-27" class="headerlink" title="範例6-27"></a>範例6-27</h3><p>ES5</p>
+<pre><code>function range1(start, end, step) {
+    var list = [];
+    while (start &lt; end) {
+        list.push(start);
+        start += step;
+    }
+    return list;
+}
+var r = range1(0, 10, 2);
+for (var i = 0; i &lt; r.length; i++) {
+    console.log(r[i]); // 0, 2, 4, 6, 8
+}</code></pre><p>ES6 內建迭代器</p>
+<pre><code>function* range2(start,end,step) {  //暫停
+    while (start &lt; end) {
+        yield start;
+        start += step;
+    }
+}
+for (let i of range2(0, 10, 2)) {
+    console.log(i);
+};</code></pre><h2 id="ES6語法介紹-新增內建方法-New-Built-In-Methods"><a href="#ES6語法介紹-新增內建方法-New-Built-In-Methods" class="headerlink" title="ES6語法介紹-新增內建方法(New Built-In Methods)"></a>ES6語法介紹-新增內建方法(New Built-In Methods)</h2><p>針對原有內建物件，提供新增的內建方法，比較符合語意話的名稱</p>
+<h3 id="範例6-28"><a href="#範例6-28" class="headerlink" title="範例6-28"></a>範例6-28</h3><p>淺層複製物件屬性<br>ES6</p>
+<pre><code>var dst  = {quux: 0};
+var src1 = {foo: 1, bar: 2};
+var src2 = {foo: 3, baz: 4};
+Object.keys(src1).forEach(function(k) {  //取出來
+    dst[k] = src1[k];
+});
+Object.keys(src2).forEach(function(k) {
+    dst[k] = src2[k];
+});
+console.log(dst);</code></pre><p>ES6</p>
+<pre><code>var dst  = {quux: 0}
+var src1 = {foo: 1, bar: 2}
+var src2 = {foo: 3, baz: 4}
+Object.assign(dst, src1, src2);
+console.log(dst);</code></pre><h3 id="範例6-29"><a href="#範例6-29" class="headerlink" title="範例6-29"></a>範例6-29</h3><p>尋找陣列值<br>ES5</p>
+<pre><code>console.log([1, 3, 4, 2].filter(function(x) {
+    return x &gt; 3;
+})[0]);</code></pre><p>ES6</p>
+<pre><code>console.log([1,2,3,4].find())</code></pre><h3 id="範例6-30"><a href="#範例6-30" class="headerlink" title="範例6-30"></a>範例6-30</h3><p>重複字串<br>ES5</p>
+<pre><code>console.log(Array(3 + 1).join(&quot;foo&quot;));</code></pre><p>ES6</p>
+<pre><code>console.log(&quot;foo&quot;.repeat(5));</code></pre><h3 id="範例6-31"><a href="#範例6-31" class="headerlink" title="範例6-31"></a>範例6-31</h3><p>字串搜尋<br>ES5</p>
+<pre><code>console.log(&quot;hello&quot;.indexOf(&quot;h&quot;) === 0);
+console.log(&quot;hello&quot;.indexOf(&quot;o&quot;) === (&quot;hello&quot;.length - 1));
+console.log(&quot;hello&quot;.indexOf(&quot;l&quot;) !== -1);</code></pre><p>ES6</p>
+<pre><code>console.log(&quot;hello&quot;.startsWith(&quot;h&quot;));
+console.log(&quot;hellol&quot;.endsWith(&quot;o&quot;));
+console.log(&quot;hello&quot;.includes(&quot;l&quot;));</code></pre><h3 id="範例6-32"><a href="#範例6-32" class="headerlink" title="範例6-32"></a>範例6-32</h3><p>數字判斷<br>ES5</p>
+<pre><code>function isNaN(n) {
+    return n !== n;
+};
+function isFinite(v) {
+    return (typeof v === &quot;number&quot; &amp;&amp; !isNaN(v) &amp;&amp; v !== Infinity &amp;&amp; v !== -Infinity);
+};
+console.log(isNaN(42) === false);
+console.log(isNaN(NaN) === true);
+console.log(isFinite(Infinity) === false);
+console.log(isFinite(-Infinity) === false);
+console.log(isFinite(NaN) === false);
+console.log(isFinite(123) === true);</code></pre><p>ES6</p>
+<pre><code>console.log(Number.isNaN(42) === false);
+console.log(Number.isNaN(NaN) === true);
+console.log(Number.isFinite(Infinity) === false);
+console.log(Number.isFinite(-Infinity) === false);
+console.log(Number.isFinite(NaN) === false);
+console.log(Number.isFinite(123) === true);</code></pre><h2 id="ES6語法介紹-非同步處理-Promise-amp-Async…Await"><a href="#ES6語法介紹-非同步處理-Promise-amp-Async…Await" class="headerlink" title="ES6語法介紹-非同步處理(Promise&amp;Async…Await)"></a>ES6語法介紹-非同步處理(Promise&amp;Async…Await)</h2><p>會產生非同步的方法有setTimeout,setInterval,XMLHttpRequest,fetch,Promise…等等。<br>ES5處理非同步行為使用Callback會讓程式碼難以維護，ES6提供Promise是將非同步行為統一相同界面接口，透過then或catch去接收或捕捉非同步結果，不會產生多層的Callback結構，從ES7開始支援Async…Await語法，程式閱讀起來都是同步的，但實際上是用非同步處理</p>
+<h3 id="範例6-33"><a href="#範例6-33" class="headerlink" title="範例6-33"></a>範例6-33</h3><p>ES5</p>
+<pre><code>function asyncTask1(success, time, callback) {
+    setTimeout(function() {
+        if (success) {
+            callback(true, time);
+        } else {
+            callback(false, time);
+        }
+    }, time);
+}
+//非同步同時完成
+function fetchAll(tasks, success, error) {
+    var results = Array(tasks.length);
+    var count = 0;
+    for (var i = 0; i &lt; tasks.length; i++) {
+        (function(i) {
+            tasks[i](function(resolve, data) {
+                if (resolve) {
+                    count++;
+                    results[i] = data;
+                    if (count === tasks.length) {
+                        success(results);
+                    }
+                } else {
+                    error(data);
+                }
+            })
+        })(i);
+    }
+}
+fetchAll([
+    function(cb) { asyncTask1(true, 1000, cb) },
+    function(cb) { asyncTask1(true, 5000, cb) },
+    function(cb) { asyncTask1(true, 2500, cb) }    
+],function(data) {
+    console.log(&quot;ok:&quot;, data);
+},function(err) {
+    console.log(&quot;err:&quot;, err);
+});
+//非同步依序完成
+asyncTask1(true, 1000, function(resolve, data) {
+    resolve &amp;&amp; console.log(&quot;ok:&quot;, data);
+    resolve &amp;&amp; asyncTask1(true, 5000, function(resolve, data) {
+        resolve &amp;&amp; console.log(&quot;ok:&quot;, data);
+        resolve &amp;&amp; asyncTask1(true, 2500, function(resolve, data) {
+            resolve &amp;&amp; console.log(&quot;ok:&quot;, data);
+        });
+    });
+});</code></pre><p>ES6</p>
+<pre><code>function asyncTask2(success, time) {
+    return new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            if (success) {
+                resolve(time);
+            } else {
+                reject(time);
+            }
+        }, time);
+    });
+}
+//非同步同時完成
+Promise.all([
+    asyncTask2(true, 1000),
+    asyncTask2(true, 5000),
+    asyncTask2(true, 2500)
+]).then(data =&gt; {
+    console.log(&quot;ok:&quot;, data);
+}, err =&gt; {
+    console.log(&quot;err:&quot;, err);
+});
+//非同步依序完成
+asyncTask2(true, 1000).then(result =&gt; {
+    console.log(result);
+    return asyncTask2(true, 5000);
+}).then(result =&gt; {
+    console.log(result);
+    return asyncTask2(true, 2500);
+}).then(result =&gt; {
+    console.log(result);
+    console.log(&quot;依序完成&quot;);
+}).catch(err =&gt; {
+    console.log(&quot;err:&quot; + err);
+});
+//es7的Async和Await用法
+(async () =&gt; {
+    console.log(&quot;begin&quot;);
+    var a = await asyncTask2(true, 1000);
+    console.log(&quot;ok:&quot;, a);
+    var b = await asyncTask2(true, 5000);
+    console.log(&quot;ok:&quot;, b);
+    var c = await asyncTask2(true, 2500);
+    console.log(&quot;ok:&quot;, c);
+    console.log(&quot;end&quot;);
+})()
+console.log(&quot;other code&quot;);</code></pre>
       
     </div>
     
@@ -632,7 +1107,7 @@ var args = [10, 20, 30];</code></pre><p>ES5</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-變數範圍鍊-Variable-Scoping"><span class="nav-number">1.</span> <span class="nav-text">ES6語法介紹-變數範圍鍊(Variable Scoping)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例6-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-常數-Constants"><span class="nav-number">2.</span> <span class="nav-text">ES6語法介紹-常數(Constants)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-2"><span class="nav-number">2.1.</span> <span class="nav-text">範例6-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-3"><span class="nav-number">2.2.</span> <span class="nav-text">範例6-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-函式範圍鏈-Function-Scoping"><span class="nav-number">3.</span> <span class="nav-text">ES6語法介紹-函式範圍鏈(Function Scoping)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-4"><span class="nav-number">3.1.</span> <span class="nav-text">範例6-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-箭頭函式-Arrow-Functions"><span class="nav-number">4.</span> <span class="nav-text">ES6語法介紹-箭頭函式(Arrow Functions)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-5"><span class="nav-number">4.1.</span> <span class="nav-text">範例6-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-6"><span class="nav-number">4.2.</span> <span class="nav-text">範例6-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-7"><span class="nav-number">4.3.</span> <span class="nav-text">範例6-7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-函式參數擴展-Extented-Parameter-Handling"><span class="nav-number">5.</span> <span class="nav-text">ES6語法介紹-函式參數擴展(Extented Parameter Handling)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-8"><span class="nav-number">5.1.</span> <span class="nav-text">範例6-8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-9"><span class="nav-number">5.2.</span> <span class="nav-text">範例6-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-10"><span class="nav-number">5.3.</span> <span class="nav-text">範例6-10</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-變數範圍鍊-Variable-Scoping"><span class="nav-number">1.</span> <span class="nav-text">ES6語法介紹-變數範圍鍊(Variable Scoping)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-1"><span class="nav-number">1.1.</span> <span class="nav-text">範例6-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-常數-Constants"><span class="nav-number">2.</span> <span class="nav-text">ES6語法介紹-常數(Constants)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-2"><span class="nav-number">2.1.</span> <span class="nav-text">範例6-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-3"><span class="nav-number">2.2.</span> <span class="nav-text">範例6-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-函式範圍鏈-Function-Scoping"><span class="nav-number">3.</span> <span class="nav-text">ES6語法介紹-函式範圍鏈(Function Scoping)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-4"><span class="nav-number">3.1.</span> <span class="nav-text">範例6-4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-箭頭函式-Arrow-Functions"><span class="nav-number">4.</span> <span class="nav-text">ES6語法介紹-箭頭函式(Arrow Functions)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-5"><span class="nav-number">4.1.</span> <span class="nav-text">範例6-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-6"><span class="nav-number">4.2.</span> <span class="nav-text">範例6-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-7"><span class="nav-number">4.3.</span> <span class="nav-text">範例6-7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-函式參數擴展-Extented-Parameter-Handling"><span class="nav-number">5.</span> <span class="nav-text">ES6語法介紹-函式參數擴展(Extented Parameter Handling)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-8"><span class="nav-number">5.1.</span> <span class="nav-text">範例6-8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-9"><span class="nav-number">5.2.</span> <span class="nav-text">範例6-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-10"><span class="nav-number">5.3.</span> <span class="nav-text">範例6-10</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-字串樣板-Template-Strings"><span class="nav-number">6.</span> <span class="nav-text">ES6語法介紹-字串樣板(Template Strings)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-11"><span class="nav-number">6.1.</span> <span class="nav-text">範例6-11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-12"><span class="nav-number">6.2.</span> <span class="nav-text">範例6-12</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-二進位與八進位"><span class="nav-number">7.</span> <span class="nav-text">ES6語法介紹-二進位與八進位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-13"><span class="nav-number">7.1.</span> <span class="nav-text">範例6-13</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-增強物件屬性-Enhanced-Object-Properties"><span class="nav-number">8.</span> <span class="nav-text">ES6語法介紹-增強物件屬性(Enhanced Object Properties)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-14"><span class="nav-number">8.1.</span> <span class="nav-text">範例6-14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-15"><span class="nav-number">8.2.</span> <span class="nav-text">範例6-15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-16"><span class="nav-number">8.3.</span> <span class="nav-text">範例6-16</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-解構分配-Destructuring-Assignment"><span class="nav-number">9.</span> <span class="nav-text">ES6語法介紹-解構分配(Destructuring Assignment)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-17"><span class="nav-number">9.1.</span> <span class="nav-text">範例6-17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-18"><span class="nav-number">9.2.</span> <span class="nav-text">範例6-18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-19"><span class="nav-number">9.3.</span> <span class="nav-text">範例6-19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-20"><span class="nav-number">9.4.</span> <span class="nav-text">範例6-20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-21"><span class="nav-number">9.5.</span> <span class="nav-text">範例6-21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-22"><span class="nav-number">9.6.</span> <span class="nav-text">範例6-22</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-類別-Class"><span class="nav-number">10.</span> <span class="nav-text">ES6語法介紹-類別(Class)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-23"><span class="nav-number">10.1.</span> <span class="nav-text">範例6-23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-24"><span class="nav-number">10.2.</span> <span class="nav-text">範例6-24</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-25"><span class="nav-number">10.3.</span> <span class="nav-text">範例6-25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-26"><span class="nav-number">10.4.</span> <span class="nav-text">範例6-26</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-生成器-Generator"><span class="nav-number">11.</span> <span class="nav-text">ES6語法介紹-生成器(Generator)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-27"><span class="nav-number">11.1.</span> <span class="nav-text">範例6-27</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-新增內建方法-New-Built-In-Methods"><span class="nav-number">12.</span> <span class="nav-text">ES6語法介紹-新增內建方法(New Built-In Methods)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-28"><span class="nav-number">12.1.</span> <span class="nav-text">範例6-28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-29"><span class="nav-number">12.2.</span> <span class="nav-text">範例6-29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-30"><span class="nav-number">12.3.</span> <span class="nav-text">範例6-30</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-31"><span class="nav-number">12.4.</span> <span class="nav-text">範例6-31</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-32"><span class="nav-number">12.5.</span> <span class="nav-text">範例6-32</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6語法介紹-非同步處理-Promise-amp-Async…Await"><span class="nav-number">13.</span> <span class="nav-text">ES6語法介紹-非同步處理(Promise&amp;Async…Await)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6-33"><span class="nav-number">13.1.</span> <span class="nav-text">範例6-33</span></a></li></ol></li></ol></div>
             
 
           </div>
