@@ -87,7 +87,7 @@
 <meta property="og:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://easyfun0.github.io/images/observable.png">
-<meta property="og:updated_time" content="2020-06-08T09:52:48.701Z">
+<meta property="og:updated_time" content="2020-06-08T09:59:17.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue的起手式">
 <meta name="twitter:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
@@ -346,11 +346,10 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
     &lt;h1 class=&quot;title&quot;&gt; {{ msg } 
 
         (2)v-text (innerText)
-
-        <h1 class="title" v-text="msg"> </h1>
+<h1 class="title" v-text="msg"> </h1>
 
         (3)v-html => 認識html標籤
-        <h1 class="title" v-html="msg"></h1>
+<h1 class="title" v-html="msg"></h1>
         PS: 使用者輸入一定不要用V-html
         (4)v-bind 單向綁定
             <input type="text" v-bind:value="msg"> 
@@ -362,28 +361,28 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
           1.模板先寫好
           2.data必須是function
 
-          let app = {
-            data() {
-            return {
-                msg: "This is my message"
-            };
-            },
-            template: `
-            <div id="app">
-            <section>
-                <div class="container">
-                <h1 class="title">{{ msg }}&lt;/h1&gt;
-            &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
-            &lt;div&gt;
-                &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
-            &lt;/div&gt;
-            &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
-            &lt;div&gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/section&gt;
-        &lt;/div&gt;`
-    };
-        3.生成畫面
+            let app = {
+                data() {
+                return {
+                    msg: "This is my message"
+                };
+                },
+                template: `
+                <div id="app">
+                <section>
+                    <div class="container">
+                    <h1 class="title">{{ msg }}&lt;/h1&gt;
+                &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
+                &lt;div&gt;
+                    &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+                &lt;/div&gt;
+                &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
+                &lt;div&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+            &lt;/div&gt;`
+        };
+     3.生成畫面
         (1)
             new Vue({
             el: &quot;#app&quot;,
@@ -541,17 +540,17 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
 
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#認識前端框架"><span class="nav-number">1.</span> <span class="nav-text">認識前端框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端框架與Vue-js趨勢"><span class="nav-number">2.</span> <span class="nav-text">前端框架與Vue.js趨勢</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#app"><span class="nav-number"></span> <span class="nav-text">{{ msg }}&lt;/h1&gt;
-            &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
-            &lt;div&gt;
-                &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
-            &lt;/div&gt;
-            &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
-            &lt;div&gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/section&gt;
-        &lt;/div&gt;`
-    };
-        3.生成畫面
+                &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
+                &lt;div&gt;
+                    &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+                &lt;/div&gt;
+                &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
+                &lt;div&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+            &lt;/div&gt;`
+        };
+     3.生成畫面
         (1)
             new Vue({
             el: &quot;#app&quot;,
