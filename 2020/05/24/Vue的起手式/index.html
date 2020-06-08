@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="開始JS學習">
+<meta name="description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自我轉換的第一步">
-<meta property="og:url" content="https://easyfun0.github.io/2019/08/20/第一次寫文章/index.html">
+<meta property="og:title" content="Vue的起手式">
+<meta property="og:url" content="https://easyfun0.github.io/2020/05/24/Vue的起手式/index.html">
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
-<meta property="og:description" content="開始JS學習">
+<meta property="og:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="https://easyfun0.github.io/images/js.png">
-<meta property="og:updated_time" content="2019-08-22T09:18:24.191Z">
+<meta property="og:image" content="https://easyfun0.github.io/images/observable.png">
+<meta property="og:updated_time" content="2020-06-08T09:52:48.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自我轉換的第一步">
-<meta name="twitter:description" content="開始JS學習">
-<meta name="twitter:image" content="https://easyfun0.github.io/images/js.png">
+<meta name="twitter:title" content="Vue的起手式">
+<meta name="twitter:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
+<meta name="twitter:image" content="https://easyfun0.github.io/images/observable.png">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+  <link rel="canonical" href="https://easyfun0.github.io/2020/05/24/Vue的起手式/">
 
 
 
 
 
-  <title>自我轉換的第一步 | Welcome to  Easyfun. World</title>
+  <title>Vue的起手式 | Welcome to  Easyfun. World</title>
   
 
 
@@ -234,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2020/05/24/Vue的起手式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -251,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自我轉換的第一步</h1>
+          <h1 class="post-title" itemprop="name headline">Vue的起手式</h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-20T15:53:59+08:00">
-                2019-08-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-24T14:44:03+08:00">
+                2020-05-24
               </time>
             
 
@@ -301,36 +301,100 @@
       
 
       
-        <h2 id="開始JS學習"><a href="#開始JS學習" class="headerlink" title="開始JS學習"></a>開始JS學習</h2><a id="more"></a>
-<img src="/images/js.png" alt="Raspberry pi" class="image">
+        <h2 id="認識前端框架"><a href="#認識前端框架" class="headerlink" title="認識前端框架"></a>認識前端框架</h2><p>SPA與框架的意義</p>
+<p>🐈SSR(整頁後端產生好)優點:<br>    1.SEO<br>    2.部分JS,CSS<br>    3.降低效能消耗(手機,平板)<br>🐈SPA優點:<br>    1.過場(換資料用)<br>    2.轉換時間短</p>
+<p>🐈活動網站:<br>    1.多頁切換 =&gt; SPA<br>    2.少頁不連貫 =&gt; SSR<br>    3.有無API =&gt; (沒有) SSR<br>🐈CMS(平台):<br>    1.SEO =&gt; SSR<br>    2.時代需要 =&gt; 混搭(Hybird)</p>
+<p>框架優缺點</p>
+<p>🐈優點:<br>    1.程式架構(框架選擇)<br>    2.模組化<br>    3.資源(社群生態)</p>
+<p>🐈缺點:<br>    1.照著規則走<br>    2.選擇後的問題(框架掛掉怎麼辦)</p>
+<p>🐈為什麼要用框架？<br>    讓畫面與狀態(資料)同步</p>
+<h2 id="前端框架與Vue-js趨勢"><a href="#前端框架與Vue-js趨勢" class="headerlink" title="前端框架與Vue.js趨勢"></a>前端框架與Vue.js趨勢</h2><pre><code>Angular:最早的框架，需使用typescript
+React:門檻較高，接近JS
+Vue:開發者為了輕便操作畫面而出</code></pre><p>🐈面試題:為什麼Vue.js不用像React一樣自行指定畫面更新?<br>    Vue幫你做了，diff不同，他幫畫面跟資料同步，只要管好資料就行<br>    React單向綁定，資料不可變動<br>    React =&gt; diff DOM<br>    Vue =&gt; diff Data</p>
+<p>🐈Vue.js基本特性與觀念</p>
+<pre><code>1.良好的性能
+2.平緩的學習曲線
+3.模組化與漸進式開發
 
-<p>八月報名了深入JavaScript核心 的課程，雖然基礎懂一些但一直不知道有些語法的使用，或者看到別人寫的JS，也都不太懂怎麼解析，接下來開始持續一個月的深入探討JS的世界囉。</p>
-<h2 id="JS語法介紹"><a href="#JS語法介紹" class="headerlink" title="JS語法介紹"></a>JS語法介紹</h2><p>JavaScript型別系統分為「原始型別」和「物件型別」兩大類，原始型別沒有屬性與方法<br>原始型別(Primitive types)</p>
-<p>＊ number<br>＊ string<br>＊ boolean<br>＊ null<br>＊ undefined<br>＊ symbol(ES6)</p>
-<p>物件型別(Object types)<br>原生物件(Native)</p>
-<pre><code>▵原始型別包裹物件(Primitive Wrapper)
-    ＊ Number
-    ＊ String
-    ＊ Boolean
+MVVM:資料與畫面的同步
 
-▵ Array,Object
-▵ Date,Math,RegExp</code></pre><p>宿主物件(Host)</p>
-<pre><code>◎ window(瀏覽器),global(Node.js)
-◎ DOM</code></pre><p>但JavaScript為了節省系統資源，原始型別在使用時會自動裝箱(boxing)形成原始型別包裹物件，使用完畢後會自動拆箱(unboxing)還原回原始型別。</p>
-<h2 id="範例1-1"><a href="#範例1-1" class="headerlink" title="範例1.1"></a>範例1.1</h2><pre><code>var str=&quot;string&quot;;
-console.log(typeof str); //&quot;string&quot;
-str.val=100;
-console.log(str.val); //undefined</code></pre><p>使用物件型別的時候最容易搞錯的就是Number,String,Boolean 就差在第一個字母大寫</p>
-<pre><code>var obj = new String(&quot;string&quot;);
-console.log(typeof obj); //&quot;object&quot;
-obj.val=100;
-console.log(obj.val); //100
-console.log(typeof obj.valueOf()); //&quot;string&quot;</code></pre><p>裝箱boxing與拆箱unboxing</p>
-<pre><code>var str = &quot;word&quot;;
-var txt = str.substring(3);</code></pre><p>裝箱內部原理</p>
-<pre><code>var str = new String(&quot;word&quot;);
-var txt = str.substring(3); //幫你裝箱
-str = str.valueOf();        //還原str</code></pre>
+(1) Object.defineProperty
+
+let a = 1;
+let obj = Object.defineProperty({}, &quot;count&quot;, {
+    get(){
+        console.log(&quot;get a&quot;);
+        return a
+    },
+    set(value){
+        a = value;
+    }
+});</code></pre><p>Get<br>    obj.count<br>Set<br>    obj.count = 3;</p>
+<pre><code>(2) observable =&gt; vue
+
+先將資料跟畫面綁一起 =&gt; 改資料就改畫面
+&lt;1&gt;生出資料
+&lt;2&gt;綁定
+&lt;3&gt;改資料</code></pre><p>範例：</p>
+<pre><code>Vue的使用:可以在任何一頁的任何區塊
+1.畫面
+2.匯入Vue.js
+    a.宣告式
+    綁定方法(樣板):
+    (1)mustache {{}} (innerText)
+
+    &lt;h1 class=&quot;title&quot;&gt; {{ msg } 
+
+        (2)v-text (innerText)
+
+        <h1 class="title" v-text="msg"> </h1>
+
+        (3)v-html => 認識html標籤
+        <h1 class="title" v-html="msg"></h1>
+        PS: 使用者輸入一定不要用V-html
+        (4)v-bind 單向綁定
+            <input type="text" v-bind:value="msg"> 
+            <input type="text" :value="msg">
+        (5)v-model 雙向綁定(輸入框)
+            <input type="text" v-model="msg">
+        
+        b.render 預處理畫面
+          1.模板先寫好
+          2.data必須是function
+
+          let app = {
+            data() {
+            return {
+                msg: "This is my message"
+            };
+            },
+            template: `
+            <div id="app">
+            <section>
+                <div class="container">
+                <h1 class="title">{{ msg }}&lt;/h1&gt;
+            &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
+            &lt;div&gt;
+                &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+            &lt;/div&gt;
+            &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
+            &lt;div&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;/div&gt;`
+    };
+        3.生成畫面
+        (1)
+            new Vue({
+            el: &quot;#app&quot;,
+            render: h =&gt; h(app)
+            });
+        (2)
+            new Vue({
+                render: h =&gt; h(app)
+            }).$mount(&quot;#app&quot;);</h1></div></section></div></code></pre><img src="/images/observable.png" alt="Raspberry pi" class="image">
+
+
       
     </div>
     
@@ -354,8 +418,8 @@ str = str.valueOf();        //還原str</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/20/hello-world/" rel="next" title="Easyfun的網路文章區塊">
-                <i class="fa fa-chevron-left"></i> Easyfun的網路文章區塊
+              <a href="/2019/09/11/JavaScript-ES6語法介紹/" rel="next" title="JavaScript-ES6語法介紹">
+                <i class="fa fa-chevron-left"></i> JavaScript-ES6語法介紹
               </a>
             
           </div>
@@ -363,10 +427,6 @@ str = str.valueOf();        //還原str</code></pre>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/22/undefined/" rel="prev" title="javascript語法介紹">
-                javascript語法介紹 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,7 +540,27 @@ str = str.valueOf();        //還原str</code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開始JS學習"><span class="nav-number">1.</span> <span class="nav-text">開始JS學習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS語法介紹"><span class="nav-number">2.</span> <span class="nav-text">JS語法介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例1-1"><span class="nav-number">3.</span> <span class="nav-text">範例1.1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#認識前端框架"><span class="nav-number">1.</span> <span class="nav-text">認識前端框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端框架與Vue-js趨勢"><span class="nav-number">2.</span> <span class="nav-text">前端框架與Vue.js趨勢</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#app"><span class="nav-number"></span> <span class="nav-text">{{ msg }}&lt;/h1&gt;
+            &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
+            &lt;div&gt;
+                &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+            &lt;/div&gt;
+            &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
+            &lt;div&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;/div&gt;`
+    };
+        3.生成畫面
+        (1)
+            new Vue({
+            el: &quot;#app&quot;,
+            render: h =&gt; h(app)
+            });
+        (2)
+            new Vue({
+                render: h =&gt; h(app)
+            }).$mount(&quot;#app&quot;);</span></a></li></div>
             
 
           </div>
