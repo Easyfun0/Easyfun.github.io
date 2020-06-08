@@ -87,7 +87,7 @@
 <meta property="og:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://easyfun0.github.io/images/observable.png">
-<meta property="og:updated_time" content="2020-06-08T09:59:17.438Z">
+<meta property="og:updated_time" content="2020-06-08T10:09:03.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue的起手式">
 <meta name="twitter:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
@@ -380,7 +380,8 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
                 &lt;div&gt;&lt;/div&gt;
                 &lt;/div&gt;
             &lt;/section&gt;
-            &lt;/div&gt;`
+            &lt;/div&gt;
+            `
         };
      3.生成畫面
         (1)
@@ -391,7 +392,9 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
         (2)
             new Vue({
                 render: h =&gt; h(app)
-            }).$mount(&quot;#app&quot;);</h1></div></section></div></code></pre><img src="/images/observable.png" alt="Raspberry pi" class="image">
+            }).$mount(&quot;#app&quot;);</h1></div></section></div></code></pre><h2 id="oberserve-array"><a href="#oberserve-array" class="headerlink" title="oberserve array"></a>oberserve array</h2><pre><code>1.vue2裡對array操作有限制
+array[i] = xxx
+2.vue使用攔截</code></pre><img src="/images/observable.png" alt="Raspberry pi" class="image">
 
 
       
@@ -548,7 +551,8 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
                 &lt;div&gt;&lt;/div&gt;
                 &lt;/div&gt;
             &lt;/section&gt;
-            &lt;/div&gt;`
+            &lt;/div&gt;
+            `
         };
      3.生成畫面
         (1)
@@ -559,7 +563,7 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
         (2)
             new Vue({
                 render: h =&gt; h(app)
-            }).$mount(&quot;#app&quot;);</span></a></li></div>
+            }).$mount(&quot;#app&quot;);</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#oberserve-array"><span class="nav-number">1.</span> <span class="nav-text">oberserve array</span></a></li></ol></li></div>
             
 
           </div>
