@@ -87,7 +87,10 @@
 <meta property="og:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://easyfun0.github.io/images/observable.png">
-<meta property="og:updated_time" content="2020-06-08T10:09:03.636Z">
+<meta property="og:image" content="https://easyfun0.github.io/images/get.png">
+<meta property="og:image" content="https://easyfun0.github.io/images/splice.png">
+<meta property="og:image" content="https://easyfun0.github.io/images/set.png">
+<meta property="og:updated_time" content="2020-06-22T06:17:19.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue的起手式">
 <meta name="twitter:description" content="認識前端框架SPA與框架的意義 🐈SSR(整頁後端產生好)優點:    1.SEO    2.部分JS,CSS    3.降低效能消耗(手機,平板)🐈SPA優點:    1.過場(換資料用)    2.轉換時間短 🐈活動網站:    1.多頁切換 =&amp;gt; SPA    2.少頁不連貫 =&amp;gt; SSR    3.有無API =&amp;gt; (沒有) SSR🐈CMS(平台):    1.S">
@@ -368,19 +371,19 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
                 };
                 },
                 template: `
-                <div id="app">
-                <section>
-                    <div class="container">
-                    <h1 class="title">{{ msg }}&lt;/h1&gt;
-                &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
-                &lt;div&gt;
-                    &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+                    <div id="app">
+                    <section>
+                        <div class="container">
+                        <h1 class="title">{{ msg }}&lt;/h1&gt;
+                    &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
+                    &lt;div&gt;
+                        &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+                    &lt;/div&gt;
+                    &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
+                    &lt;div&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/section&gt;
                 &lt;/div&gt;
-                &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
-                &lt;div&gt;&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/section&gt;
-            &lt;/div&gt;
             `
         };
      3.生成畫面
@@ -396,7 +399,111 @@ let obj = Object.defineProperty({}, &quot;count&quot;, {
 array[i] = xxx
 2.vue使用攔截</code></pre><img src="/images/observable.png" alt="Raspberry pi" class="image">
 
+<h2 id="資料與畫面延伸"><a href="#資料與畫面延伸" class="headerlink" title="資料與畫面延伸"></a>資料與畫面延伸</h2><h3 id="method-方法-amp-computed-計算"><a href="#method-方法-amp-computed-計算" class="headerlink" title="method(方法)&amp; computed(計算)"></a>method(方法)&amp; computed(計算)</h3><pre><code>1.格式共用/資料處理 =&gt; computed
+2.需要傳參數/綁定 =&gt; methods
+3.computed只有在資料變動時才會觸發
 
+    let states = {
+    ary: [{ name: &quot;alex&quot; }, { name: &quot;sara&quot; }]
+    };
+    new Vue({
+        el: &quot;#app&quot;,
+        data: states,
+        computed: {
+        alex() {
+            console.log(&quot;computed&quot;);
+            return this.ary[0];
+        }
+        },
+        methods: {
+        getAlex() {
+            console.log(&quot;methods&quot;);
+            return this.ary[0];
+        }
+        }
+    });</code></pre><h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><pre><code>任務:第二個下拉選單動,連動第三個下拉
+
+1.使用axios取回資料(需要await)
+2.迴圈使用v-for
+  postal可能陣列或物件
+    &lt;option v-for=&quot;(city,index) in postal&quot; :value=&quot;index&quot;&gt;{{ city.name }}&lt;/option&gt;
+3.寫v-for一律綁key,key是一對一的最好是放資料ID
+4.預設參數使用需要特別小心null
+5.條件顯示 v-if/v-else(直接消失在DOM裡)
+    &lt;h1 v-if=&quot;nowArea !== null&quot;&gt;{{ nowArea.code }} {{ nowCity.name }} {{ nowArea.name }}&lt;/h1&gt;
+    &lt;h1 v-else&gt;請選擇縣市區域&lt;/h1&gt;
+6.computed兩種格式
+    (1)function(不能set,單純get)
+    (2)物件(可以有get/set功能)</code></pre><img src="/images/get.png" alt="Raspberry pi" class="image">
+
+<pre><code>7.reduce(處理函式,初始值,index)
+    let ary = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;];
+
+    let result = ary.reduce((prev, current) =&gt; {
+    prev += current
+    return prev;
+    }, &quot;&quot;);
+
+    // 1. &quot;&quot;, &quot;a&quot;=&gt;&quot;a&quot;
+    // 2. &quot;a&quot;, &quot;b&quot;=&gt;&quot;ab&quot;
+    // 3. &quot;ab&quot;, &quot;c&quot;=&gt;&quot;abc&quot;
+    // 4. &quot;abc&quot;, &quot;d&quot;=&gt;&quot;abcd&quot;
+
+    console.log(result)
+8.連動(watch) =&gt; 觀察資料
+  建議不能用computed時再使用
+    watch:{
+        &quot;index.direct&quot;:{
+        immediate: true, // 預設先做一次
+        handler(newVal,oldVal){...}
+        }
+    }</code></pre><h3 id="範例-上傳圖片"><a href="#範例-上傳圖片" class="headerlink" title="範例 上傳圖片"></a>範例 上傳圖片</h3><pre><code>1.沒有在vue裡面操作就不需要放入vue(ex:FileReader)
+2.File inputs are read only =&gt; 改用v-on:change
+
+    &lt;input class=&quot;file&quot; type=&quot;file&quot; accept=&quot;image/*&quot; v-on:change=&apos;fileHandler&apos;/&gt;
+    &lt;input class=&quot;file&quot; type=&quot;file&quot; accept=&quot;image/*&quot; @change=&apos;fileHandler&apos;/&gt;
+3.生命週期
+  mounted:畫面跟資料結合後，通常用來初始化
+4.vue裡取dom使用ref(this.$refs)
+5.function功能
+    (1)客製化處理資料
+    (2)互動
+6.排序/交換
+    不能使用下面的方法:vue狹持不到,資料會變,畫面不變
+
+        let temp = this.list[index];
+        this.list[index] = this.list[index + direct];
+        this.list[index + direct] = temp;
+    可以改用1: $set
+
+        let temp = this.list[index];
+        this.$set(this.list,index, this.list[index + direct])
+        this.$set(this.list,index + direct, temp)
+    可以改用2: splice
+
+        let target = this.list.splice(index, 1)[0];
+        this.list.splice(index + direct, 0, target);
+
+7.Vue只要畫面沒有即時改變,就是錯了
+8.splice</code></pre><img src="/images/splice.png" alt="Raspberry pi" class="image">
+
+<pre><code>9.$set =&gt; 強制觸發畫面更新
+
+標準陣列換位 =&gt; Vue</code></pre><img src="/images/set.png" alt="Raspberry pi" class="image">
+
+
+<h2 id="IIFE-Vue版"><a href="#IIFE-Vue版" class="headerlink" title="IIFE(Vue版)"></a>IIFE(Vue版)</h2><pre><code>(function(Vue){
+new Vue({
+
+    })
+})(Vue)
+
+
+(function(){
+new Vue({
+
+    })
+})()</code></pre>
       
     </div>
     
@@ -543,15 +650,15 @@ array[i] = xxx
 
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#認識前端框架"><span class="nav-number">1.</span> <span class="nav-text">認識前端框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端框架與Vue-js趨勢"><span class="nav-number">2.</span> <span class="nav-text">前端框架與Vue.js趨勢</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#app"><span class="nav-number"></span> <span class="nav-text">{{ msg }}&lt;/h1&gt;
-                &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
-                &lt;div&gt;
-                    &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+                    &lt;h1 class=&quot;title&quot; v-text=&quot;msg&quot;&gt;{{ msg }}&lt;/h1&gt;
+                    &lt;div&gt;
+                        &lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;
+                    &lt;/div&gt;
+                    &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
+                    &lt;div&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/section&gt;
                 &lt;/div&gt;
-                &lt;input type=&quot;text&quot; :value=&quot;msg&quot; /&gt;
-                &lt;div&gt;&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/section&gt;
-            &lt;/div&gt;
             `
         };
      3.生成畫面
@@ -563,7 +670,7 @@ array[i] = xxx
         (2)
             new Vue({
                 render: h =&gt; h(app)
-            }).$mount(&quot;#app&quot;);</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#oberserve-array"><span class="nav-number">1.</span> <span class="nav-text">oberserve array</span></a></li></ol></li></div>
+            }).$mount(&quot;#app&quot;);</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#oberserve-array"><span class="nav-number">1.</span> <span class="nav-text">oberserve array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#資料與畫面延伸"><span class="nav-number">2.</span> <span class="nav-text">資料與畫面延伸</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#method-方法-amp-computed-計算"><span class="nav-number">2.1.</span> <span class="nav-text">method(方法)&amp; computed(計算)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例"><span class="nav-number">2.2.</span> <span class="nav-text">範例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例-上傳圖片"><span class="nav-number">2.3.</span> <span class="nav-text">範例 上傳圖片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIFE-Vue版"><span class="nav-number">3.</span> <span class="nav-text">IIFE(Vue版)</span></a></li></ol></li></div>
             
 
           </div>
