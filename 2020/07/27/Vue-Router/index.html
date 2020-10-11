@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="開始JS學習">
+<meta name="description" content="模組化模組1.分工 2.管理  app     template     data     computed     methods     watch路由器透過程式控制達到頁面網址獨立效果 基本組件指定與內建模組操作  🐥Vue-Router並不會提高SEO，提高使用者好感而已  1.hash 純前端使用 2.history  🐥前端Router配上後端Router才有SEOVue Rout">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自我轉換的第一步">
-<meta property="og:url" content="https://easyfun0.github.io/2019/08/20/第一次寫文章/index.html">
+<meta property="og:title" content="Vue Router">
+<meta property="og:url" content="https://easyfun0.github.io/2020/07/27/Vue-Router/index.html">
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
-<meta property="og:description" content="開始JS學習">
+<meta property="og:description" content="模組化模組1.分工 2.管理  app     template     data     computed     methods     watch路由器透過程式控制達到頁面網址獨立效果 基本組件指定與內建模組操作  🐥Vue-Router並不會提高SEO，提高使用者好感而已  1.hash 純前端使用 2.history  🐥前端Router配上後端Router才有SEOVue Rout">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="https://easyfun0.github.io/images/js.png">
-<meta property="og:updated_time" content="2019-08-22T09:18:24.191Z">
+<meta property="og:updated_time" content="2020-08-12T04:29:20.933Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自我轉換的第一步">
-<meta name="twitter:description" content="開始JS學習">
-<meta name="twitter:image" content="https://easyfun0.github.io/images/js.png">
+<meta name="twitter:title" content="Vue Router">
+<meta name="twitter:description" content="模組化模組1.分工 2.管理  app     template     data     computed     methods     watch路由器透過程式控制達到頁面網址獨立效果 基本組件指定與內建模組操作  🐥Vue-Router並不會提高SEO，提高使用者好感而已  1.hash 純前端使用 2.history  🐥前端Router配上後端Router才有SEOVue Rout">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+  <link rel="canonical" href="https://easyfun0.github.io/2020/07/27/Vue-Router/">
 
 
 
 
 
-  <title>自我轉換的第一步 | Welcome to  Easyfun. World</title>
+  <title>Vue Router | Welcome to  Easyfun. World</title>
   
 
 
@@ -234,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2020/07/27/Vue-Router/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -251,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自我轉換的第一步</h1>
+          <h1 class="post-title" itemprop="name headline">Vue Router</h1>
         
 
         <div class="post-meta">
@@ -263,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-20T15:53:59+08:00">
-                2019-08-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-27T12:31:20+08:00">
+                2020-07-27
               </time>
             
 
@@ -301,36 +299,160 @@
       
 
       
-        <h2 id="開始JS學習"><a href="#開始JS學習" class="headerlink" title="開始JS學習"></a>開始JS學習</h2><a id="more"></a>
-<img src="/images/js.png" alt="Raspberry pi" class="image">
+        <h2 id="模組化"><a href="#模組化" class="headerlink" title="模組化"></a>模組化</h2><h3 id="模組"><a href="#模組" class="headerlink" title="模組"></a>模組</h3><pre><code>1.分工
+2.管理
 
-<p>八月報名了深入JavaScript核心 的課程，雖然基礎懂一些但一直不知道有些語法的使用，或者看到別人寫的JS，也都不太懂怎麼解析，接下來開始持續一個月的深入探討JS的世界囉。</p>
-<h2 id="JS語法介紹"><a href="#JS語法介紹" class="headerlink" title="JS語法介紹"></a>JS語法介紹</h2><p>JavaScript型別系統分為「原始型別」和「物件型別」兩大類，原始型別沒有屬性與方法<br>原始型別(Primitive types)</p>
-<p>＊ number<br>＊ string<br>＊ boolean<br>＊ null<br>＊ undefined<br>＊ symbol(ES6)</p>
-<p>物件型別(Object types)<br>原生物件(Native)</p>
-<pre><code>▵原始型別包裹物件(Primitive Wrapper)
-    ＊ Number
-    ＊ String
-    ＊ Boolean
+app
+    template
+    data
+    computed
+    methods
+    watch</code></pre><h3 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h3><pre><code>透過程式控制達到頁面網址獨立效果
+基本組件指定與內建模組操作
 
-▵ Array,Object
-▵ Date,Math,RegExp</code></pre><p>宿主物件(Host)</p>
-<pre><code>◎ window(瀏覽器),global(Node.js)
-◎ DOM</code></pre><p>但JavaScript為了節省系統資源，原始型別在使用時會自動裝箱(boxing)形成原始型別包裹物件，使用完畢後會自動拆箱(unboxing)還原回原始型別。</p>
-<h2 id="範例1-1"><a href="#範例1-1" class="headerlink" title="範例1.1"></a>範例1.1</h2><pre><code>var str=&quot;string&quot;;
-console.log(typeof str); //&quot;string&quot;
-str.val=100;
-console.log(str.val); //undefined</code></pre><p>使用物件型別的時候最容易搞錯的就是Number,String,Boolean 就差在第一個字母大寫</p>
-<pre><code>var obj = new String(&quot;string&quot;);
-console.log(typeof obj); //&quot;object&quot;
-obj.val=100;
-console.log(obj.val); //100
-console.log(typeof obj.valueOf()); //&quot;string&quot;</code></pre><p>裝箱boxing與拆箱unboxing</p>
-<pre><code>var str = &quot;word&quot;;
-var txt = str.substring(3);</code></pre><p>裝箱內部原理</p>
-<pre><code>var str = new String(&quot;word&quot;);
-var txt = str.substring(3); //幫你裝箱
-str = str.valueOf();        //還原str</code></pre>
+🐥Vue-Router並不會提高SEO，提高使用者好感而已
+
+1.hash 純前端使用
+2.history
+
+🐥前端Router配上後端Router才有SEO</code></pre><h3 id="Vue-Router重點項目"><a href="#Vue-Router重點項目" class="headerlink" title="Vue Router重點項目"></a>Vue Router重點項目</h3><pre><code>1.基本顯示與轉場效果
+            &lt;transition name=&quot;fade&quot; mode=&quot;out-in&quot; appear&gt;
+                &lt;router-view&gt;&lt;/router-view&gt;
+            &lt;/transition&gt;
+2.巢狀結構
+    每一層會有一個route-view
+    每一層對應一個component
+
+    (1)巢狀屬性path如果下斜線，需要每一層寫出來
+        EX:{path:&quot;/framework/vue&quot;, component} 建議不要斜線
+        EX:{path:&quot;vue&quot;, component: vue}
+
+            let router = new VueRouter({
+                routes:[
+                    {path:&quot;/framework&quot;, component:framework
+                    children:[
+                        {path:&quot;vue&quot;, component:vue}
+                    ]
+                    },
+                    {path:&quot;*&quot;, redirect:&apos;/framework&apos;}
+                ]
+            })
+
+    (2)預設首頁
+        除了*外，還需要補空
+
+            let router = new VueRouter({
+                routes:[
+                    {path:&quot;/framework&quot;, component:framework
+                    children:[
+                        {path:&quot;&quot;, redirect:&apos;vue&apos;}
+                        {path:&quot;vue&quot;, component:vue}
+                        {path:&quot;*&quot;, redirect:&apos;vue&apos;}
+                    ]
+                    },
+                    {path:&quot;*&quot;, redirect:&apos;/framework&apos;}
+                ]
+            })
+
+3.使用程式切換Router（程式導頁)
+
+    (1)SPA是否讓人上下頁
+        使用push
+
+            to(path) {
+                this.$router.push(path)
+            }
+
+    (2)多選
+
+        🐥資料類型用陣列
+        🐥每個v-model綁在同一個參數上
+
+    (3)$router.push不允許一直放在同一頁
+
+        if(this.$router.path === path) return false
+
+    (4)上一頁/下一頁
+
+        go(direct) {
+            this.$router.go(direct)
+        }
+
+    (5)replace
+
+        to(path) {
+            this.$router.replace(path)
+        }
+
+    (6)$route VS $router
+
+        $route: 紀錄現在路由狀態的資料組(資料)
+        $router: 操作用，可push/replace/go (實體)
+
+    (7)選到按鈕亮起來
+        經過與到達
+
+        (router-link-active/router-link-exact-active)
+        router-link-exact-active: 效果只想讓現在頁面按鈕亮
+        router-link-active: 效果過程都亮
+
+    (8)程式導頁時機
+
+        沒有互動行為
+        🐥倒數計時倒頁
+        🐥表單送出檢核
+
+    (9)router-link Tag
+
+        🐥exact:
+        🐥replace: 將router.push改成router.relace
+
+4.Router hook(攔截點檢查)
+
+    (1)to
+    (2)from
+    (3)next
+    路由上提供meta參數
+
+        let router = new VueRouter({
+            routes:[
+                { path: &quot;/&quot;, component: index },
+                { path: &quot;/start&quot;, 
+                    component: index },
+                    beforeEnter(to,from,next){
+                        //TODO
+                        next()
+                    }
+                {
+                    path: &quot;/advance&quot;,
+                    name: &quot;advance&quot;,
+                    component: advance,
+                    meta:{auth:true}
+                }
+            ]
+        })
+
+        router.beforeEach((to,from,next)=&gt;{
+            if(to.meta.auth === true){
+                if(data.login === false){
+                    alert(&apos;尚未登入&apos;)
+                    return next(&apos;/&apos;)
+                }
+            }
+            next()
+        })
+
+
+    攔截點:
+    beforeEach:第一層全部都會檢查
+    beforeEnter:第二層(router)進入檢查
+    beforeRouterEnter:第三層(component)進入檢查
+    beforeRouteLeave:第三層(component)離開檢查
+
+    🐥生命週期順序:
+    beforeEach -&gt; beforeEnter -&gt; beforeRouterEnter -&gt; mounted -&gt; beforeLeave -&gt; destory
+
+    🐥不建議hook帶資料，主要做攔截檢查</code></pre>
       
     </div>
     
@@ -354,8 +476,8 @@ str = str.valueOf();        //還原str</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/20/hello-world/" rel="next" title="Easyfun的網路文章區塊">
-                <i class="fa fa-chevron-left"></i> Easyfun的網路文章區塊
+              <a href="/2020/05/24/Vue的起手式/" rel="next" title="Vue的起手式">
+                <i class="fa fa-chevron-left"></i> Vue的起手式
               </a>
             
           </div>
@@ -364,8 +486,8 @@ str = str.valueOf();        //還原str</code></pre>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/22/undefined/" rel="prev" title="javascript語法介紹">
-                javascript語法介紹 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/05/VueX-集中式資料管理/" rel="prev" title="VueX 集中式資料管理">
+                VueX 集中式資料管理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -480,7 +602,7 @@ str = str.valueOf();        //還原str</code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開始JS學習"><span class="nav-number">1.</span> <span class="nav-text">開始JS學習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS語法介紹"><span class="nav-number">2.</span> <span class="nav-text">JS語法介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例1-1"><span class="nav-number">3.</span> <span class="nav-text">範例1.1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模組化"><span class="nav-number">1.</span> <span class="nav-text">模組化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模組"><span class="nav-number">1.1.</span> <span class="nav-text">模組</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由器"><span class="nav-number">1.2.</span> <span class="nav-text">路由器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-Router重點項目"><span class="nav-number">1.3.</span> <span class="nav-text">Vue Router重點項目</span></a></li></ol></li></ol></div>
             
 
           </div>

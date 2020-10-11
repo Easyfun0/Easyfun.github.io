@@ -79,19 +79,23 @@
 
 
 
-<meta name="description" content="開始JS學習">
+<meta name="description" content="集中式資料管理觀念與基本使用🌼單向資料管理 🌼讓組件共享狀態操作簡化  讀取:State -&amp;gt; View 寫入:Action 單向資料流管理，不可隨意直接修改資料   面試題什麼時候使用Vuex  1.共用顯示 2.共用操作範例51.客製html標籤無法用預設@click，需加上native 2.接外層資料props      &amp;lt;view-Component :count=&amp;quo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自我轉換的第一步">
-<meta property="og:url" content="https://easyfun0.github.io/2019/08/20/第一次寫文章/index.html">
+<meta property="og:title" content="VueX 集中式資料管理">
+<meta property="og:url" content="https://easyfun0.github.io/2020/08/05/VueX-集中式資料管理/index.html">
 <meta property="og:site_name" content="Welcome to  Easyfun. World">
-<meta property="og:description" content="開始JS學習">
+<meta property="og:description" content="集中式資料管理觀念與基本使用🌼單向資料管理 🌼讓組件共享狀態操作簡化  讀取:State -&amp;gt; View 寫入:Action 單向資料流管理，不可隨意直接修改資料   面試題什麼時候使用Vuex  1.共用顯示 2.共用操作範例51.客製html標籤無法用預設@click，需加上native 2.接外層資料props      &amp;lt;view-Component :count=&amp;quo">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="https://easyfun0.github.io/images/js.png">
-<meta property="og:updated_time" content="2019-08-22T09:18:24.191Z">
+<meta property="og:image" content="https://easyfun0.github.io/images/vuex.png">
+<meta property="og:image" content="https://easyfun0.github.io/images/vuex2.png">
+<meta property="og:image" content="https://easyfun0.github.io/images/vuex3.png">
+<meta property="og:image" content="https://easyfun0.github.io/images/vuex4.png">
+<meta property="og:image" content="https://easyfun0.github.io/images/vuex5.png">
+<meta property="og:updated_time" content="2020-08-17T07:14:14.604Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自我轉換的第一步">
-<meta name="twitter:description" content="開始JS學習">
-<meta name="twitter:image" content="https://easyfun0.github.io/images/js.png">
+<meta name="twitter:title" content="VueX 集中式資料管理">
+<meta name="twitter:description" content="集中式資料管理觀念與基本使用🌼單向資料管理 🌼讓組件共享狀態操作簡化  讀取:State -&amp;gt; View 寫入:Action 單向資料流管理，不可隨意直接修改資料   面試題什麼時候使用Vuex  1.共用顯示 2.共用操作範例51.客製html標籤無法用預設@click，需加上native 2.接外層資料props      &amp;lt;view-Component :count=&amp;quo">
+<meta name="twitter:image" content="https://easyfun0.github.io/images/vuex.png">
 
 
 
@@ -121,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+  <link rel="canonical" href="https://easyfun0.github.io/2020/08/05/VueX-集中式資料管理/">
 
 
 
 
 
-  <title>自我轉換的第一步 | Welcome to  Easyfun. World</title>
+  <title>VueX 集中式資料管理 | Welcome to  Easyfun. World</title>
   
 
 
@@ -234,7 +238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2019/08/20/第一次寫文章/">
+    <link itemprop="mainEntityOfPage" href="https://easyfun0.github.io/2020/08/05/VueX-集中式資料管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -251,7 +255,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自我轉換的第一步</h1>
+          <h1 class="post-title" itemprop="name headline">VueX 集中式資料管理</h1>
         
 
         <div class="post-meta">
@@ -263,8 +267,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-20T15:53:59+08:00">
-                2019-08-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-05T00:16:07+08:00">
+                2020-08-05
               </time>
             
 
@@ -301,36 +305,142 @@
       
 
       
-        <h2 id="開始JS學習"><a href="#開始JS學習" class="headerlink" title="開始JS學習"></a>開始JS學習</h2><a id="more"></a>
-<img src="/images/js.png" alt="Raspberry pi" class="image">
+        <h2 id="集中式資料管理觀念與基本使用"><a href="#集中式資料管理觀念與基本使用" class="headerlink" title="集中式資料管理觀念與基本使用"></a>集中式資料管理觀念與基本使用</h2><pre><code>🌼單向資料管理
+🌼讓組件共享狀態操作簡化
 
-<p>八月報名了深入JavaScript核心 的課程，雖然基礎懂一些但一直不知道有些語法的使用，或者看到別人寫的JS，也都不太懂怎麼解析，接下來開始持續一個月的深入探討JS的世界囉。</p>
-<h2 id="JS語法介紹"><a href="#JS語法介紹" class="headerlink" title="JS語法介紹"></a>JS語法介紹</h2><p>JavaScript型別系統分為「原始型別」和「物件型別」兩大類，原始型別沒有屬性與方法<br>原始型別(Primitive types)</p>
-<p>＊ number<br>＊ string<br>＊ boolean<br>＊ null<br>＊ undefined<br>＊ symbol(ES6)</p>
-<p>物件型別(Object types)<br>原生物件(Native)</p>
-<pre><code>▵原始型別包裹物件(Primitive Wrapper)
-    ＊ Number
-    ＊ String
-    ＊ Boolean
+讀取:State -&gt; View
+寫入:Action
+單向資料流管理，不可隨意直接修改資料</code></pre><img src="/images/vuex.png" alt="Raspberry pi" class="image">
 
-▵ Array,Object
-▵ Date,Math,RegExp</code></pre><p>宿主物件(Host)</p>
-<pre><code>◎ window(瀏覽器),global(Node.js)
-◎ DOM</code></pre><p>但JavaScript為了節省系統資源，原始型別在使用時會自動裝箱(boxing)形成原始型別包裹物件，使用完畢後會自動拆箱(unboxing)還原回原始型別。</p>
-<h2 id="範例1-1"><a href="#範例1-1" class="headerlink" title="範例1.1"></a>範例1.1</h2><pre><code>var str=&quot;string&quot;;
-console.log(typeof str); //&quot;string&quot;
-str.val=100;
-console.log(str.val); //undefined</code></pre><p>使用物件型別的時候最容易搞錯的就是Number,String,Boolean 就差在第一個字母大寫</p>
-<pre><code>var obj = new String(&quot;string&quot;);
-console.log(typeof obj); //&quot;object&quot;
-obj.val=100;
-console.log(obj.val); //100
-console.log(typeof obj.valueOf()); //&quot;string&quot;</code></pre><p>裝箱boxing與拆箱unboxing</p>
-<pre><code>var str = &quot;word&quot;;
-var txt = str.substring(3);</code></pre><p>裝箱內部原理</p>
-<pre><code>var str = new String(&quot;word&quot;);
-var txt = str.substring(3); //幫你裝箱
-str = str.valueOf();        //還原str</code></pre>
+
+<h3 id="面試題什麼時候使用Vuex"><a href="#面試題什麼時候使用Vuex" class="headerlink" title="面試題什麼時候使用Vuex"></a>面試題什麼時候使用Vuex</h3><img src="/images/vuex2.png" alt="Raspberry pi" class="image">
+
+<pre><code>1.共用顯示
+2.共用操作</code></pre><h3 id="範例5"><a href="#範例5" class="headerlink" title="範例5"></a>範例5</h3><pre><code>1.客製html標籤無法用預設@click，需加上native
+2.接外層資料props
+
+    &lt;view-Component :count=&quot;count&quot; @click.native=&quot;count++&quot;&gt;&lt;/view-Component&gt;
+
+
+方法一
+
+    props: [&quot;count]
+
+方法二
+
+    props: {
+        count: {
+            required: true,
+            type: Number
+            // default: 0
+        }
+    }
+
+3.修改資料
+
+不能隨意往外改，資料擁有者才可以修改資料</code></pre><img src="/images/vuex3.png" alt="Raspberry pi" class="image">
+
+<pre><code>4.收歸國有vuex
+
+store(儲存區) =&gt; state
+有公用state，還是可以有私有data
+
+5.View的資料控管
+
+    私有: data
+    借來: prosp(parent)
+    共用: store(Vuex)
+
+6.嚴僅模式
+
+    strict: true
+    建議開發時開，上線關掉(需要檢查，會較耗效能)
+    可以不開，但寫法需要嚴謹
+
+7.Vuex的設計模式</code></pre><img src="/images/vuex4.png" alt="Raspberry pi" class="image">
+
+<pre><code>8.Mutations
+
+    可以做第一層防禦(判斷修改)
+    呼叫方式: commit
+
+        let store = new Vuex.Store({
+            strict: true,
+            state: {
+            count: 0
+            },
+            mutations: {
+                changeCount(state, { count }) {
+                    if (count &gt;= 0) {
+                    state.count = count;
+                    }
+                }
+            }
+        });
+
+        computed: {
+            count: {
+                get() {
+                return this.$store.state.count;
+                },
+                set(value) {
+                // this.$store.state.count = value;
+                this.$store.commit(&quot;changeCount&quot;, { count: value });
+                }
+            }
+        }
+
+9.Mixin
+
+    解決重複寫相同computed
+    問題: 當computed內容與mixin重複時以私有的為主
+    PS: 模組的第一層，只能有一個dom</code></pre><img src="/images/vuex5.png" alt="Raspberry pi" class="image">
+
+<h3 id="範例6"><a href="#範例6" class="headerlink" title="範例6"></a>範例6</h3><pre><code>1.Actions
+
+    (1)一定要return promise
+    (2)不能直接改資料
+    (3)context =&gt; commit/dispatch/getters/state/rootGetters/rootState</code></pre><h3 id="範例7-module"><a href="#範例7-module" class="headerlink" title="範例7 module"></a>範例7 module</h3><pre><code>1.module一定要用function
+    =&gt; store module 要用函式回傳值
+    用function才會有彈性的產出資料
+2.module註冊兩種方式
+    如果用module使用obj，下面message與message1就會重複，所以需要使用function
+
+        modules:{
+            message:messageModule(),
+            message1:messageModule()
+        }
+3.永久資料＆暫時資料
+
+    永久資料:例如登入資訊
+    暫時資料:例如count
+
+4.hasModule
+    預設vuex沒有檢查module的方法
+
+5.registerModule
+
+    (1) 檢查及註冊建議mouted之後再做比較安全
+    (2) registerModule做出來的module就可以移除
+    (3) 如果沒判斷是否有module，一直register，state只有一份，但是mutations會一直增加
+
+6.清掉方法
+
+    (1)資料清空
+        this.$store.state.counter.count = 0
+    (2)移除掉module
+        if(this.$store.jasModule(&apos;counter&apos;)){
+        this.$store.unregisterModule(&apos;counter&apos;)
+        }
+
+7.規劃資料
+
+    (1)全站資料模組*N
+    (2)每頁資料結構
+
+        a.data
+        b.props
+        c.資料模組 -&gt; page</code></pre>
       
     </div>
     
@@ -354,8 +464,8 @@ str = str.valueOf();        //還原str</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/20/hello-world/" rel="next" title="Easyfun的網路文章區塊">
-                <i class="fa fa-chevron-left"></i> Easyfun的網路文章區塊
+              <a href="/2020/07/27/Vue-Router/" rel="next" title="Vue Router">
+                <i class="fa fa-chevron-left"></i> Vue Router
               </a>
             
           </div>
@@ -363,10 +473,6 @@ str = str.valueOf();        //還原str</code></pre>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/22/undefined/" rel="prev" title="javascript語法介紹">
-                javascript語法介紹 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,7 +586,7 @@ str = str.valueOf();        //還原str</code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開始JS學習"><span class="nav-number">1.</span> <span class="nav-text">開始JS學習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS語法介紹"><span class="nav-number">2.</span> <span class="nav-text">JS語法介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例1-1"><span class="nav-number">3.</span> <span class="nav-text">範例1.1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集中式資料管理觀念與基本使用"><span class="nav-number">1.</span> <span class="nav-text">集中式資料管理觀念與基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面試題什麼時候使用Vuex"><span class="nav-number">1.1.</span> <span class="nav-text">面試題什麼時候使用Vuex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例5"><span class="nav-number">1.2.</span> <span class="nav-text">範例5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例6"><span class="nav-number">1.3.</span> <span class="nav-text">範例6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例7-module"><span class="nav-number">1.4.</span> <span class="nav-text">範例7 module</span></a></li></ol></li></ol></div>
             
 
           </div>
